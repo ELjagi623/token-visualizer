@@ -1,0 +1,52 @@
+# Windows 安装包 / 免安装版（npm run dist）。产物在 release/ 下。
+appId: com.tokenvisualizer.app
+productName: Token Visualizer
+copyright: Copyright (c) 2026 ELjagi623 (MIT License)
+
+directories:
+  output: release
+
+# 只打包构建后的主进程文件：服务端代码与数据 json 已由 esbuild 打进 main.cjs，运行时不需要 node_modules
+files:
+  - dist-desktop/main.cjs
+  - package.json
+  # package.json 里的 react / echarts 等只在构建前端时用，运行时不需要，不打进安装包
+  - '!**/node_modules/**'
+
+# 前端静态产物与图标放在 resources/ 下，由主进程按 process.resourcesPath 读取
+extraResources:
+  - from: web/dist
+    to: web
+  - from: desktop/icon.png
+    to: icon.png
+  - from: LICENSE
+    to: LICENSE.txt
+
+win:
+  icon: desktop/icon.png
+  target:
+    - target: nsis
+      arch: [x64]
+    - target: portable
+      arch: [x64]
+
+nsis:
+  artifactName: Token-Visualizer-Setup-${version}.${ext}
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  perMachine: false
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Token Visualizer
+  # 卸载时不删除 %APPDATA%\TokenVisualizer（设置与缓存），重装后仍在
+  deleteAppDataOnUninstall: false
+
+portable:
+  artifactName: Token-Visualizer-${version}-portable.${ext}
+
+# 只带最小语言包，减小体积（界面是应用自己的网页，Chromium 自带的菜单 / 对话框语言不重要）
+electronLanguages:
+  - zh-CN
+  - en-US
+
+compression: normal

@@ -5,3 +5,7 @@ node_modules/
 Thumbs.db
 test-results/
 test/screenshots/
+
+# Desktop app build output
+dist-desktop/
+release/

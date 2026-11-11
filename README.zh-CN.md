@@ -13,7 +13,30 @@
 - **零外网**：运行时不发任何外部请求（字体、图标全部本地打包），价格表是开发时联网核对后随应用保存的。
 - 需求见 `PRD.md`；设计稿与成本规格在 `docs/design/`；自动验收报告在 `docs/ACCEPTANCE.md`。
 
-## 快速开始
+## 下载安装（Windows，推荐）
+
+不需要安装 Node.js，也不需要浏览器：到 [Releases](../../releases) 页面下载
+
+- `Token-Visualizer-Setup-<版本>.exe`：安装版（可选安装目录，创建桌面 / 开始菜单快捷方式）；
+- `Token-Visualizer-<版本>-portable.exe`：免安装版（双击即用）。
+
+双击后会打开一个独立窗口（不是浏览器标签页），关闭窗口即退出。与命令行版共用同一份设置与缓存（`%APPDATA%\TokenVisualizer`），卸载不会删除它们。
+
+> 安装包目前**没有代码签名**，Windows SmartScreen 首次运行时可能提示"未知发布者"：点"更多信息 → 仍要运行"即可。Release 说明里附有 SHA-256 校验值；介意的话可以从源码自己构建（见下）。
+> 目前只在 Windows 11 上验证过；macOS / Linux 暂未验证。
+
+自己构建桌面 APP：
+
+```
+npm install
+npm run app            # 构建并以独立窗口运行（开发调试）
+npm run dist           # 打包 Windows 安装包与免安装版，产物在 release/
+npm run smoke:desktop  # 冒烟测试：启动真实窗口，检查渲染、沙箱、单实例、退出释放端口
+```
+
+（桌面外壳在 `desktop/`：Electron 主进程在进程内直接启动本项目的本地服务，再用一个窗口加载 `http://127.0.0.1:47821`；服务端代码与数据 json 由 esbuild 打成单个 `dist-desktop/main.cjs`。窗口开启了沙箱与上下文隔离，只允许在本服务来源内导航，其它链接交给系统浏览器。更换图标：替换 `desktop/icon.png`，或 `npm run icon` 重新生成占位图标。）
+
+## 快速开始（命令行 / 浏览器方式）
 
 环境：Windows 11，Node.js >= 22.18（本机用 v26）。服务端运行时**零第三方依赖**，TypeScript 由 Node 原生 type-stripping 直接运行。
 
@@ -44,6 +67,9 @@ npm start              # 启动并自动打开浏览器 http://127.0.0.1:47821/�
 |---|---|
 | `npm start` | 启动本地服务（仅绑定 127.0.0.1）；`-- --no-open` 不开浏览器，`-- --port <n>` 指定起始端口 |
 | `npm run build` | 构建前端到 `web/dist`（服务端托管它；产物要保留在项目里） |
+| `npm run app` | 构建后以独立桌面窗口运行（Electron） |
+| `npm run dist` | 打包 Windows 安装包 + 免安装版到 `release/` |
+| `npm run smoke:desktop` | 桌面 APP 冒烟测试（真实窗口：渲染 / 沙箱 / 单实例 / 退出释放端口） |
 | `npm run dev:web` | 前端开发服务器（Vite，<http://127.0.0.1:5173>，`/api` 代理到 `TV_PORT`（默认 47821）；需另开终端 `npm start -- --no-open`） |
 | `npm test` | Vitest 单测（约 30 秒） |
 | `npm run test:e2e` | Playwright E2E（用系统 Edge；先 `npm run build`；自带临时数据根与服务进程；截图写到 `test/screenshots/`；约 6 分钟，运行期间不要并发其它浏览器进程） |
@@ -136,8 +162,8 @@ web/                           前端（Vite + React 18 + TypeScript + Zustand +
   dist/                        构建产物（随项目保留，服务端托管）
 scripts/                       fixture 生成、解析 / 核对 / 基准 / 价格校验 / 自动验收（acceptance.ts）与审计钩子（audit-hook.mjs）
 test/                          Vitest 单测；test/fixtures 为合成数据；test/e2e 为 Playwright 规格；test/screenshots 为截图归档
-docs/ACCEPTANCE.md             自动验收报告（npm run acceptance 生成）
-docs/                          验收报告（ACCEPTANCE.md）、设计稿与成本规格（design/）、截图素材
+desktop/                       桌面 APP 外壳（Electron 主进程 main.ts、esbuild 打包脚本、图标）；electron-builder.yml 为打包配置
+docs/                          验收报告（ACCEPTANCE.md，npm run acceptance 生成）、设计稿与成本规格（design/）、截图素材
 start.cmd · start.ps1          双击启动脚本（start.cmd 为纯 ASCII，中文提示在 scripts/messages/*.txt）
 ```
 

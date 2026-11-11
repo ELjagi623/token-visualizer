@@ -1,6 +1,6 @@
 {
   "name": "token-visualizer",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "本地 Claude Code Token 用量可视化（只读、纯本地）",
   "license": "MIT",
@@ -10,13 +10,14 @@
     "type": "git",
     "url": "git+https://github.com/ELjagi623/token-visualizer.git"
   },
+  "main": "dist-desktop/main.cjs",
   "type": "module",
   "engines": {
     "node": ">=22.18"
   },
   "scripts": {
     "start": "node src/server/index.ts",
-    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p web/tsconfig.json && tsc --noEmit -p test/e2e/tsconfig.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p web/tsconfig.json && tsc --noEmit -p test/e2e/tsconfig.json && tsc --noEmit -p desktop/tsconfig.json",
     "test": "vitest run",
     "fixture": "node scripts/make-fixture.ts",
     "parse": "node scripts/parse-root.ts",
@@ -27,7 +28,12 @@
     "acceptance": "node scripts/acceptance.ts",
     "dev:web": "vite --config web/vite.config.ts",
     "build": "vite build --config web/vite.config.ts",
-    "test:e2e": "playwright test -c test/e2e/playwright.config.ts"
+    "test:e2e": "playwright test -c test/e2e/playwright.config.ts",
+    "build:desktop": "node desktop/build.mjs",
+    "icon": "node desktop/make-icon.mjs",
+    "app": "npm run build && node desktop/build.mjs && electron dist-desktop/main.cjs",
+    "dist": "npm run build && node desktop/build.mjs && electron-builder --win --config electron-builder.yml",
+    "smoke:desktop": "npm run build && node desktop/build.mjs && node scripts/desktop-smoke.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.65.0",
@@ -35,6 +41,9 @@
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "^6.3.0",
+    "electron": "^45.3.0",
+    "electron-builder": "^26.18.0",
+    "esbuild": "^0.28.2",
     "typescript": "^7.0.2",
     "vitest": "^5.1.0"
   },

@@ -36,13 +36,28 @@ Token Visualizer reads the session logs Claude Code writes to `~/.claude/project
 - **No conversation content**: only usage and metadata fields are extracted.
 - **No network**: listens on `127.0.0.1` only and makes no outbound requests at runtime. Fonts and icons are bundled.
 
-## Quick start
+## Install
+
+### Desktop app (Windows, recommended)
+
+No Node.js and no browser needed. Download from the [Releases](../../releases) page:
+
+- `Token-Visualizer-Setup-<version>.exe`: installer (choose the install folder; adds desktop and Start menu shortcuts).
+- `Token-Visualizer-<version>-portable.exe`: portable build, just double-click.
+
+It opens in its own window and quits when you close it. The desktop app and the command-line version share the same settings and cache (`%APPDATA%\TokenVisualizer`), and uninstalling does not delete them.
+
+> [!NOTE]
+> The installers are **not code-signed**, so Windows SmartScreen may show "Unknown publisher" on first run: click "More info" → "Run anyway". Release notes list SHA-256 checksums, and you can build the app yourself from source (see [Development](#development)).
+> Only Windows 11 has been tested. macOS and Linux are untested.
+
+## Quick start (browser version)
 
 **Requirements:** Windows 11 and Node.js >= 22.18. The server has no third-party runtime dependencies.
 
 ### From a release
 
-1. Download `token-visualizer-v0.1.0.zip` from the [Releases](../../releases) page and unzip it.
+1. Download `token-visualizer-<version>.zip` (the source archive) from the [Releases](../../releases) page and unzip it.
 2. Double-click `start.cmd` (or run `node src/server/index.ts`).
 3. Your browser opens at `http://127.0.0.1:47821/`. If the port is busy, the next free one is used.
 
@@ -81,7 +96,17 @@ npm run test:e2e     # Playwright end-to-end tests
 npm run acceptance   # automated acceptance against synthetic fixtures
 ```
 
-The stack is Node (native TypeScript), Vite, React 18, Zustand and ECharts.
+Desktop app (Electron):
+
+```bash
+npm run app            # build, then run in a standalone window
+npm run dist           # build the Windows installer and portable exe into release/
+npm run smoke:desktop  # launch the real window and check rendering, sandbox, single instance, shutdown
+```
+
+The desktop shell lives in `desktop/`. The Electron main process starts the existing local server in-process and loads `http://127.0.0.1:47821` in a sandboxed window; esbuild bundles the server into one file, so the packaged app does not need Node.js. To change the icon, replace `desktop/icon.png`.
+
+The stack is Node (native TypeScript), Vite, React 18, Zustand and ECharts, packaged with Electron for the desktop app.
 
 ## How it works
 
