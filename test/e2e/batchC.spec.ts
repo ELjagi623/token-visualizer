@@ -88,12 +88,12 @@ test('订阅方案：选档位预填月费；手改月费归为自定义；设�
   await open(page, '#/settings');
   await page.getByTestId('settings-plan').getByRole('button', { name: 'Max 5x' }).click();
   await expect(page.getByTestId('settings-fee')).toHaveValue('100');
-  expect((await api('/settings')).settings.subscription).toEqual({ plan: 'max5x', monthlyFeeUsd: 100 });
+  expect((await api('/settings')).settings.subscription).toMatchObject({ plan: 'max5x', monthlyFeeUsd: 100 });
   await expect(page.getByTestId('settings-sub-warn')).toHaveCount(0);
   await expect(page.getByTestId('settings-plan-note')).toContainText('核对于');
   await page.getByTestId('settings-fee').fill('31');
   await page.getByTestId('settings-fee').press('Enter');
-  await expect.poll(async () => (await api('/settings')).settings.subscription).toEqual({ plan: 'custom', monthlyFeeUsd: 31 });
+  await expect.poll(async () => (await api('/settings')).settings.subscription).toMatchObject({ plan: 'custom', monthlyFeeUsd: 31 });
   // 非法值
   await page.getByTestId('settings-fee').fill('abc');
   await page.getByTestId('settings-fee').press('Enter');

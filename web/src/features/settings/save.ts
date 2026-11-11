@@ -6,7 +6,7 @@ import { create } from 'zustand';
 import { api } from '../../api/client.ts';
 import { apiSend } from '../../api/clientC.ts';
 import type { SettingsPayload } from '../../api/types.ts';
-import { useStore } from '../../state/store.ts';
+import { adoptLanguage, useStore } from '../../state/store.ts';
 
 export type SaveKind = 'idle' | 'saving' | 'saved' | 'error';
 
@@ -28,6 +28,7 @@ export const useSaveStatus = create<SaveState>((set) => ({
 export async function reloadSettings(): Promise<SettingsPayload> {
   const p = await api.settings();
   useStore.setState({ settings: p, settingsVersion: p.version });
+  adoptLanguage(p.settings.language);
   return p;
 }
 
@@ -38,6 +39,7 @@ export async function saveSettings(patch: Record<string, unknown>): Promise<{ ok
   try {
     const payload = await apiSend<SettingsPayload>('PUT', '/api/settings', patch);
     useStore.setState({ settings: payload, settingsVersion: payload.version });
+    adoptLanguage(payload.settings.language);
     st.set('saved');
     return { ok: true, payload };
   } catch (e) {

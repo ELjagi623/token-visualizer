@@ -1,20 +1,36 @@
+/* 固定外壳：顶栏 / 提示条 / 项目栏固定不动，只有右侧内容区（.main）滚动；.body 顶部的分界线把二者隔开 */
 .shell {
-  min-height: 100vh;
-  padding: 20px 32px 48px;
+  --gutter: 32px;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+}
+
+.shell > header {
+  flex: none;
+  padding: 20px var(--gutter) 16px;
 }
 
 .body {
+  flex: 1 1 0;
+  min-height: 0;
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 24px;
+  padding-left: var(--gutter);
+  border-top: 1px solid var(--line);
 }
 
 .main {
   flex: 1 1 0;
   min-width: 0;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 24px var(--gutter) 48px 0;
   outline: none;
 }
 
@@ -39,6 +55,14 @@
 
 @media (max-width: 899.98px) {
   .shell {
-    padding: 16px 16px 40px;
+    --gutter: 16px;
+  }
+
+  .shell > header {
+    padding-top: 16px;
+  }
+
+  .main {
+    padding-bottom: 40px;
   }
 }

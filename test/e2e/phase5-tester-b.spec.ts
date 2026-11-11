@@ -33,7 +33,7 @@ async function startWithRawSettings(raw: string): Promise<TestServer> {
   fs.mkdirSync(appData, { recursive: true });
   fs.cpSync(FIXTURE_PROJECTS, dataRoot, { recursive: true });
   fs.writeFileSync(path.join(appData, 'settings.json'), raw);
-  const proc = spawn(process.execPath, ['src/server/index.ts', '--no-open'], { cwd: ROOT, env: { ...process.env, TV_DATA_ROOT: dataRoot, TV_APPDATA_DIR: appData, TV_PORT: '0', TV_NO_OPEN: '1' }, stdio: ['ignore', 'pipe', 'pipe'], windowsHide: true });
+  const proc = spawn(process.execPath, ['src/server/index.ts', '--no-open'], { cwd: ROOT, env: { ...process.env, TV_DATA_ROOT: dataRoot, TV_APPDATA_DIR: appData, TV_PORT: '0', TV_NO_OPEN: '1', TV_LANG: 'zh' }, stdio: ['ignore', 'pipe', 'pipe'], windowsHide: true });
   let out = '';
   proc.stdout?.on('data', (d: Buffer) => (out += d.toString('utf8')));
   proc.stderr?.on('data', (d: Buffer) => (out += d.toString('utf8')));
@@ -283,6 +283,10 @@ test.describe('warnings 提示条（坏 settings.json）', () => {
         expect(se.warnings).toEqual(st.warnings);
         await page.setViewportSize({ width: 1440, height: 900 });
         await page.goto(srv.url);
+        // 坏设置文件回退默认值 → 会弹首次引导；这里测的是提示条，先用 Esc 跳过引导
+        await expect(page.getByTestId('onboarding')).toBeVisible();
+        await page.keyboard.press('Escape');
+        await expect(page.getByTestId('onboarding')).toHaveCount(0);
         const banner = page.locator('[data-testid="warnings-banner"]');
         await expect(banner).toBeVisible();
         await expect(banner).toContainText(re);

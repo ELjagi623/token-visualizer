@@ -11,6 +11,7 @@
 import { normalizeModel } from '../core/models.ts';
 import type { AppDataWriter } from '../core/safeFs.ts';
 import builtinPrices from '../data/prices.default.json' with { type: 'json' };
+import { L } from '../i18n.ts';
 
 export type MatchKind = 'exact' | 'prefix' | 'glob';
 
@@ -51,7 +52,7 @@ function isObj(v: unknown): v is Record<string, unknown> {
 
 function priceValue(v: unknown, field: string): number | null {
   if (v === null || v === undefined || v === '') return null;
-  if (typeof v !== 'number' || !Number.isFinite(v) || v < 0 || v > MAX_PRICE) throw new PriceError(field, `${field} 必须是 0–${MAX_PRICE} 之间的数字或 null`);
+  if (typeof v !== 'number' || !Number.isFinite(v) || v < 0 || v > MAX_PRICE) throw new PriceError(field, L(`${field} 必须是 0–${MAX_PRICE} 之间的数字或 null`, `${field} must be a number between 0 and ${MAX_PRICE}, or null`));
   return v;
 }
 
@@ -63,7 +64,7 @@ export function normalizeRule(raw: unknown, where: string): PriceRule {
   const allowed = ['id', 'pattern', 'match', ...PRICE_FIELDS, 'fastMultiplier', 'sourceUrl', 'checkedAt', 'origin', 'complete', 'note'];
   for (const k of Object.keys(raw)) if (!allowed.includes(k)) throw new PriceError(`${where}.${k}`, `未知的字段：${where}.${k}`);
   const pattern = raw.pattern;
-  if (typeof pattern !== 'string' || pattern.trim().length === 0 || pattern.length > 200 || /[\0\r\n]/.test(pattern)) throw new PriceError(`${where}.pattern`, '匹配规则必须是 1–200 个字符的非空文本');
+  if (typeof pattern !== 'string' || pattern.trim().length === 0 || pattern.length > 200 || /[\0\r\n]/.test(pattern)) throw new PriceError(`${where}.pattern`, L('匹配规则必须是 1–200 个字符的非空文本', 'The match pattern must be 1–200 characters of non-empty text'));
   const match = raw.match;
   if (match !== 'exact' && match !== 'prefix' && match !== 'glob') throw new PriceError(`${where}.match`, 'match 只能是 exact / prefix / glob');
   const id = typeof raw.id === 'string' && raw.id.length > 0 && raw.id.length <= 200 ? raw.id : `${match}:${pattern.trim()}`;
@@ -104,11 +105,11 @@ export function validateUserRules(body: unknown): PriceRule[] {
   for (const k of Object.keys(body)) if (k !== 'rules') throw new PriceError(k, `未知的字段：${k}`);
   const list = body.rules;
   if (!Array.isArray(list)) throw new PriceError('rules', 'rules 必须是数组');
-  if (list.length > MAX_USER_RULES) throw new PriceError('rules', `规则最多 ${MAX_USER_RULES} 条`);
+  if (list.length > MAX_USER_RULES) throw new PriceError('rules', L(`规则最多 ${MAX_USER_RULES} 条`, `At most ${MAX_USER_RULES} rules`));
   const out = list.map((r, i) => normalizeRule(r, `rules[${i}]`));
   const seen = new Set<string>();
   for (const r of out) {
-    if (seen.has(r.id)) throw new PriceError('rules', `规则 id 重复：${r.id}`);
+    if (seen.has(r.id)) throw new PriceError('rules', L(`规则 id 重复：${r.id}`, `Duplicate rule id: ${r.id}`));
     seen.add(r.id);
   }
   return out;
@@ -264,7 +265,7 @@ export class PriceStore {
     try {
       buf = await this.writer.readFile(PRICES_FILE);
     } catch (e) {
-      this.warnings.push(`读取价格表失败，已使用内置默认价格：${(e as Error).message}`);
+      this.warnings.push(L(`读取价格表失败，已使用内置默认价格：${(e as Error).message}`, `Could not read the price table; using built-in prices: ${(e as Error).message}`));
       return;
     }
     if (buf === null) return;
@@ -272,7 +273,7 @@ export class PriceStore {
       const parsed = JSON.parse(buf.toString('utf8')) as unknown;
       this.rules = validateUserRules({ rules: isObj(parsed) ? parsed.rules : undefined });
     } catch (e) {
-      this.warnings.push(`价格表文件无效，已使用内置默认价格（下次保存时会覆盖）：${(e as Error).message}`);
+      this.warnings.push(L(`价格表文件无效，已使用内置默认价格（下次保存时会覆盖）：${(e as Error).message}`, `The price table file is invalid; using built-in prices (it will be overwritten on the next save): ${(e as Error).message}`));
       this.rules = [];
     }
     this.book = null;

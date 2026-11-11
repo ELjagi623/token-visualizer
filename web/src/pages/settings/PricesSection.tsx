@@ -208,7 +208,7 @@ export function PricesSection() {
                       {editablePattern ? (
                         <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
                           <input className={s.field} style={{ width: 170 }} type="text" value={d.pattern} placeholder={t('settings.prices.patternPh')} aria-label={t('settings.prices.pattern')} data-testid="price-pattern" onChange={(e) => patch(d.key, { pattern: e.target.value })} />
-                          <select className={s.field} style={{ width: 96 }} value={d.match} aria-label={t('settings.prices.match')} onChange={(e) => patch(d.key, { match: e.target.value as Draft['match'] })}>
+                          <select className={s.field} style={{ width: 96 }} value={d.match} aria-label={t('settings.prices.match')} title={t('settings.prices.matchTip')} onChange={(e) => patch(d.key, { match: e.target.value as Draft['match'] })}>
                             <option value="exact">{t('settings.prices.match.exact')}</option>
                             <option value="prefix">{t('settings.prices.match.prefix')}</option>
                             <option value="glob">{t('settings.prices.match.glob')}</option>

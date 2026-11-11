@@ -148,7 +148,8 @@ test.describe('设计令牌与计算样式', () => {
     };
     const tile = '[data-testid="tile-total"]';
     // 页面骨架
-    await check('shell padding', '#root > div', { 'padding-top': 20, 'padding-left': 32, 'padding-right': 32, 'padding-bottom': 48, 'row-gap': 24 });
+    // 外壳固定后：左右 32 的边距在顶栏与内容区上（顶栏上 20 / 下 16），整体不再有外层 padding
+    await check('shell 顶栏边距', '#root > div > header', { 'padding-top': 20, 'padding-left': 32, 'padding-right': 32, 'padding-bottom': 16 });
     // 顶栏
     await check('logo 文字', 'header a span:last-child', { 'font-size': 23, 'font-weight': '700', 'letter-spacing': '-0.69px' });
     await check('logo 方块', 'header a > span:first-child, header a > svg:first-child', { __w: 38, __h: 38 });

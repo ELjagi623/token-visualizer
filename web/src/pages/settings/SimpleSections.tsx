@@ -226,7 +226,7 @@ export function RefreshSection({ settings }: { settings: SettingsData }) {
 
   return (
     <Section title={t('settings.refresh.title')} testId="settings-refresh">
-      <Row title={t('settings.refresh.auto')} hint={t('settings.refresh.autoHint')}>
+      <Row title={t('settings.refresh.auto')}>
         <Switch checked={settings.autoRefresh.enabled} label={t('settings.refresh.auto')} testId="settings-autorefresh" onChange={(v) => void saveSettings({ autoRefresh: { enabled: v } })} />
       </Row>
       <Row title={t('settings.refresh.interval')}>

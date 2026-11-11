@@ -522,7 +522,7 @@ describe('设置存储', () => {
     const rootBefore = JSON.stringify(snapshotDir(w.root));
     let a = await start(w);
     const d = json(await get(a, '/api/settings'));
-    expect(d.settings).toEqual({ dataRoot: null, timezone: 'system', weekStart: 'monday', defaultBasis: 'total', autoRefresh: { enabled: true, intervalSec: 5 }, theme: 'system', language: 'zh', groupScratch: true, budget: { daily: null, monthly: null }, subscription: { plan: null, monthlyFeeUsd: null, billingDay: null, feeCurrency: 'USD', cnyPerUsd: 7.2 } });
+    expect(d.settings).toEqual({ dataRoot: null, timezone: 'system', weekStart: 'monday', defaultBasis: 'total', autoRefresh: { enabled: true, intervalSec: 5 }, theme: 'system', language: 'zh', groupScratch: true, budget: { daily: null, monthly: null }, subscription: { plan: null, monthlyFeeUsd: null, billingDay: null, feeCurrency: 'USD', cnyPerUsd: 7.2 }, onboarded: false });
     expect((await put(a, { timezone: 'Asia/Shanghai', weekStart: 'sunday', defaultBasis: 'fresh', theme: 'dark', language: 'en', autoRefresh: { intervalSec: 9 }, budget: { daily: 12.5 } })).status).toBe(200);
     const s1 = json(await get(a, '/api/settings')).settings;
     expect(s1).toMatchObject({ timezone: 'Asia/Shanghai', weekStart: 'sunday', defaultBasis: 'fresh', theme: 'dark', language: 'en', autoRefresh: { enabled: true, intervalSec: 9 }, budget: { daily: 12.5, monthly: null } });

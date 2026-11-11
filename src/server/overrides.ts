@@ -6,6 +6,7 @@
  * 一致地不再包含它，分组之和 = 合计。
  */
 import type { AppDataWriter } from './core/safeFs.ts';
+import { L } from './i18n.ts';
 
 export interface OverrideEntry {
   name?: string;
@@ -36,9 +37,9 @@ function isObj(v: unknown): v is Record<string, unknown> {
 function cleanName(v: unknown, field: string): string {
   if (typeof v !== 'string') throw new OverrideError(field, '名称必须是文本');
   const t = v.trim();
-  if (t.length === 0 || t.length > MAX_NAME) throw new OverrideError(field, `名称必须是 1–${MAX_NAME} 个字符`);
+  if (t.length === 0 || t.length > MAX_NAME) throw new OverrideError(field, L(`名称必须是 1–${MAX_NAME} 个字符`, `Name must be 1–${MAX_NAME} characters`));
   // eslint-disable-next-line no-control-regex
-  if (/[\u0000-\u001f\u007f]/.test(t)) throw new OverrideError(field, '名称不能包含控制字符');
+  if (/[\u0000-\u001f\u007f]/.test(t)) throw new OverrideError(field, L('名称不能包含控制字符', 'Name cannot contain control characters'));
   return t;
 }
 
@@ -77,7 +78,7 @@ export class OverridesStore {
     try {
       buf = await this.writer.readFile(OVERRIDES_FILE);
     } catch (e) {
-      this.warnings.push(`读取项目覆盖规则失败，已忽略：${(e as Error).message}`);
+      this.warnings.push(L(`读取项目覆盖规则失败，已忽略：${(e as Error).message}`, `Could not read project overrides; ignored: ${(e as Error).message}`));
       return;
     }
     if (buf === null) return;
@@ -90,12 +91,12 @@ export class OverridesStore {
           const e = normalizeEntry(v, k);
           if (Object.keys(e).length > 0) next[k] = e;
         } catch {
-          this.warnings.push('项目覆盖规则中有一条无效，已忽略');
+          this.warnings.push(L('项目覆盖规则中有一条无效，已忽略', 'An invalid project override was ignored'));
         }
       }
       this.map = next;
     } catch {
-      this.warnings.push('项目覆盖规则文件已损坏，已忽略（下次保存时会覆盖）');
+      this.warnings.push(L('项目覆盖规则文件已损坏，已忽略（下次保存时会覆盖）', 'The project overrides file is corrupted and was ignored (it will be overwritten on the next save)'));
     }
   }
 
@@ -116,10 +117,10 @@ export class OverridesStore {
    */
   async patch(id: string, patch: unknown, isKnownId: (id: string) => boolean): Promise<OverrideEntry> {
     if (typeof id !== 'string' || id.length === 0 || id.length > 600) throw new OverrideError('id', 'id 必须是项目 id');
-    if (!isKnownId(id)) throw new OverrideError('id', `未知的项目：${id}`);
+    if (!isKnownId(id)) throw new OverrideError('id', L(`未知的项目：${id}`, `Unknown project: ${id}`));
     if (!isObj(patch)) throw new OverrideError('', '请求体必须是 JSON 对象');
     for (const k of Object.keys(patch)) if (k !== 'id' && k !== 'name' && k !== 'hidden' && k !== 'pinned') throw new OverrideError(k, `未知的字段：${k}`);
-    if (id === SCRATCH_ID && patch.name !== undefined && patch.name !== null) throw new OverrideError('name', 'Scratch 组不能重命名');
+    if (id === SCRATCH_ID && patch.name !== undefined && patch.name !== null) throw new OverrideError('name', L('Scratch 组不能重命名', 'The Scratch group cannot be renamed'));
     const cur: OverrideEntry = { ...(this.map[id] ?? {}) };
     if ('name' in patch) {
       if (patch.name === null || patch.name === '') delete cur.name;
@@ -138,7 +139,7 @@ export class OverridesStore {
     const next: OverrideMap = { ...this.map };
     if (Object.keys(cur).length === 0) delete next[id];
     else next[id] = cur;
-    if (Object.keys(next).length > MAX_ENTRIES) throw new OverrideError('', '覆盖规则过多');
+    if (Object.keys(next).length > MAX_ENTRIES) throw new OverrideError('', L('覆盖规则过多', 'Too many override rules'));
     await this.writer.atomicWriteFile(OVERRIDES_FILE, `${JSON.stringify({ schema: 1, overrides: next }, null, 2)}\n`);
     this.map = next;
     this.version++;

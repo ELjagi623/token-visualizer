@@ -1,32 +1,11 @@
+import { enA } from './enA.ts';
+import { enB } from './enB.ts';
+import { enC } from './enC.ts';
 import type { Dict } from './zh.ts';
 
 /**
- * 英文字典：阶段 5 先放最基础的一部分，缺失的键自动回退到中文；阶段 9 补全。
+ * 英文字典（默认语言）。类型是 Dict（= 中文字典的全部键），缺任何一条 tsc 都会报错，不再静默回退中文。
+ * 分三个文件，与中文字典一一对应：enA ↔ zh.ts 自身的键、enB ↔ zhB.ts、enC ↔ zhC.ts。
+ * 复数写法："{n} project|{n} projects"（n === 1 取前者）。
  */
-export const en: Partial<Dict> = {
-  'app.skip': 'Skip to main content',
-  'nav.aria': 'Main navigation',
-  'nav.overview': 'Overview',
-  'nav.analysis': 'Analysis',
-  'nav.sessions': 'Sessions',
-  'nav.settings': 'Settings',
-  'theme.toLight': 'Switch to light theme',
-  'theme.toDark': 'Switch to dark theme',
-  'theme.menu': 'Theme settings',
-  'theme.light': 'Light',
-  'theme.dark': 'Dark',
-  'theme.system': 'Follow system',
-  'pill.today': 'Today',
-  'time.justNow': 'just now',
-  'time.minutesAgo': '{n} min ago',
-  'time.hoursAgo': '{n} h ago',
-  'time.yesterday': 'yesterday',
-  'time.daysAgo': '{n} d ago',
-  'sidebar.searchPlaceholder': 'Search projects or paths',
-  'sidebar.projects': 'Projects',
-  'sidebar.all': 'All projects',
-  'sidebar.sort.total': 'Sort by total',
-  'sidebar.sort.recent': 'Sort by recent',
-  'sidebar.sort.name': 'Sort by name',
-  'sidebar.sort.today': 'Sort by today',
-};
+export const en: Dict = { ...enA, ...enB, ...enC };

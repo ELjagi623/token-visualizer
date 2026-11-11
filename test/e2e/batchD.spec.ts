@@ -105,7 +105,8 @@ test('窄窗口：项目栏折叠 / 抽屉在分析、会话、设置、成本�
     await page.getByTestId('sidebar-open').click();
     await page.locator('[data-testid="project-row"][data-project-id="D--Work-alpha"] a').click();
     await expect(page.getByTestId('sidebar')).toBeHidden();
-    expect(page.url(), `${name} 保留页面`).toContain(hash.split('?')[0]!.replace('#', '#'));
+    // 设置页点项目会跳到该项目的总览，其它页保留当前页
+    expect(page.url(), `${name} 保留页面`).toContain(name === 'settings' ? '#/overview' : hash.split('?')[0]!);
     // 宽屏：手动收起 / 展开
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.waitForTimeout(250);

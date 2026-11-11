@@ -7,10 +7,11 @@ import type { AggregateContext, AggregateQuery, Selection } from '../core/aggreg
 import { modelGroupOf } from '../core/models.ts';
 import { billingCycle, enumerateBuckets, localParts, periodBounds } from '../core/time.ts';
 import type { UsageRecord } from '../../shared/types.ts';
+import { L } from '../i18n.ts';
 import { byTypeUsd, bySubTypeUsd, CostEngine, mergeAcc, newAcc, roundUsd } from './engine.ts';
 import type { CostAcc, CostBlock, CostType } from './engine.ts';
 
-export const COST_NOTE_ESTIMATE = '成本均为估算：等价 API 成本 = 本机记录的 token 按各模型官方 API 单价折算，以官方账单为准。';
+export const costNoteEstimate = (): string => L('成本均为估算：等价 API 成本 = 本机记录的 token 按各模型官方 API 单价折算，以官方账单为准。', 'All costs are estimates: API-equivalent cost = tokens recorded on this machine at the official API prices of each model; the official bill is authoritative.');
 
 export function pctChange(cur: number | null, prev: number | null): number | null {
   if (cur === null || prev === null || prev <= 0) return null;
@@ -197,13 +198,13 @@ export function costSummary(opts: {
   const denom = subTotal !== null && idle !== null ? subTotal + idle : null;
 
   const fastApplied = acc.fastApplied > 0;
-  const notes: string[] = [COST_NOTE_ESTIMATE];
-  if (acc.fastUnconfigured > 0) notes.push(`不含 fast 模式溢价（未配置）：${acc.fastUnconfigured} 条 fast 记录按标准价计算。`);
-  if (fastApplied) notes.push(`已按价格表的 fast 倍率计入 ${acc.fastApplied} 条 fast 记录的溢价。`);
-  if (acc.assumed5m > 0) notes.push(`有 ${acc.assumed5m} 个缓存写入 token 缺少 5 分钟 / 1 小时细分，按 5 分钟价计算。`);
-  if (block.unpricedModels.length > 0) notes.push(`部分模型未计价：${block.unpricedModels.join('、')}（共 ${block.unpricedTokens} token 未计入成本，不会按 0 处理）。`);
-  if (acc.localRecords > 0) notes.push('本地模型不计费，不进入成本占比。');
-  if (configured) notes.push('订阅摊销是按天、按当天各条目等价 API 成本占比分摊月费的估算，不是套餐额度消耗，也不是实际扣费。');
+  const notes: string[] = [costNoteEstimate()];
+  if (acc.fastUnconfigured > 0) notes.push(L(`不含 fast 模式溢价（未配置）：${acc.fastUnconfigured} 条 fast 记录按标准价计算。`, `Fast-mode premium not included (not configured): ${acc.fastUnconfigured} fast ${acc.fastUnconfigured === 1 ? 'record is' : 'records are'} priced at the standard rate.`));
+  if (fastApplied) notes.push(L(`已按价格表的 fast 倍率计入 ${acc.fastApplied} 条 fast 记录的溢价。`, `The fast-mode premium from the price table was applied to ${acc.fastApplied} fast ${acc.fastApplied === 1 ? 'record' : 'records'}.`));
+  if (acc.assumed5m > 0) notes.push(L(`有 ${acc.assumed5m} 个缓存写入 token 缺少 5 分钟 / 1 小时细分，按 5 分钟价计算。`, `${acc.assumed5m} cache-write tokens have no 5-minute / 1-hour breakdown and are priced at the 5-minute rate.`));
+  if (block.unpricedModels.length > 0) notes.push(L(`部分模型未计价：${block.unpricedModels.join('、')}（共 ${block.unpricedTokens} token 未计入成本，不会按 0 处理）。`, `Some models are unpriced: ${block.unpricedModels.join(', ')} (${block.unpricedTokens} tokens are not included in the cost; they are not treated as 0).`));
+  if (acc.localRecords > 0) notes.push(L('本地模型不计费，不进入成本占比。', 'Local models are not billed and are excluded from cost shares.'));
+  if (configured) notes.push(L('订阅摊销是按天、按当天各条目等价 API 成本占比分摊月费的估算，不是套餐额度消耗，也不是实际扣费。', 'Plan-prorated cost is an estimate that splits the monthly fee by day, in proportion to the API-equivalent cost of each entry that day; it is not quota usage or an actual charge.'));
 
   // 分组表：项目 / 模型（供成本模块的表格）
   const projGroups = engine.group(sel.records, (r) => ctx.projects.idOfKey(r.projectKey));

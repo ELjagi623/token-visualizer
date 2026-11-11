@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { StatePanel } from '../../design/StatePanel.tsx';
 import { Skeleton } from '../../design/Skeleton.tsx';
 import { Card } from '../../design/Card.tsx';
+import { LanguageToggle } from '../../features/settings/LanguageToggle.tsx';
 import { useSaveStatus } from '../../features/settings/save.ts';
 import { PageHeader } from '../../layout/PageHeader.tsx';
 import { markReady } from '../../lib/perf.ts';
@@ -10,6 +11,7 @@ import { useStore, useT } from '../../state/store.ts';
 import { PricesSection } from './PricesSection.tsx';
 import { ProjectsSection } from './ProjectsSection.tsx';
 import { BudgetSection, DisplaySection, RefreshSection, SourceSection } from './SimpleSections.tsx';
+import { Row, Section } from './parts.tsx';
 import { SubscriptionSection } from './SubscriptionSection.tsx';
 import s from './Settings.module.css';
 
@@ -52,6 +54,11 @@ export function SettingsPage() {
     <div className={s.page} data-testid="content" data-page="settings" data-project={route.project} data-ready="true">
       {header}
       {payload.warnings.length > 0 && <StatePanel icon="alert" tone="amber" title={t('warn.title')} desc={payload.warnings.join(' ')} testId="settings-warnings" />}
+      <Section title={t('settings.lang.title')} testId="settings-language-section">
+        <Row title={t('settings.lang.label')}>
+          <LanguageToggle />
+        </Row>
+      </Section>
       <SourceSection settings={settings} effectiveRoot={payload.effective.dataRoot} />
       <DisplaySection settings={settings} systemTimezone={payload.systemTimezone} />
       <RefreshSection settings={settings} />

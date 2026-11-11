@@ -162,13 +162,11 @@ export function CostPage() {
           </div>
           <div className={s.calNote}>{t('cost.page.cal1Note', { range: rangeName(range) })}</div>
           <TypeBars data={data} />
-          <div className={s.calFoot} data-testid="cost-api-foot">
-            {t('cost.page.api.foot', { tokens: formatTokens(api.unpricedTokens) })}
-            {' · '}
-            {t('cost.page.api.local')}
-            {' · '}
-            {api.fastPremiumApplied ? t('cost.page.api.fastApplied') : t('cost.page.api.fastNone')}
-          </div>
+          {(api.unpricedTokens > 0 || api.fastPremiumApplied) && (
+            <div className={s.calFoot} data-testid="cost-api-foot">
+              {[api.unpricedTokens > 0 ? t('cost.page.api.foot', { tokens: formatTokens(api.unpricedTokens) }) : null, api.fastPremiumApplied ? t('cost.page.api.fastApplied') : null].filter(Boolean).join(' · ')}
+            </div>
+          )}
         </Card>
 
         <Card as="article" className={`${s.cal} ${mode === 'sub' ? s.calOn : ''}`} data-testid="cost-card-sub">
@@ -231,8 +229,6 @@ export function CostPage() {
               </div>
               <div className={s.calFoot}>
                 {dimDays !== null && lastFee !== null ? t('cost.page.sub.foot', { fee: formatUsd(sub.monthlyFeeUsd), days: dimDays, daily: formatUsd(lastFee) }) : t('cost.page.sub.footPlain', { fee: formatUsd(sub.monthlyFeeUsd) })}
-                {' · '}
-                {t('cost.page.sub.notQuota')}
               </div>
             </>
           ) : (
@@ -266,7 +262,6 @@ export function CostPage() {
       <Card padding="none" className={s.tableCard}>
         <div className={s.tableHead}>
           <h2 className={s.h2}>{t('cost.table.title')}</h2>
-          <div className={s.h2sub}>{t('cost.table.subtitle')}</div>
         </div>
         <div className={s.scroll}>
           <table className={s.table} data-testid="cost-project-table">
@@ -329,11 +324,14 @@ export function CostPage() {
             </tbody>
           </table>
         </div>
-        <div className={s.tableFoot}>
-          {data.notes.map((n, i) => (
-            <div key={i}>{n}</div>
-          ))}
-        </div>
+        {/* notes[0] 是常驻的"成本均为估算"声明，页面副标题已说明，这里只显示条件性提示 */}
+        {data.notes.length > 1 && (
+          <div className={s.tableFoot}>
+            {data.notes.slice(1).map((n, i) => (
+              <div key={i}>{n}</div>
+            ))}
+          </div>
+        )}
       </Card>
     </div>
   );

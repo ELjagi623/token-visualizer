@@ -1,4 +1,6 @@
 .banner {
+  flex: none;
+  margin: 0 var(--gutter, 32px) 16px;
   display: flex;
   align-items: flex-start;
   gap: 12px;

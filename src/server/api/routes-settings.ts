@@ -15,6 +15,7 @@ import { assertDataRootCompatible, SettingsError, validateDataRoot } from '../se
 import { badRequest } from './errors.ts';
 import { readJsonBody, requireJson } from './security.ts';
 import { rejectUnknown } from './params.ts';
+import { L } from '../i18n.ts';
 
 type Handler = (req: http.IncomingMessage, res: http.ServerResponse, url: URL) => void | Promise<void>;
 
@@ -45,7 +46,7 @@ export function registerSettingsRoutes(d: SettingsRouteDeps): void {
     const p = (body as { path?: unknown }).path;
     if (typeof p !== 'string' || p.trim().length === 0 || p.length > 1000 || p.includes('\0')) throw badRequest('INVALID_BODY', 'path 必须是非空路径文本');
     if (!path.isAbsolute(p.trim())) {
-      sendJson(res, 200, JSON.stringify({ ok: false, message: '请填写绝对路径（例如 C:\\Users\\你\\.claude\\projects）' }));
+      sendJson(res, 200, JSON.stringify({ ok: false, message: L('请填写绝对路径（例如 C:\\Users\\你\\.claude\\projects）', 'Enter an absolute path (for example C:\\Users\\you\\.claude\\projects)') }));
       return;
     }
     try {
@@ -56,7 +57,7 @@ export function registerSettingsRoutes(d: SettingsRouteDeps): void {
       sendJson(res, 200, JSON.stringify({ ok: true, path: abs, projectFolders: folders.size, sessionFiles: files.length }));
     } catch (e) {
       if (e instanceof SettingsError) sendJson(res, 200, JSON.stringify({ ok: false, message: e.message }));
-      else sendJson(res, 200, JSON.stringify({ ok: false, message: `无法读取该目录：${(e as Error).message}` }));
+      else sendJson(res, 200, JSON.stringify({ ok: false, message: L(`无法读取该目录：${(e as Error).message}`, `Cannot read this folder: ${(e as Error).message}`) }));
     }
   });
 

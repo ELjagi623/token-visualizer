@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import { OnboardingDialog } from './features/onboarding/OnboardingDialog.tsx';
 import { Header } from './layout/Header.tsx';
 import { Sidebar } from './layout/Sidebar.tsx';
 import { WarningsBanner } from './layout/WarningsBanner.tsx';
@@ -19,6 +20,12 @@ export function App() {
   const setDrawerOpen = useStore((st) => st.setDrawerOpen);
 
   useEffect(() => bootstrap(), []);
+
+  // 内容区是唯一的滚动容器：切换页面时回到顶部
+  const mainRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    mainRef.current?.scrollTo({ top: 0 });
+  }, [route.page]);
 
   // 抽屉打开时按 Esc 关闭
   useEffect(() => {
@@ -55,9 +62,10 @@ export function App() {
       </a>
       <Header />
       <WarningsBanner />
+      <OnboardingDialog />
       <div className={s.body}>
         <Sidebar />
-        <main id="main" tabIndex={-1} className={s.main}>
+        <main id="main" ref={mainRef} tabIndex={-1} className={s.main}>
           {page}
         </main>
       </div>

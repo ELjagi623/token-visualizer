@@ -175,7 +175,6 @@ export function TimeCurve() {
             {l.label}
           </button>
         ))}
-        <span className={s.hint}>{t('curve.legendHint')}</span>
       </div>
     </Card>
   );

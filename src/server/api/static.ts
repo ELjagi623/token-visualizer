@@ -35,7 +35,7 @@ const MIME: Record<string, string> = {
 };
 
 export const PLACEHOLDER_HTML = `<!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,10 +50,10 @@ export const PLACEHOLDER_HTML = `<!doctype html>
 </head>
 <body>
 <main>
-  <h1>前端界面尚未构建</h1>
-  <p>服务已经在运行，但没有找到前端构建产物 <code>web/dist</code>。</p>
-  <p>请在项目目录执行 <code>npm run build</code>，然后刷新本页。</p>
-  <p>API 可以直接访问：<a href="/api/status">/api/status</a></p>
+  <h1>The web UI has not been built yet · 前端界面尚未构建</h1>
+  <p>The server is running, but the build output <code>web/dist</code> was not found. 服务已经在运行，但没有找到前端构建产物 <code>web/dist</code>。</p>
+  <p>Run <code>npm run build</code> in the project folder, then refresh this page. 请在项目目录执行 <code>npm run build</code>，然后刷新本页。</p>
+  <p>The API is available directly · API 可以直接访问：<a href="/api/status">/api/status</a></p>
 </main>
 </body>
 </html>

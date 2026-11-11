@@ -1,0 +1,103 @@
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: var(--scrim);
+  animation: tv-fade-in 0.2s var(--ease);
+}
+
+.card {
+  width: min(480px, 100%);
+  max-height: 100%;
+  overflow-y: auto;
+  padding: 28px;
+  border-radius: var(--radiusCard);
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadowPop);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.langRow {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: -4px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.sub {
+  margin-top: -12px;
+  color: var(--muted);
+  font-size: 13.5px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text2);
+}
+
+.inline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.input {
+  height: 44px;
+  width: 100%;
+  min-width: 0;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--seg);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.input[aria-invalid='true'] {
+  border-color: var(--pink);
+}
+
+.unit {
+  flex: none;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.err {
+  color: var(--pink);
+  font-size: 13px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 4px;
+}

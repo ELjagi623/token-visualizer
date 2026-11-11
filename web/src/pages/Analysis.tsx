@@ -8,6 +8,7 @@ import type { CostBlock } from '../features/cost/types.ts';
 import { useApi } from '../api/useApi.ts';
 import { withAlpha } from '../charts/colors.ts';
 import { readChartColors } from '../charts/readColors.ts';
+import { chartTooltip } from '../charts/tooltip.ts';
 import { EChart } from '../charts/EChart.tsx';
 import { Card } from '../design/Card.tsx';
 import { Donut } from '../design/Donut.tsx';
@@ -273,20 +274,13 @@ function CacheCard() {
       animationDurationUpdate: 380,
       textStyle: { fontFamily: 'Outfit, "Noto Sans SC", "HarmonyOS Sans SC", "Microsoft YaHei", system-ui, sans-serif' },
       grid: { left: 4, right: 14, top: 16, bottom: 4, containLabel: true },
-      tooltip: {
-        trigger: 'axis',
-        confine: true,
-        backgroundColor: c.card,
-        borderColor: c.line,
-        borderWidth: 1,
-        padding: 0,
-        extraCssText: 'border-radius:16px;box-shadow:0 8px 28px rgba(0,0,0,.14);',
+      tooltip: chartTooltip(c, {
         formatter: (params: unknown): string => {
           const i = (params as Array<{ dataIndex: number }>)[0]?.dataIndex ?? 0;
           const v = vals[i];
-          return `<div style="padding:12px 16px;font-size:12.5px"><div style="font-weight:600;margin-bottom:4px;color:${c.text}">${labels[i]}</div><div style="color:${c.text2}">${t('analysis.hitRate')} <b style="color:${c.text};font-variant-numeric:tabular-nums">${v === null || v === undefined ? '—' : `${v.toFixed(1)}%`}</b></div></div>`;
+          return `<div style="padding:10px 14px;font-size:12.5px;background:${c.card};border-radius:14px"><div style="font-weight:600;margin-bottom:4px;color:${c.text}">${labels[i]}</div><div style="color:${c.text2}">${t('analysis.hitRate')} <b style="color:${c.text};font-variant-numeric:tabular-nums">${v === null || v === undefined ? '—' : `${v.toFixed(1)}%`}</b></div></div>`;
         },
-      },
+      }),
       xAxis: { type: 'category', data: labels, boundaryGap: false, axisTick: { show: false }, axisLine: { lineStyle: { color: c.grid } }, axisLabel: { color: c.muted, fontSize: 12, hideOverlap: true } },
       yAxis: { type: 'value', min: lo, max: 100, splitNumber: 3, axisLine: { show: false }, axisTick: { show: false }, axisLabel: { color: c.muted, fontSize: 12, formatter: (v: number) => `${v}%` }, splitLine: { lineStyle: { color: c.grid, type: [3, 5] as unknown as 'dashed' } } },
       series: [

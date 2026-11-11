@@ -25,6 +25,7 @@ import { applyDedupeStats } from '../core/dedupe.ts';
 import { CACHE_FILE, loadCache, rootIdentity, saveCache } from './cache.ts';
 import { estimateBytes, listTitleFiles, processFile, readTitle } from './scanner.ts';
 import type { FileState, Progress, StoreMetrics, StoreStatus, StoreView, TitleFileState } from './types.ts';
+import { L } from '../i18n.ts';
 
 export interface StoreOptions {
   dataRoot: string;
@@ -314,7 +315,7 @@ export class Store {
             this.markDirty();
           } else this.cacheDirty = true;
         } catch (e) {
-          this.warn(`读取 ${info.relPath} 失败：${(e as Error).message}`);
+          this.warn(L(`读取 ${info.relPath} 失败：${(e as Error).message}`, `Failed to read ${info.relPath}: ${(e as Error).message}`));
         }
         this.setProgress({ filesDone: this.progress.filesDone + 1 });
       }
@@ -358,7 +359,7 @@ export class Store {
         if (!prev || prev.title !== t.title || prev.sessionId !== t.sessionId) changed = true;
         next.set(f.relPath, t);
       } catch (e) {
-        this.warn(`读取 ${f.relPath} 失败：${(e as Error).message}`);
+        this.warn(L(`读取 ${f.relPath} 失败：${(e as Error).message}`, `Failed to read ${f.relPath}: ${(e as Error).message}`));
       }
     }
     this.titleStates = next;
@@ -453,7 +454,7 @@ export class Store {
       this.metrics.cacheBytes = bytes;
     } catch (e) {
       this.cacheDirty = true;
-      this.warn(`写入缓存失败：${(e as Error).message}`);
+      this.warn(L(`写入缓存失败：${(e as Error).message}`, `Failed to write the cache: ${(e as Error).message}`));
     }
   }
 
@@ -475,10 +476,10 @@ export class Store {
     const err = e as NodeJS.ErrnoException;
     const root = this.dataRoot;
     let msg: string;
-    if (err.code === 'ENOENT') msg = `数据根目录不存在：${root}。请在设置中重新选择，或确认 Claude Code 已产生过会话。`;
-    else if (err.code === 'ENOTDIR') msg = `数据根路径不是目录：${root}`;
-    else if (err.code === 'EACCES' || err.code === 'EPERM') msg = `没有权限读取数据根目录：${root}`;
-    else msg = `读取数据根目录失败：${err.message ?? String(e)}`;
+    if (err.code === 'ENOENT') msg = L(`数据根目录不存在：${root}。请在设置中重新选择，或确认 Claude Code 已产生过会话。`, `The data folder does not exist: ${root}. Choose another one in Settings, or make sure Claude Code has created sessions.`);
+    else if (err.code === 'ENOTDIR') msg = L(`数据根路径不是目录：${root}`, `The data folder path is not a folder: ${root}`);
+    else if (err.code === 'EACCES' || err.code === 'EPERM') msg = L(`没有权限读取数据根目录：${root}`, `No permission to read the data folder: ${root}`);
+    else msg = L(`读取数据根目录失败：${err.message ?? String(e)}`, `Failed to read the data folder: ${err.message ?? String(e)}`);
     this.setProgress({ state: 'error', lastError: msg });
     this.emitStatus(true);
   }

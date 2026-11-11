@@ -4,6 +4,7 @@
  * 不含对话正文，也不含由首条用户消息派生的会话标题（会话只导出 id、项目名、起止时间、模型名与用量）。
  * CSV：UTF-8 带 BOM；第一行是以 # 开头的"估算"说明（读取时请忽略 # 行），第二行是列名。
  */
+import { L } from './i18n.ts';
 import { aggregate, groupByModel, groupBySession, selectRecords } from './core/aggregate.ts';
 import type { AggregateContext, AggregateQuery } from './core/aggregate.ts';
 import { modelGroupOf } from './core/models.ts';
@@ -14,7 +15,11 @@ import { timelineCost } from './cost/service.ts';
 export type ExportKind = 'daily' | 'model' | 'session';
 export type ExportFormat = 'csv' | 'json';
 
-export const EXPORT_NOTE = '成本为估算值：cost_api_usd = 本机记录的 token 按各模型官方 API 单价折算的等价 API 成本；cost_sub_usd = 订阅月费按天、按当天各条目等价 API 成本占比分摊（非额度消耗，未设置订阅方案时为空）。空值表示无法计算（例如模型未配置价格）。';
+export const exportNote = (): string =>
+  L(
+    '成本为估算值：cost_api_usd = 本机记录的 token 按各模型官方 API 单价折算的等价 API 成本；cost_sub_usd = 订阅月费按天、按当天各条目等价 API 成本占比分摊（非额度消耗，未设置订阅方案时为空）。空值表示无法计算（例如模型未配置价格）。',
+    'Costs are estimates: cost_api_usd = tokens recorded on this machine at the official API prices of each model (API-equivalent cost); cost_sub_usd = the monthly plan fee split by day in proportion to the API-equivalent cost of each entry (not quota usage; empty when no plan is set). An empty value means it cannot be computed (for example the model has no price configured).',
+  );
 
 export interface ExportResult {
   filename: string;
@@ -59,7 +64,7 @@ function csvCell(v: Cell, text: boolean): string {
 }
 
 function toCsv(columns: readonly string[], textCols: ReadonlySet<string>, rows: Row[]): string {
-  const lines = [`# ${EXPORT_NOTE}`, columns.join(',')];
+  const lines = [`# ${exportNote()}`, columns.join(',')];
   for (const r of rows) lines.push(columns.map((c) => csvCell(r[c] ?? null, textCols.has(c))).join(','));
   return `﻿${lines.join('\r\n')}\r\n`;
 }
@@ -132,7 +137,7 @@ export function buildExport(opts: { engine: CostEngine; ctx: AggregateContext; q
   if (format === 'csv') return { filename: `${base}.csv`, contentType: 'text/csv; charset=utf-8', body: toCsv(columns, textCols, rows) };
   const body = JSON.stringify(
     {
-      meta: { kind, currency: 'USD', basis: q.basis, tz: q.tz, range: q.range, projects: q.projects, note: EXPORT_NOTE, columns, rowCount: rows.length },
+      meta: { kind, currency: 'USD', basis: q.basis, tz: q.tz, range: q.range, projects: q.projects, note: exportNote(), columns, rowCount: rows.length },
       rows,
     },
     null,

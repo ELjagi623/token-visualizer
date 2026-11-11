@@ -1,6 +1,6 @@
 {
   "name": "token-visualizer",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "description": "本地 Claude Code Token 用量可视化（只读、纯本地）",
   "license": "MIT",
@@ -44,6 +44,7 @@
     "electron": "^45.3.0",
     "electron-builder": "^26.18.0",
     "esbuild": "^0.28.2",
+    "html-to-image": "^1.11.13",
     "typescript": "^7.0.2",
     "vitest": "^5.1.0"
   },

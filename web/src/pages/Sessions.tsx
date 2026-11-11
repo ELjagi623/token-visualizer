@@ -5,6 +5,7 @@ import type { SessionDetailPayload, SessionsPayload } from '../api/types.ts';
 import { useApi } from '../api/useApi.ts';
 import { withAlpha } from '../charts/colors.ts';
 import { readChartColors } from '../charts/readColors.ts';
+import { chartTooltip } from '../charts/tooltip.ts';
 import { EChart } from '../charts/EChart.tsx';
 import { Chip, RoundButton } from '../design/Button.tsx';
 import { Card } from '../design/Card.tsx';
@@ -65,7 +66,7 @@ function SessionDetail({ id }: { id: string }) {
       textStyle: { fontFamily: FONT },
       grid: { left: 4, right: 14, top: 22, bottom: 4, containLabel: true },
     };
-    const tooltipBase = { trigger: 'axis' as const, confine: true, backgroundColor: c.card, borderColor: c.line, borderWidth: 1, padding: 0, extraCssText: 'border-radius:16px;box-shadow:0 8px 28px rgba(0,0,0,.14);' };
+    const tooltipBase = chartTooltip(c);
     const yAxis = { type: 'value' as const, min: 0, splitNumber: 2, axisLine: { show: false }, axisTick: { show: false }, axisLabel: { color: c.muted, fontSize: 11.5, formatter: (v: number) => formatTokens(v) }, splitLine: { lineStyle: { color: c.grid, type: [3, 5] as unknown as 'dashed' } } };
     const xAxis = (bar: boolean) => ({ type: 'category' as const, data: labels, boundaryGap: bar, axisTick: { show: false }, axisLine: { lineStyle: { color: c.grid } }, axisLabel: { color: c.muted, fontSize: 11.5, hideOverlap: true } });
     const row = (color: string, name: string, v: number): string => `<div style="display:flex;justify-content:space-between;gap:16px;padding:2px 0"><span style="display:flex;align-items:center;gap:8px;color:${c.text2}"><span style="width:8px;height:8px;border-radius:2px;background:${color}"></span>${name}</span><span style="font-weight:600;font-variant-numeric:tabular-nums;color:${c.text}">${formatExact(v)}</span></div>`;

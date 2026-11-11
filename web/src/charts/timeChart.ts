@@ -6,6 +6,7 @@ import type { EChartsOption } from 'echarts';
 import { formatExact, formatTokens, weekdayOfDate } from '../lib/format.ts';
 import { withAlpha } from './colors.ts';
 import type { ChartColors } from './colors.ts';
+import { chartTooltip } from './tooltip.ts';
 
 export type SplitMode = 'none' | 'tokenType' | 'model' | 'project';
 export type ChartKind = 'area' | 'bar';
@@ -129,7 +130,7 @@ export function buildTimeChart(inp: TimeChartInput): TimeChartResult {
             symbolSize: 9,
             animation: false,
             itemStyle: { color: c.accent, borderColor: c.card, borderWidth: 2 },
-            label: { show: true, position: (peakIndex > n * 0.8 ? 'left' : peakIndex < n * 0.08 ? 'right' : 'top') as 'left' | 'right' | 'top', distance: peakIndex > n * 0.8 || peakIndex < n * 0.08 ? 10 : 8, formatter: peakLabel, color: c.text, fontWeight: 600, fontSize: 12.5 },
+            label: { show: true, position: (peakIndex > n * 0.8 ? 'left' : peakIndex < n * 0.08 ? 'right' : 'top') as 'left' | 'right' | 'top', distance: peakIndex > n * 0.8 || peakIndex < n * 0.08 ? 10 : 8, formatter: peakLabel, color: c.text, fontWeight: 600, fontSize: 12.5, backgroundColor: c.card, borderColor: c.line, borderWidth: 1, borderRadius: 999, padding: [4, 10] },
             data: [{ coord: [peakIndex, peakValue] as [number, number] }],
           }
         : undefined;
@@ -167,14 +168,7 @@ export function buildTimeChart(inp: TimeChartInput): TimeChartResult {
     };
   });
 
-  const tooltip = {
-    trigger: 'axis' as const,
-    confine: true,
-    backgroundColor: c.card,
-    borderColor: c.line,
-    borderWidth: 1,
-    padding: 0,
-    extraCssText: 'border-radius:16px;box-shadow:0 8px 28px rgba(0,0,0,.14);',
+  const tooltip = chartTooltip(c, {
     axisPointer: { type: 'line' as const, lineStyle: { color: c.muted, type: [3, 4] as unknown as 'dashed', width: 1 } },
     formatter: (params: unknown): string => {
       const arr = Array.isArray(params) ? (params as Array<{ dataIndex: number }>) : [params as { dataIndex: number }];
@@ -182,7 +176,7 @@ export function buildTimeChart(inp: TimeChartInput): TimeChartResult {
       const p = points[i];
       if (!p) return '';
       const row = (color: string, name: string, v: number, pct: number | null): string =>
-        `<div style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:2px 0"><span style="display:flex;align-items:center;gap:8px;color:${c.text2}"><span style="width:8px;height:8px;border-radius:2px;background:${color}"></span>${esc(name)}</span><span style="font-weight:600;font-variant-numeric:tabular-nums;color:${c.text}">${inp.money ? inp.money.fmt(v) : formatExact(v)}${pct === null ? '' : `<span style="color:${c.muted};font-weight:500;margin-left:8px">${pct.toFixed(1)}%</span>`}</span></div>`;
+        `<div style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:1px 0"><span style="display:flex;align-items:center;gap:8px;color:${c.text2}"><span style="width:8px;height:8px;border-radius:2px;background:${color}"></span>${esc(name)}</span><span style="font-weight:600;font-variant-numeric:tabular-nums;color:${c.text}">${inp.money ? inp.money.fmt(v) : formatExact(v)}${pct === null ? '' : `<span style="color:${c.muted};font-weight:500;margin-left:8px">${pct.toFixed(1)}%</span>`}</span></div>`;
       let rows = '';
       if (split === 'none' && inp.money) {
         rows += row(c.accent, text.total, totals[i] ?? 0, null);
@@ -199,9 +193,9 @@ export function buildTimeChart(inp: TimeChartInput): TimeChartResult {
       }
       const dateStr = /^\d{4}-\d{2}-\d{2}/.test(p.key) && gran !== 'month' ? `${xLabels[i]!} ${gran === 'hour' ? '' : text.weekday(weekdayOfDate(p.key.slice(0, 10)))}`.trim() : xLabels[i]!;
       const shown = split === 'none' ? p.value : (totals[i] ?? 0);
-      return `<div style="min-width:240px;padding:14px 16px;font-size:12.5px;font-family:inherit"><div style="font-weight:600;font-size:13px;margin-bottom:8px;color:${c.text}">${esc(dateStr)}</div>${rows}<div style="display:flex;justify-content:space-between;gap:16px;margin-top:8px;padding-top:8px;border-top:1px solid ${c.line};font-weight:600;color:${c.text}"><span>${esc(text.requestsSum(p.requests))}</span><span style="font-variant-numeric:tabular-nums">${inp.money ? inp.money.fmt(shown) : formatExact(shown)}</span></div></div>`;
+      return `<div style="min-width:210px;padding:10px 14px;font-size:12.5px;font-family:inherit;background:${c.card};border-radius:14px"><div style="font-weight:600;font-size:13px;margin-bottom:5px;color:${c.text}">${esc(dateStr)}</div>${rows}<div style="display:flex;justify-content:space-between;gap:16px;margin-top:5px;padding-top:6px;border-top:1px solid ${c.line};font-weight:600;color:${c.text}"><span>${esc(text.requestsSum(p.requests))}</span><span style="font-variant-numeric:tabular-nums">${inp.money ? inp.money.fmt(shown) : formatExact(shown)}</span></div></div>`;
     },
-  };
+  });
 
   const option: EChartsOption = {
     animationDuration: 600,
@@ -209,7 +203,7 @@ export function buildTimeChart(inp: TimeChartInput): TimeChartResult {
     animationEasing: 'cubicOut',
     animationEasingUpdate: 'cubicOut',
     textStyle: { fontFamily: 'Outfit, "Noto Sans SC", "HarmonyOS Sans SC", "Microsoft YaHei", system-ui, sans-serif' },
-    grid: { left: 4, right: 14, top: 34, bottom: 4, containLabel: true },
+    grid: { left: 4, right: 14, top: 44, bottom: 4, containLabel: true },
     tooltip,
     xAxis: {
       type: 'category',

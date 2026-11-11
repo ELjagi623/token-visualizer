@@ -133,6 +133,13 @@ export const zh = {
   'scan.readOnly': '只读，不会修改任何文件',
   'scan.progressAria': '首次解析进度',
 
+  // 语言：选项文字固定（不随当前语言变化），分区标题中英并列，方便误切后找回
+  'lang.en': 'English',
+  'lang.zh': '中文',
+  'settings.lang.title': 'Language · 语言',
+  'settings.lang.label': '界面语言',
+  'settings.lang.aria': '界面语言',
+
   'warn.title': '提示',
   'warn.dismiss': '关闭提示',
   'warn.more': '另有 {n} 条',

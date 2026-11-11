@@ -21,6 +21,7 @@ const KEY_SORT = 'tv.projectSort';
 const KEY_SIDEBAR = 'tv.sidebarCollapsed';
 const KEY_SCRATCH = 'tv.scratchExpanded';
 const KEY_DISMISSED = 'tv.dismissedWarnings';
+const KEY_LANG = 'tv.lang';
 
 const SORTS: readonly ProjectSort[] = ['total', 'recent', 'name', 'today'];
 
@@ -86,8 +87,20 @@ export interface AppState {
 
 let putInFlight = 0;
 
+/** 默认英文；localStorage 里缓存上次的语言，首屏就不会先闪一下默认语言（服务端设置回来后以设置为准）。 */
+function readLang(): Lang {
+  return lsGet(KEY_LANG) === 'zh' ? 'zh' : 'en';
+}
+
+/** 采用某种语言：写入 store、<html lang> 和本地缓存。设置保存 / 重新读取 / 启动时都走这里。 */
+export function adoptLanguage(lang: Lang): void {
+  lsSet(KEY_LANG, lang);
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+  if (useStore.getState().lang !== lang) useStore.setState({ lang });
+}
+
 export const useStore = create<AppState>((set, get) => ({
-  lang: 'zh',
+  lang: readLang(),
   status: null,
   connection: 'connecting',
   settings: null,
@@ -181,8 +194,8 @@ export function useBasis(): Basis {
 function applySettings(payload: SettingsPayload, adoptTheme: boolean): void {
   document.documentElement.removeAttribute('data-theme-pending');
   const st = useStore.getState();
-  const patch: Partial<AppState> = { settings: payload, settingsVersion: payload.version, lang: payload.settings.language };
-  document.documentElement.lang = payload.settings.language === 'en' ? 'en' : 'zh-CN';
+  const patch: Partial<AppState> = { settings: payload, settingsVersion: payload.version };
+  adoptLanguage(payload.settings.language);
   if (adoptTheme && putInFlight === 0 && payload.settings.theme !== st.themePref) {
     lsSet(KEY_THEME, payload.settings.theme);
     const resolved = resolveTheme(payload.settings.theme, systemDark());

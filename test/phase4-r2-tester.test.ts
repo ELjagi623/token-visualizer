@@ -143,11 +143,11 @@ describe('缺陷 1 复测：dataRoot 与应用数据目录的关系', () => {
     const st = json(await get(a, '/api/status'));
     expect(st.dataRoot).toBe(w.root); // 回到默认数据根（createApp 的 dataRoot）
     expect(st.state).toBe('idle');
-    expect(st.warnings.join('\n')).toMatch(/数据根/);
+    expect(st.warnings.join('\n')).toMatch(/数据根|data folder/);
     expect(st.warnings.join('\n')).not.toMatch(/[A-Za-z]:[\\/]/);
     const s = json(await get(a, '/api/settings'));
     expect(s.settings).toMatchObject({ dataRoot: null, theme: 'dark', language: 'en', weekStart: 'sunday', budget: { daily: 7, monthly: null } });
-    expect(s.warnings.join('\n')).toMatch(/数据根/);
+    expect(s.warnings.join('\n')).toMatch(/数据根|data folder/);
     expect(json(await get(a, '/api/summary')).summary.requests).toBe(59); // 数据没丢
     expect((await put(a, { theme: 'light' })).status).toBe(200);
     expect((await put(a, { dataRoot: null })).status).toBe(200);
@@ -162,7 +162,7 @@ describe('缺陷 1 复测：dataRoot 与应用数据目录的关系', () => {
     a = await start(w);
     const st2 = json(await get(a, '/api/status'));
     expect(st2.dataRoot).toBe(w.root);
-    expect(st2.warnings.join('\n')).toMatch(/数据根/);
+    expect(st2.warnings.join('\n')).toMatch(/数据根|data folder/);
     expect(json(await get(a, '/api/settings')).settings.timezone).toBe('Asia/Shanghai');
     expect((await put(a, { theme: 'dark' })).status).toBe(200);
   });

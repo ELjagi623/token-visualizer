@@ -59,7 +59,6 @@ export function PaybackCard() {
             {t('cost.payback.setup')}
           </ChipLink>
         </div>
-        <p className={s.foot}>{t('cost.payback.foot')}</p>
       </Card>
     );
   }
@@ -80,7 +79,7 @@ export function PaybackCard() {
           <div className={s.big} data-testid="payback-api">
             {formatUsd(data.apiUsdMtd)}
           </div>
-          <div className={s.hint}>{data.partial ? t('cost.payback.partial', { n: data.unpricedModels.length }) : t('cost.payback.apiHint')}</div>
+          {data.partial && <div className={s.hint}>{t('cost.payback.partial', { n: data.unpricedModels.length })}</div>}
         </div>
         <div className={s.block}>
           <div className={s.label}>{t(cycle ? 'cost.payback.subMtdCycle' : 'cost.payback.subMtd', { done: data.elapsedDays, total: data.daysInMonth })}</div>

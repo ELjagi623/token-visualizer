@@ -11,14 +11,24 @@ export type { DictKey };
 export type TParams = Record<string, string | number>;
 export type TFn = (key: DictKey, params?: TParams) => string;
 
+/**
+ * 极简复数：值里写 "{n} project|{n} projects"，params.n 为数字时 n === 1 取前者，否则取后者。
+ * 没有 "|" 的值不受影响；中文字典不使用。
+ */
+function pickPlural(s: string, params?: TParams): string {
+  if (!s.includes('|')) return s;
+  const [one, other] = s.split('|');
+  return Number(params?.n) === 1 ? one! : (other ?? one!);
+}
+
 function interpolate(s: string, params?: TParams): string {
   if (!params) return s;
   return s.replace(/\{(\w+)\}/g, (m, k: string) => (k in params ? String(params[k]) : m));
 }
 
 export function translate(lang: Lang, key: DictKey, params?: TParams): string {
-  const s = (lang === 'en' ? en[key] : undefined) ?? zh[key];
-  return interpolate(s, params);
+  const s = lang === 'en' ? en[key] : zh[key];
+  return interpolate(pickPlural(s, params), params);
 }
 
 export function makeT(lang: Lang): TFn {

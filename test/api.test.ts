@@ -464,7 +464,7 @@ describe('API：设置（验收 6）', () => {
     const t = await startApp({ settings: {} });
     try {
       const g = (await getJson(t.base, '/api/settings')).body;
-      expect(g.settings).toEqual({ dataRoot: null, timezone: 'system', weekStart: 'monday', defaultBasis: 'total', autoRefresh: { enabled: true, intervalSec: 5 }, theme: 'system', language: 'zh', groupScratch: true, budget: { daily: null, monthly: null }, subscription: { plan: null, monthlyFeeUsd: null, billingDay: null, feeCurrency: 'USD', cnyPerUsd: 7.2 } });
+      expect(g.settings).toEqual({ dataRoot: null, timezone: 'system', weekStart: 'monday', defaultBasis: 'total', autoRefresh: { enabled: true, intervalSec: 5 }, theme: 'system', language: 'zh', groupScratch: true, budget: { daily: null, monthly: null }, subscription: { plan: null, monthlyFeeUsd: null, billingDay: null, feeCurrency: 'USD', cnyPerUsd: 7.2 }, onboarded: false });
       expect(g.effective.dataRoot).toBe(FIXTURE_ROOT);
       expect(typeof g.effective.timezone).toBe('string');
       const ok = await putJson(t.base, '/api/settings', { theme: 'dark', weekStart: 'sunday', defaultBasis: 'fresh', language: 'en', autoRefresh: { intervalSec: 10 }, budget: { daily: 123.5 }, timezone: 'Asia/Tokyo' });
@@ -516,7 +516,7 @@ describe('API：设置（验收 6）', () => {
     expect(snapshotDir(w.root)).toEqual(before);
     t = await startApp({ dataRoot: w.root, appDataDir: w.app, settings: {}, keepAppData: true });
     const g = (await getJson(t.base, '/api/settings')).body;
-    expect(g.settings).toEqual({ dataRoot: null, timezone: 'Europe/London', weekStart: 'sunday', defaultBasis: 'fresh', autoRefresh: { enabled: false, intervalSec: 30 }, theme: 'dark', language: 'en', groupScratch: false, budget: { daily: null, monthly: 99 }, subscription: { plan: null, monthlyFeeUsd: null, billingDay: null, feeCurrency: 'USD', cnyPerUsd: 7.2 } });
+    expect(g.settings).toEqual({ dataRoot: null, timezone: 'Europe/London', weekStart: 'sunday', defaultBasis: 'fresh', autoRefresh: { enabled: false, intervalSec: 30 }, theme: 'dark', language: 'en', groupScratch: false, budget: { daily: null, monthly: 99 }, subscription: { plan: null, monthlyFeeUsd: null, billingDay: null, feeCurrency: 'USD', cnyPerUsd: 7.2 }, onboarded: false });
     expect(g.warnings).toEqual([]);
     // 默认口径 / 周起始 / 时区 / Scratch 开关 真的生效
     const proj = (await getJson(t.base, '/api/projects')).body;

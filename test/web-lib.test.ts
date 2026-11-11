@@ -206,10 +206,12 @@ describe('状态胶囊状态机', () => {
 });
 
 describe('i18n', () => {
-  it('占位符插值；缺失的英文键回退中文', () => {
+  it('占位符插值；英文复数（单数 / 复数）', () => {
     expect(translate('zh', 'sidebar.allSub', { n: 7 })).toBe('7 个项目');
-    expect(translate('en', 'time.minutesAgo', { n: 5 })).toBe('5 min ago');
-    expect(translate('en', 'tile.partial')).toBe(zh['tile.partial']); // 英文字典未覆盖 → 中文
+    expect(translate('en', 'time.minutesAgo', { n: 5 })).toBe('5 minutes ago');
+    expect(translate('en', 'time.minutesAgo', { n: 1 })).toBe('1 minute ago');
+    expect(translate('en', 'sidebar.allSub', { n: 1 })).toBe('1 project');
+    expect(translate('en', 'sidebar.allSub', { n: 7 })).toBe('7 projects');
     expect(makeT('zh')('overview.subtitleOne', { sessions: 3, days: 2 })).toBe('3 个会话 · 活跃 2 天');
   });
 });
@@ -242,7 +244,7 @@ describe('前端源码审计', () => {
     const offenders: string[] = [];
     for (const f of files) {
       const rel = path.relative(WEB_SRC, f).replaceAll('\\', '/');
-      if (/^i18n\/zh[A-Z]?\.ts$/.test(rel)) continue; // 字典文件（zh.ts + 各批次的 zhB / zhC）
+      if (/^i18n\/(zh|en)[A-Z]?\.ts$/.test(rel)) continue; // 字典文件（zh / en，各分本体 / B / C 三份）
       const code = stripComments(fs.readFileSync(f, 'utf8'));
       if (/[\u3400-\u9fff\uff00-\uffef]/.test(code)) offenders.push(rel);
     }

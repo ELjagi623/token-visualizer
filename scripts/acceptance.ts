@@ -14,6 +14,8 @@
  *
  * 只读保证：数据根只读；应用只写临时应用数据目录；本脚本只写 docs/ACCEPTANCE.md 与系统临时目录。
  */
+// 验收断言按中文文案核对；默认语言是英文，这里用 TV_LANG 固定为中文（子进程继承）
+process.env.TV_LANG ??= 'zh';
 import { spawn, spawnSync } from 'node:child_process';
 import type { ChildProcess } from 'node:child_process';
 import crypto from 'node:crypto';

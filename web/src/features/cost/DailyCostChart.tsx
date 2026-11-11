@@ -93,7 +93,10 @@ export function DailyCostChart({ days, feeConfigured }: { days: Day[]; feeConfig
           style={{
             position: 'absolute',
             top: 0,
-            left: `${Math.min(80, Math.max(2, ((L + 6 + hover * geo.slot) / W) * 100))}%`,
+            zIndex: 2,
+            // 右半区时翻到柱子左侧，避免溢出图表右缘
+            left: `${((L + 6 + hover * geo.slot + geo.slot / 2) / W) * 100}%`,
+            transform: (L + 6 + hover * geo.slot) / W > 0.5 ? 'translateX(calc(-100% - 10px))' : 'translateX(10px)',
             padding: '8px 12px',
             borderRadius: 14,
             background: 'var(--card)',

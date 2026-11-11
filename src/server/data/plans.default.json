@@ -3,8 +3,8 @@
   "defaultsVersion": "2026-11-10",
   "_comment": "订阅档位月费（USD）。开发时联网核对自 Claude 官方定价页 https://claude.com/pricing；运行时不联网。核对不到的档位 monthlyFeeUsd 为 null（界面要求用户手填）。",
   "plans": [
-    { "id": "pro", "label": "Pro", "monthlyFeeUsd": 20, "sourceUrl": "https://claude.com/pricing", "checkedAt": "2026-11-10", "note": "官方页：Pro 按月付费 $20/月；按年付费折合 $17/月（一次性 $200）。这里预填按月付费价，按年付费请改填 17。" },
-    { "id": "max5x", "label": "Max 5x", "monthlyFeeUsd": 100, "sourceUrl": "https://claude.com/pricing", "checkedAt": "2026-11-10", "note": "官方页：Max $100/月，5x Pro 用量（每 5 小时与每周）。" },
-    { "id": "max20x", "label": "Max 20x", "monthlyFeeUsd": 200, "sourceUrl": "https://claude.com/pricing", "checkedAt": "2026-11-10", "note": "官方页当前把 $200/月 的最高档称为 Ultra（10x Pro 用量），其升级链接参数仍为 plan=max_20x；这里按此对应 Max 20x，请自行确认你的实际月费。" }
+    { "id": "pro", "label": "Pro", "monthlyFeeUsd": 20, "sourceUrl": "https://claude.com/pricing", "checkedAt": "2026-11-10", "note": "官方页：Pro 按月付费 $20/月；按年付费折合 $17/月（一次性 $200）。这里预填按月付费价，按年付费请改填 17。", "noteEn": "Official page: Pro is $20/month billed monthly, or $17/month billed annually ($200 upfront). The monthly price is prefilled; enter 17 if you pay annually." },
+    { "id": "max5x", "label": "Max 5x", "monthlyFeeUsd": 100, "sourceUrl": "https://claude.com/pricing", "checkedAt": "2026-11-10", "note": "官方页：Max $100/月，5x Pro 用量（每 5 小时与每周）。", "noteEn": "Official page: Max is $100/month with 5x Pro usage (per 5 hours and per week)." },
+    { "id": "max20x", "label": "Max 20x", "monthlyFeeUsd": 200, "sourceUrl": "https://claude.com/pricing", "checkedAt": "2026-11-10", "note": "官方页当前把 $200/月 的最高档称为 Ultra（10x Pro 用量），其升级链接参数仍为 plan=max_20x；这里按此对应 Max 20x，请自行确认你的实际月费。", "noteEn": "The official page now calls the $200/month top tier Ultra (10x Pro usage); its upgrade link still uses plan=max_20x. It is mapped to Max 20x here; please confirm your actual fee." }
   ]
 }

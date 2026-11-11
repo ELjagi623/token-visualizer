@@ -25,6 +25,9 @@ export function EChart({ option, height, ariaLabel, testId, dataAttrs, onIndexCl
   const chart = useRef<EChartsType | null>(null);
   const clickRef = useRef(onIndexClick);
   clickRef.current = onIndexClick;
+  const optionRef = useRef(option);
+  optionRef.current = option;
+  const labelsHidden = useRef(false);
 
   useEffect(() => {
     const el = host.current;
@@ -35,6 +38,18 @@ export function EChart({ option, height, ariaLabel, testId, dataAttrs, onIndexCl
       const i = (p as { dataIndex?: number }).dataIndex;
       if (typeof i === 'number') clickRef.current?.(i);
     });
+    // 悬浮提示出现时临时隐藏图内的标注（如峰值标签）：提示卡已给出同一数值，且 DOM 提示卡会盖住画布里的文字
+    const setMarkLabels = (show: boolean): void => {
+      if (labelsHidden.current === !show) return;
+      labelsHidden.current = !show;
+      const series = (Array.isArray(optionRef.current.series) ? optionRef.current.series : []) as Array<{ id?: string; markPoint?: { label?: { show?: boolean } } }>;
+      // 只动原本显示标注的系列（"现在"标记点的标注本来就是关的）
+      const patch = series.filter((s) => s.id !== undefined && s.markPoint?.label?.show === true).map((s) => ({ id: s.id, markPoint: { label: { show } } }));
+      if (patch.length > 0) c.setOption({ series: patch });
+    };
+    c.on('showTip', () => setMarkLabels(false));
+    c.on('hideTip', () => setMarkLabels(true));
+    c.on('globalout', () => setMarkLabels(true));
     const ro = new ResizeObserver(() => c.resize());
     ro.observe(el);
     return () => {
@@ -47,6 +62,7 @@ export function EChart({ option, height, ariaLabel, testId, dataAttrs, onIndexCl
   useEffect(() => {
     const c = chart.current;
     if (!c) return;
+    labelsHidden.current = false;
     c.setOption({ ...option, animation: !prefersReducedMotion() && option.animation !== false }, { replaceMerge: ['series'] });
   }, [option]);
 

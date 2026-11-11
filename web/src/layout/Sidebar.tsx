@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { MouseEvent } from 'react';
 import { useProjects } from '../api/hooks.ts';
 import type { ProjectItem, ProjectSort } from '../api/types.ts';
@@ -11,7 +11,7 @@ import { formatClock, formatRelative, formatTokens } from '../lib/format.ts';
 import { useDismiss, useMediaQuery } from '../lib/hooks.ts';
 import { markSwitch } from '../lib/perf.ts';
 import { filterProjects, navigationOrder, projectTooltip } from '../lib/projects.ts';
-import { hashFor, navigate, useRoute } from '../state/route.ts';
+import { currentRoute, hashFor, navigate, useRoute } from '../state/route.ts';
 import { useStore, useT } from '../state/store.ts';
 import { HiddenProjects } from './HiddenProjects.tsx';
 import s from './Sidebar.module.css';
@@ -58,26 +58,6 @@ export function Sidebar() {
   const closeSort = useCallback(() => setSortOpen(false), []);
   useDismiss(sortRef, sortOpen, closeSort);
 
-  // 项目栏吸顶 + 内部滚动：最大高度 = 视口高度 − 它在页面顶部时距视口顶的距离（顶栏 / 提示条高度会变），保证底部的刷新按钮首屏可见
-  useLayoutEffect(() => {
-    const el = asideRef.current;
-    if (!el) return;
-    const update = (): void => {
-      const parent = el.parentElement;
-      if (!parent) return;
-      const top = parent.getBoundingClientRect().top + window.scrollY;
-      el.style.setProperty('--sbMax', `${Math.round(top + 20)}px`);
-    };
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(document.body);
-    window.addEventListener('resize', update);
-    return () => {
-      ro.disconnect();
-      window.removeEventListener('resize', update);
-    };
-  }, []);
-
   const projects = useProjects();
   const data = projects.data;
   const now = serverNow ?? Date.now();
@@ -113,7 +93,7 @@ export function Sidebar() {
       e.preventDefault();
       if (id !== selected) {
         markSwitch(id);
-        navigate({ project: id, rest: [] }, { replace: true });
+        navigate({ project: id, rest: [], ...(currentRoute().page === 'settings' ? { page: 'overview' as const } : {}) }, { replace: true });
       }
     };
     document.addEventListener('keydown', onKey);
@@ -132,7 +112,8 @@ export function Sidebar() {
   };
 
   const visibleInLayout = narrow ? drawerOpen : !collapsed;
-  const linkFor = (id: string): string => hashFor(route, { project: id, rest: [] });
+  // 在设置页点项目 → 回到该项目的总览；其它页面保持当前页
+  const linkFor = (id: string): string => hashFor(route, { project: id, rest: [], ...(route.page === 'settings' ? { page: 'overview' as const } : {}) });
 
   const renderRow = (p: ProjectItem, child = false) => {
     const isSel = selected === p.id;

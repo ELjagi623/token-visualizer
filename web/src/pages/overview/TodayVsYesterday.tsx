@@ -4,6 +4,7 @@ import type { TimeseriesPayload } from '../../api/types.ts';
 import { useApi } from '../../api/useApi.ts';
 import { withAlpha } from '../../charts/colors.ts';
 import { readChartColors } from '../../charts/readColors.ts';
+import { chartTooltip } from '../../charts/tooltip.ts';
 import { EChart } from '../../charts/EChart.tsx';
 import { Card } from '../../design/Card.tsx';
 import { Skeleton } from '../../design/Skeleton.tsx';
@@ -67,22 +68,15 @@ export function TodayVsYesterday({ todayFrom, yesterdayFrom }: Props) {
       animationEasing: 'cubicOut',
       textStyle: { fontFamily: 'Outfit, "Noto Sans SC", "HarmonyOS Sans SC", "Microsoft YaHei", system-ui, sans-serif' },
       grid: { left: 4, right: 14, top: 16, bottom: 4, containLabel: true },
-      tooltip: {
-        trigger: 'axis',
-        confine: true,
-        backgroundColor: colors.card,
-        borderColor: colors.line,
-        borderWidth: 1,
-        padding: 0,
-        extraCssText: 'border-radius:16px;box-shadow:0 8px 28px rgba(0,0,0,.14);',
+      tooltip: chartTooltip(colors, {
         formatter: (params: unknown): string => {
           const arr = params as Array<{ dataIndex: number }>;
           const i = arr[0]?.dataIndex ?? 0;
           const row = (color: string, name: string, v: number | null): string =>
             v === null ? '' : `<div style="display:flex;justify-content:space-between;gap:16px;padding:2px 0"><span style="display:flex;align-items:center;gap:8px;color:${colors.text2}"><span style="width:8px;height:8px;border-radius:2px;background:${color}"></span>${name}</span><span style="font-weight:600;font-variant-numeric:tabular-nums;color:${colors.text}">${formatExact(v)}</span></div>`;
-          return `<div style="min-width:200px;padding:14px 16px;font-size:12.5px"><div style="font-weight:600;font-size:13px;margin-bottom:8px;color:${colors.text}">${hourLabel(i)}</div>${row(colors.accent, t('tvy.seriesToday'), todaySeries[i] ?? null)}${row(colors.muted, t('tvy.seriesYesterday'), yc[i] ?? null)}</div>`;
+          return `<div style="min-width:190px;padding:10px 14px;font-size:12.5px;background:${colors.card};border-radius:14px"><div style="font-weight:600;font-size:13px;margin-bottom:5px;color:${colors.text}">${hourLabel(i)}</div>${row(colors.accent, t('tvy.seriesToday'), todaySeries[i] ?? null)}${row(colors.muted, t('tvy.seriesYesterday'), yc[i] ?? null)}</div>`;
         },
-      },
+      }),
       xAxis: { type: 'category', data: labels, boundaryGap: false, axisTick: { show: false }, axisLine: { lineStyle: { color: colors.grid } }, axisLabel: { color: colors.muted, fontSize: 11.5, interval: 5 } },
       yAxis: { type: 'value', min: 0, splitNumber: 3, axisLine: { show: false }, axisTick: { show: false }, axisLabel: { color: colors.muted, fontSize: 11.5, formatter: (v: number) => formatTokens(v) }, splitLine: { lineStyle: { color: colors.grid, type: [3, 5] as unknown as 'dashed' } } },
       series: [

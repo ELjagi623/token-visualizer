@@ -19,7 +19,7 @@ Token Visualizer reads the session logs Claude Code writes to `~/.claude/project
 [Features](#features) · [Quick start](#quick-start) · [Configuration](#configuration) · [Development](#development) · [How it works](#how-it-works)
 
 > [!NOTE]
-> The interface is currently in Chinese only. This README is in English; the [Chinese README](README.zh-CN.md) is the full reference.
+> The interface is available in English (default) and Chinese. Switch at the top of **Settings → Language**, or on the first-run screen. The [Chinese README](README.zh-CN.md) is the full reference.
 
 ## Features
 
@@ -27,8 +27,9 @@ Token Visualizer reads the session logs Claude Code writes to `~/.claude/project
 - **Analysis**: token type breakdown, model ranking, cache efficiency, active hours, tool usage, project comparison, main thread vs. subagents.
 - **Sessions**: sortable and searchable table with per-request detail and context growth curves.
 - **Cost**: equivalent API cost, or your subscription fee amortized across projects and sessions.
-- **Export**: CSV / JSON for daily, per-model, and per-session data.
+- **Export**: CSV / JSON for daily, per-model, and per-session data, or a full-page **JPG** of the current page (content area only).
 - **Live**: incremental refresh, so new activity shows up within seconds. Light and dark themes.
+- **Languages**: English (default) and Chinese. Pick one on the first-run screen or under **Settings → Language**.
 
 ## Privacy
 
@@ -57,7 +58,7 @@ It opens in its own window and quits when you close it. The desktop app and the 
 
 ### From a release
 
-1. Download `token-visualizer-<version>.zip` (the source archive) from the [Releases](../../releases) page and unzip it.
+1. Download `token-visualizer-v<version>.zip` (the Node.js version, i.e. the source archive) from the [Releases](../../releases) page and unzip it.
 2. Double-click `start.cmd` (or run `node src/server/index.ts`).
 3. Your browser opens at `http://127.0.0.1:47821/`. If the port is busy, the next free one is used.
 
@@ -84,6 +85,7 @@ Most options live in the in-app Settings page: data folder, time zone, theme, re
 | `TV_APPDATA_DIR` | Cache and settings folder. Default: `%APPDATA%\TokenVisualizer` |
 | `TV_PORT` | Starting port. Default: `47821` |
 | `TV_NO_OPEN=1` | Do not open the browser on start |
+| `TV_LANG=zh` | Make Chinese the default language for new users (English is the default; saved settings win) |
 
 ## Development
 

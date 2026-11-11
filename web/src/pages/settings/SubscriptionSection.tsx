@@ -101,7 +101,7 @@ export function SubscriptionSection({ settings }: { settings: SettingsData }) {
   const configured = sub.monthlyFeeUsd !== null && sub.monthlyFeeUsd > 0;
   return (
     <Section title={t('settings.sub.title')} desc={t('settings.sub.desc')} testId="settings-subscription">
-      <Row title={t('settings.sub.plan')} hint={t('settings.sub.planHint')}>
+      <Row title={t('settings.sub.plan')}>
         {plans.data === null ? (
           <Skeleton width={320} height={40} />
         ) : (
@@ -126,7 +126,7 @@ export function SubscriptionSection({ settings }: { settings: SettingsData }) {
           {current.checkedAt && ` ${t('settings.sub.checked', { date: current.checkedAt })}`}
         </div>
       )}
-      <Row title={t('settings.sub.fee')} hint={t('settings.sub.feeHint')}>
+      <Row title={t('settings.sub.fee')}>
         <div className={s.rowControlEnd}>
           <Segmented<FeeCurrency>
             size="sm"

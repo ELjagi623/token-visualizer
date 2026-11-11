@@ -8,6 +8,7 @@
  */
 import { execFileSync } from 'node:child_process';
 import { assertValidTimeZone } from './core/time.ts';
+import { L } from './i18n.ts';
 
 export type SystemTzSource = 'intl' | 'windows' | 'fallback';
 export interface SystemTz {
@@ -144,4 +145,4 @@ export function systemTimeZone(): string {
   return systemTimeZoneInfo().name;
 }
 
-export const SYSTEM_TZ_FALLBACK_WARNING = '无法识别系统时区，日期（今天 / 本周 / 本周期）暂按 UTC 划分，可能与你所在地的日期不一致。请在“显示 → 时区”里手动选择你所在的时区。';
+export const systemTzFallbackWarning = (): string => L('无法识别系统时区，日期（今天 / 本周 / 本周期）暂按 UTC 划分，可能与你所在地的日期不一致。请在“显示 → 时区”里手动选择你所在的时区。', 'Could not detect the system time zone; dates (today / this week / this cycle) are split by UTC and may differ from your local dates. Pick your time zone under Settings → Display → Time zone.');

@@ -19,7 +19,7 @@ import { buildProjectIndex } from './core/projects.ts';
 import type { ProjectInfo, ProjectIndex } from './core/projects.ts';
 import { createAppDataWriter, createSafeFs } from './core/safeFs.ts';
 import { localParts, QueryError } from './core/time.ts';
-import { SYSTEM_TZ_FALLBACK_WARNING, systemTimeZone, systemTimeZoneInfo } from './systemTz.ts';
+import { systemTzFallbackWarning, systemTimeZone, systemTimeZoneInfo } from './systemTz.ts';
 import { ApiError, badRequest } from './api/errors.ts';
 import { activityFor, registerViewRoutes } from './api/viewRoutes.ts';
 import { LruCache } from './api/lru.ts';
@@ -43,6 +43,7 @@ import { Store } from './store/store.ts';
 import type { StoreOptions } from './store/store.ts';
 import { Watcher } from './store/watcher.ts';
 import type { WatcherOptions } from './store/watcher.ts';
+import { L } from './i18n.ts';
 
 export const DEFAULT_PORT = 47821;
 
@@ -296,7 +297,7 @@ export async function createApp(opts: AppOptions): Promise<App> {
     try {
       localParts(0, tz);
     } catch (e) {
-      throw badRequest('INVALID_TZ', e instanceof QueryError ? e.message : '无效的时区');
+      throw badRequest('INVALID_TZ', e instanceof QueryError ? e.message : L('无效的时区', 'Invalid time zone'));
     }
     const q = (singleParam(sp, 'q') ?? '').trim().toLowerCase();
     const now = clock();
@@ -462,7 +463,7 @@ export async function createApp(opts: AppOptions): Promise<App> {
       effective: { dataRoot: effectiveRoot(s), timezone: settings.effectiveTimezone() },
       systemTimezone: systemTimeZone(),
       version: settings.version,
-      warnings: systemTimeZoneInfo().source === 'fallback' ? [...settings.warnings, SYSTEM_TZ_FALLBACK_WARNING] : settings.warnings,
+      warnings: systemTimeZoneInfo().source === 'fallback' ? [...settings.warnings, systemTzFallbackWarning()] : settings.warnings,
     };
   }
 

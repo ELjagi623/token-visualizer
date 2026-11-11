@@ -201,6 +201,8 @@ export interface SettingsData {
   budget: { daily: number | null; monthly: number | null };
   /** 订阅方案（批次 C）：monthlyFeeUsd 为 null = 未设置 */
   subscription?: { plan: 'pro' | 'max5x' | 'max20x' | 'custom' | null; monthlyFeeUsd: number | null; billingDay?: number | null };
+  /** 首次引导已处理（完成或跳过） */
+  onboarded?: boolean;
 }
 
 export interface SettingsPayload {

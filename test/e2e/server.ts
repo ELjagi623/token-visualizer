@@ -28,6 +28,12 @@ export interface StartOptions {
   env?: Record<string, string>;
   /** 预置的应用数据目录内容（如 settings.json） */
   settingsJson?: unknown | ((ctx: { base: string; appData: string; dataRoot: string }) => unknown);
+  /** 预置"已完成首次引导"（默认 true）；false = 保持首次启动状态，弹出引导 */
+  onboarded?: boolean;
+  /** 预置的界面语言（默认 'zh'：既有用例按中文断言）；'en' = 英文用例 */
+  language?: 'zh' | 'en';
+  /** 完全不预置 settings.json（真正的首次启动：默认英文、弹出引导） */
+  fresh?: boolean;
 }
 
 export async function startServer(opts: StartOptions = {}): Promise<TestServer> {
@@ -37,10 +43,19 @@ export async function startServer(opts: StartOptions = {}): Promise<TestServer> 
   fs.mkdirSync(appData, { recursive: true });
   if (opts.withFixture === false) fs.mkdirSync(dataRoot, { recursive: true });
   else fs.cpSync(FIXTURE_PROJECTS, dataRoot, { recursive: true });
-  if (opts.settingsJson !== undefined) {
-    const v = typeof opts.settingsJson === 'function' ? (opts.settingsJson as (c: { base: string; appData: string; dataRoot: string }) => unknown)({ base, appData, dataRoot }) : opts.settingsJson;
-    fs.writeFileSync(path.join(appData, 'settings.json'), JSON.stringify(v));
+  let seeded: unknown = opts.settingsJson === undefined ? undefined : typeof opts.settingsJson === 'function' ? (opts.settingsJson as (c: { base: string; appData: string; dataRoot: string }) => unknown)({ base, appData, dataRoot }) : opts.settingsJson;
+  // 首次引导弹窗会挡住页面：默认预置 onboarded:true，只有专门测引导的用例传 onboarded:false
+  // 默认语言是英文，但既有用例按中文界面断言：默认预置 language:'zh'；英文用例传 language:'en'
+  if (!opts.fresh) {
+    const v = (seeded ?? { schema: 1, settings: {} }) as { settings?: Record<string, unknown> };
+    if (v.settings && typeof v.settings === 'object') {
+      if (opts.onboarded !== false && !('onboarded' in v.settings)) v.settings.onboarded = true;
+      if (opts.language !== undefined) v.settings.language = opts.language;
+      else if (!('language' in v.settings)) v.settings.language = 'zh';
+    }
+    seeded = v;
   }
+  if (seeded !== undefined) fs.writeFileSync(path.join(appData, 'settings.json'), JSON.stringify(seeded));
 
   const proc = spawn(process.execPath, ['src/server/index.ts', '--no-open'], {
     cwd: ROOT,
