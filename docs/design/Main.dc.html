@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>总览</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<style>
+body{margin:0}
+.dcroot,.dcroot *{box-sizing:border-box}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}
+.seg{display:inline-flex;gap:2px;padding:4px;background:var(--seg);border-radius:999px}
+.seg button,.seg a{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 18px;border:0;border-radius:999px;background:transparent;color:var(--text2);font:inherit;font-size:14.5px;font-weight:500;cursor:pointer;text-decoration:none}
+.seg button:hover,.seg a:hover{color:var(--text)}
+.seg .on{background:var(--segOn);color:var(--text);box-shadow:0 1px 2px rgba(0,0,0,.08),0 2px 8px rgba(0,0,0,.05)}
+.seg.sm button{min-height:34px;padding:0 14px;font-size:13px}
+.chip{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--text);font:inherit;font-size:13.5px;font-weight:500;cursor:pointer}
+.pill{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-radius:999px;font-size:13.5px;font-weight:500;white-space:nowrap}
+.dot{width:8px;height:8px;border-radius:50%;background:currentColor;flex:none}
+.pulse{animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+.num{font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
+.unit{color:var(--muted);font-weight:500}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media (max-width:1180px){.g3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){.g3,.g2{grid-template-columns:minmax(0,1fr)}}
+input::placeholder{color:var(--muted)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.pulse{animation:none}}
+</style>
+</helmet>
+<div style="{{themeVars}}">
+<div class="dcroot" style="min-height:100%;background:var(--bg);color:var(--text);font-family:'Outfit','Noto Sans SC','HarmonyOS Sans SC','Microsoft YaHei',system-ui,sans-serif;font-size:14px;padding:20px 32px 48px;display:flex;flex-direction:column;gap:24px">
+
+<header style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+<div style="display:flex;align-items:center;gap:12px">
+<div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(145deg,#34D399,#059669);display:flex;align-items:center;justify-content:center">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 8l9 5 9-5-9-5zM3 12l9 5 9-5M3 16l9 5 9-5"></path></svg>
+</div>
+<div style="font-size:23px;font-weight:700;letter-spacing:-0.03em">Token Visualizer</div>
+</div>
+<nav class="seg" aria-label="主导航">
+<a href="Main.dc.html" class="on" aria-current="page"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM15 3h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM15 12h4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2zM5 15h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2z"></path></svg>总览</a>
+<a href="Analysis.dc.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20v-6M10 20V5M16 20v-9M21 20H3"></path></svg>分析</a>
+<a href="Sessions.dc.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"></path></svg>会话</a>
+<a href="Settings.dc.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M16 4.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM8 14.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"></path></svg>设置</a>
+</nav>
+<div style="display:flex;align-items:center;gap:12px">
+<span class="pill" style="background:var(--pillGreenBg);color:var(--pillGreenFg)"><span class="dot pulse"></span>Live · 今日 <b class="num">38.6 M</b> tokens</span>
+<button type="button" aria-label="切换深色主题" style="width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4 6.5 6.5 0 0 0 20 14.5z"></path></svg></button>
+</div>
+</header>
+
+<div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
+
+<aside style="flex:0 0 288px;display:flex;flex-direction:column;gap:12px">
+<label style="display:flex;align-items:center;gap:10px;height:46px;padding:0 14px;border-radius:14px;background:var(--card);border:1px solid var(--line)">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-3.5-3.5"></path></svg>
+<input type="search" placeholder="搜索项目或路径" aria-label="搜索项目" style="border:0;background:transparent;font:inherit;font-size:14px;color:var(--text);outline-offset:6px;width:100%;min-width:0">
+</label>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:0 4px;color:var(--muted);font-size:13px">
+<span>项目</span>
+<button type="button" class="chip" style="min-height:34px;padding:0 12px;font-size:12.5px">按总量排序<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+</div>
+
+<ul style="margin:0;padding:0;display:flex;flex-direction:column;gap:4px">
+<li style="list-style:none">
+<a href="Main.dc.html" aria-current="true" class="card" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:18px;text-decoration:none;color:inherit">
+<div style="min-width:0">
+<div style="font-weight:600;font-size:15px">全部项目</div>
+<div style="color:var(--muted);font-size:12px;margin-top:3px">21 个项目 · 112 个会话</div>
+</div>
+<div style="text-align:right;flex:0 0 84px">
+<div class="num" style="font-size:15px">1.42 B</div>
+<svg width="84" height="22" viewBox="0 0 84 22" aria-hidden="true"><path d="{{allSpark.area}}" fill="{{allSpark.fill}}"></path><path d="{{allSpark.line}}" fill="none" stroke="{{c.accent}}" stroke-width="1.6" stroke-linecap="round"></path><defs><linearGradient id="allg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{{c.accent}}" stop-opacity="0.3"></stop><stop offset="1" stop-color="{{c.accent}}" stop-opacity="0"></stop></linearGradient></defs></svg>
+</div>
+</a>
+</li>
+<sc-for list="{{projects}}" as="p" hint-placeholder-count="6">
+<li style="list-style:none">
+<a href="Main.dc.html" title="{{p.path}}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 16px;border-radius:18px;text-decoration:none;color:inherit">
+<div style="min-width:0">
+<div style="font-weight:500;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{p.name}}</div>
+<div style="display:flex;align-items:center;gap:6px;color:var(--muted);font-size:12px;margin-top:3px"><sc-if value="{{p.active}}" hint-placeholder-val="{{true}}"><span class="dot" style="color:var(--accent);width:7px;height:7px"></span></sc-if>{{p.ago}}</div>
+</div>
+<div style="text-align:right;flex:0 0 84px">
+<div class="num" style="font-size:14px">{{p.total}}</div>
+<svg width="84" height="22" viewBox="0 0 84 22" aria-hidden="true"><defs><linearGradient id="{{p.gid}}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{{c.accent}}" stop-opacity="0.26"></stop><stop offset="1" stop-color="{{c.accent}}" stop-opacity="0"></stop></linearGradient></defs><path d="{{p.area}}" fill="{{p.fill}}"></path><path d="{{p.line}}" fill="none" stroke="{{c.accent}}" stroke-width="1.5" stroke-linecap="round"></path></svg>
+</div>
+</a>
+</li>
+</sc-for>
+<li style="list-style:none">
+<a href="Main.dc.html" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 16px;border-radius:18px;text-decoration:none;color:inherit">
+<div style="display:flex;align-items:center;gap:10px;min-width:0">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"></path></svg>
+<div>
+<div style="font-weight:500;font-size:14.5px">临时对话 Scratch</div>
+<div style="color:var(--muted);font-size:12px;margin-top:3px">14 个临时目录 · 已归并</div>
+</div>
+</div>
+<div style="display:flex;align-items:center;gap:6px"><span class="num" style="font-size:14px">125 M</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg></div>
+</a>
+</li>
+</ul>
+
+<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 4px 0;color:var(--muted);font-size:12px">
+<span>21 个项目 · 更新于 12:04:31</span>
+<button type="button" aria-label="手动刷新" style="width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--text2);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.5-3.5M4 4v4h4M4 13a8 8 0 0 0 14.5 3.5M20 20v-4h-4"></path></svg></button>
+</div>
+</aside>
+
+<main style="flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:24px">
+
+<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+<div>
+<h1 style="margin:0;font-size:28px;font-weight:600;letter-spacing:-0.025em">全部项目</h1>
+<div style="color:var(--muted);font-size:13.5px;margin-top:4px">汇总 21 个项目 · 112 个会话 · 活跃 41 天</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+<button type="button" class="chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zM3 10h18M8 3v4M16 3v4"></path></svg>近 30 天<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+<button type="button" class="chip">模型：全部<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+<div class="seg sm" role="group" aria-label="统计口径">
+<button type="button" class="on" aria-pressed="true" title="含缓存读">Total</button>
+<button type="button" aria-pressed="false" title="不含缓存读">Fresh</button>
+</div>
+<div class="seg sm" role="group" aria-label="成本口径">
+<button type="button" class="on" aria-pressed="true" title="按官方 API 单价折算">等价 API</button>
+<button type="button" aria-pressed="false" title="按订阅月费按天摊销">订阅摊销</button>
+</div>
+</div>
+</div>
+
+<section class="card" style="padding:28px;display:flex;flex-direction:column;gap:22px">
+<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+<h2 style="margin:0;font-size:21px;font-weight:600;letter-spacing:-0.02em">使用状态</h2>
+<div role="group" aria-label="当前状态：正在生成" style="display:flex;flex-wrap:wrap;gap:8px">
+<span class="pill" style="background:var(--pillIdleBg);color:var(--pillIdleFg);opacity:.5"><span class="dot"></span>Idle 空闲</span>
+<span class="pill" style="background:var(--pillBlueBg);color:var(--pillBlueFg);opacity:.5"><span class="dot"></span>Active 近期活跃</span>
+<span class="pill" aria-current="true" style="background:var(--pillGreenBg);color:var(--pillGreenFg);font-weight:600"><span class="dot pulse"></span>Generating 正在生成</span>
+</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px">
+<div style="color:var(--text2);font-size:14.5px">今日已使用 · 最近一条记录 8 秒前</div>
+<div><span class="num" style="font-size:42px;line-height:1">38,640,212</span><span class="unit" style="font-size:16px;margin-left:8px">tokens · 今日</span></div>
+</div>
+<div>
+<div style="height:8px;border-radius:999px;background:var(--track);overflow:hidden" role="progressbar" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100" aria-label="今日用量占近 30 天日均的比例"><div style="width:82%;height:100%;border-radius:999px;background:var(--accent)"></div></div>
+<div style="display:flex;justify-content:space-between;gap:12px;margin-top:10px;color:var(--muted);font-size:12.5px"><span>今日用量 ÷ 近 30 天日均（47.2 M）</span><span class="num" style="color:var(--accentText)">82%</span></div>
+</div>
+</section>
+
+<div class="g3">
+<sc-for list="{{cards}}" as="k" hint-placeholder-count="9">
+<article class="card" style="padding:22px 24px 0;display:flex;flex-direction:column;overflow:hidden;min-height:204px">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+<div style="display:flex;align-items:center;gap:10px;color:var(--text2);font-size:15px;font-weight:500"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{k.icon}}"></path></svg>{{k.title}}</div>
+<sc-if value="{{k.delta}}" hint-placeholder-val="{{true}}"><span style="font-size:12.5px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--seg);color:var(--text)" class="num">{{k.delta}}</span></sc-if>
+</div>
+<div style="margin-top:14px"><span class="num" style="font-size:44px;line-height:1">{{k.value}}</span><span class="unit" style="font-size:16px;margin-left:6px">{{k.unit}}</span></div>
+<div style="color:var(--muted);font-size:13px;margin-top:8px">{{k.note}}</div>
+<div style="flex:1;min-height:14px"></div>
+<svg viewBox="0 0 300 56" preserveAspectRatio="none" aria-hidden="true" style="display:block;width:calc(100% + 48px);margin:0 -24px;height:56px"><defs><linearGradient id="{{k.gid}}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{{c.accent}}" stop-opacity="0.26"></stop><stop offset="1" stop-color="{{c.accent}}" stop-opacity="0"></stop></linearGradient></defs><path d="{{k.area}}" fill="{{k.fill}}"></path><path d="{{k.line}}" fill="none" stroke="{{c.accent}}" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke" stroke-dasharray="{{k.dash}}"></path></svg>
+</article>
+</sc-for>
+</div>
+
+<section class="card" style="padding:28px;display:flex;flex-direction:column;gap:22px">
+<div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px">
+<div>
+<h2 style="margin:0;font-size:21px;font-weight:600;letter-spacing:-0.02em">订阅回本</h2>
+<div style="color:var(--muted);font-size:13px;margin-top:4px">本月至今的等价 API 成本 vs 订阅月费 · 估算</div>
+</div>
+<a href="Settings.dc.html" class="chip" style="text-decoration:none">Max 20x · $200 / 月</a>
+</div>
+<div class="g3" style="gap:16px">
+<div style="padding:18px 20px;border-radius:18px;background:var(--seg)">
+<div style="color:var(--muted);font-size:12.5px">等价 API 成本（本月至今）</div>
+<div style="margin-top:6px"><span class="num" style="font-size:30px;line-height:1.1">$912.40</span></div>
+<div style="color:var(--muted);font-size:12.5px;margin-top:6px">按官方 API 单价折算</div>
+</div>
+<div style="padding:18px 20px;border-radius:18px;background:var(--seg)">
+<div style="color:var(--muted);font-size:12.5px">订阅摊销（本月已过 10 / 30 天）</div>
+<div style="margin-top:6px"><span class="num" style="font-size:30px;line-height:1.1">$66.67</span></div>
+<div style="color:var(--muted);font-size:12.5px;margin-top:6px">月费 $200.00 按天摊销</div>
+</div>
+<div style="padding:18px 20px;border-radius:18px;background:var(--pillGreenBg);color:var(--pillGreenFg)">
+<div style="font-size:12.5px">回本倍数</div>
+<div style="margin-top:6px"><span class="num" style="font-size:30px;line-height:1.1">4.6 ×</span></div>
+<div style="font-size:12.5px;margin-top:6px">相当于省下 $712.40</div>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="display:grid;grid-template-columns:96px minmax(0,1fr) 72px;align-items:center;gap:12px;font-size:13px"><span style="color:var(--text2)">本月至今</span><span style="height:10px;border-radius:999px;background:var(--track);overflow:hidden"><span style="display:block;width:33%;height:100%;border-radius:999px;background:var(--accent)"></span></span><span class="num" style="text-align:right">4.6 ×</span></div>
+<div style="display:grid;grid-template-columns:96px minmax(0,1fr) 72px;align-items:center;gap:12px;font-size:13px"><span style="color:var(--text2)">整月预估</span><span style="height:10px;border-radius:999px;background:var(--track);overflow:hidden"><span style="display:block;width:100%;height:100%;border-radius:999px;background:var(--accent);opacity:.45"></span></span><span class="num" style="text-align:right">13.7 ×</span></div>
+</div>
+<div style="color:var(--muted);font-size:12.5px;line-height:1.5">仅统计本机记录，网页版与其它设备的用量不在内。订阅摊销是按每日各项目的等价 API 成本占比分摊月费，不是套餐额度的消耗。未选择订阅方案时，此卡提示“在设置里选择订阅方案”。</div>
+</section>
+
+<section class="card" style="padding:28px;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:16px">
+<div>
+<h2 style="margin:0;font-size:21px;font-weight:600;letter-spacing:-0.02em">Token 时间曲线</h2>
+<div style="color:var(--muted);font-size:13px;margin-top:4px">近 30 天 · 按日 · Total（含缓存读）</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:10px">
+<div class="seg sm" role="group" aria-label="时间粒度"><button type="button" aria-pressed="false">小时</button><button type="button" class="on" aria-pressed="true">日</button><button type="button" aria-pressed="false">周</button><button type="button" aria-pressed="false">月</button></div>
+<div class="seg sm" role="group" aria-label="系列拆分"><button type="button" class="on" aria-pressed="true">总量</button><button type="button" aria-pressed="false">类型</button><button type="button" aria-pressed="false">模型</button><button type="button" aria-pressed="false">项目</button></div>
+<div class="seg sm" role="group" aria-label="图表类型"><button type="button" class="on" aria-pressed="true">面积</button><button type="button" aria-pressed="false">柱状</button></div>
+</div>
+</div>
+<div style="position:relative">
+<svg viewBox="0 0 960 300" style="display:block;width:100%;height:auto" role="img" aria-label="近 30 天每日 token 面积曲线，峰值出现在 11 月 2 日，为 88.4 M">
+<defs><linearGradient id="mainfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{{c.accent}}" stop-opacity="0.3"></stop><stop offset="1" stop-color="{{c.accent}}" stop-opacity="0"></stop></linearGradient></defs>
+<line x1="48" y1="268" x2="944" y2="268" stroke="{{c.grid}}" stroke-width="1"></line>
+<line x1="48" y1="205" x2="944" y2="205" stroke="{{c.grid}}" stroke-width="1" stroke-dasharray="3 5"></line>
+<line x1="48" y1="142" x2="944" y2="142" stroke="{{c.grid}}" stroke-width="1" stroke-dasharray="3 5"></line>
+<line x1="48" y1="79" x2="944" y2="79" stroke="{{c.grid}}" stroke-width="1" stroke-dasharray="3 5"></line>
+<line x1="48" y1="16" x2="944" y2="16" stroke="{{c.grid}}" stroke-width="1" stroke-dasharray="3 5"></line>
+<text x="0" y="272" font-size="12" fill="{{c.muted}}">0</text>
+<text x="0" y="209" font-size="12" fill="{{c.muted}}">25 M</text>
+<text x="0" y="146" font-size="12" fill="{{c.muted}}">50 M</text>
+<text x="0" y="83" font-size="12" fill="{{c.muted}}">75 M</text>
+<text x="0" y="20" font-size="12" fill="{{c.muted}}">100 M</text>
+<path d="{{chart.area}}" fill="url(#mainfill)"></path>
+<path d="{{chart.line}}" fill="none" stroke="{{c.accent}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
+<sc-for list="{{chart.xTicks}}" as="t" hint-placeholder-count="7">
+<text x="{{t.x}}" y="292" font-size="12" text-anchor="middle" fill="{{c.muted}}">{{t.label}}</text>
+</sc-for>
+<line x1="{{chart.tip.x}}" y1="16" x2="{{chart.tip.x}}" y2="268" stroke="{{c.muted}}" stroke-width="1" stroke-dasharray="3 4"></line>
+<circle cx="{{chart.tip.x}}" cy="{{chart.tip.y}}" r="5.5" fill="{{c.card}}" stroke="{{c.accent}}" stroke-width="2.5"></circle>
+<circle cx="{{chart.peak.x}}" cy="{{chart.peak.y}}" r="4.5" fill="{{c.accent}}"></circle>
+<text x="{{chart.peak.x}}" y="{{chart.peak.ty}}" font-size="12.5" font-weight="600" text-anchor="middle" fill="{{c.text}}">峰值 88.4 M · 11/02</text>
+<circle cx="{{chart.end.x}}" cy="{{chart.end.y}}" r="4.5" fill="{{c.card}}" stroke="{{c.accent}}" stroke-width="2"></circle>
+</svg>
+<div style="position:absolute;top:30px;right:calc(17.8% + 14px);width:214px;padding:14px 16px;border-radius:16px;background:var(--card);border:1px solid var(--line);box-shadow:0 8px 28px rgba(0,0,0,.14);font-size:12.5px">
+<div style="font-weight:600;font-size:13px;margin-bottom:8px">11/05 周四</div>
+<div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="display:flex;align-items:center;gap:8px;color:var(--text2)"><span style="width:8px;height:8px;border-radius:2px;background:var(--blue)"></span>输入</span><span class="num">0.41 M</span></div>
+<div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="display:flex;align-items:center;gap:8px;color:var(--text2)"><span style="width:8px;height:8px;border-radius:2px;background:var(--amber)"></span>缓存写</span><span class="num">4.8 M</span></div>
+<div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="display:flex;align-items:center;gap:8px;color:var(--text2)"><span style="width:8px;height:8px;border-radius:2px;background:var(--accent)"></span>缓存读</span><span class="num">61.2 M</span></div>
+<div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="display:flex;align-items:center;gap:8px;color:var(--text2)"><span style="width:8px;height:8px;border-radius:2px;background:var(--violet)"></span>输出</span><span class="num">3.1 M</span></div>
+<div style="display:flex;justify-content:space-between;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line);font-weight:600"><span>合计 · 412 次请求</span><span class="num">69.5 M</span></div>
+</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:20px;color:var(--muted);font-size:12.5px">
+<span style="display:flex;align-items:center;gap:8px"><span style="width:18px;height:3px;border-radius:2px;background:var(--accent)"></span>总 Token</span>
+<span style="display:flex;align-items:center;gap:8px"><span style="width:9px;height:9px;border-radius:50%;border:2px solid var(--accent)"></span>今日（进行中）</span>
+<span style="margin-left:auto">悬浮查看各类型分解 · 拖动刷选可放大区间</span>
+</div>
+</section>
+
+<div style="display:flex;flex-wrap:wrap;gap:20px">
+
+<section class="card" style="flex:1 1 440px;min-width:0;padding:28px;display:flex;flex-direction:column;gap:18px">
+<div>
+<h2 style="margin:0;font-size:21px;font-weight:600;letter-spacing:-0.02em">日历热力图</h2>
+<div style="color:var(--muted);font-size:13px;margin-top:4px">每格一天 · 点击查看当天明细</div>
+</div>
+<div style="overflow-x:auto;padding-bottom:4px">
+<div style="display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,14px);gap:4px;width:max-content" role="img" aria-label="过去 26 周的每日 token 热力图，近 30 天明显更活跃">
+<sc-for list="{{heat}}" as="h" hint-placeholder-count="30">
+<div style="{{h.style}}"></div>
+</sc-for>
+</div>
+</div>
+<div style="display:flex;align-items:center;gap:6px;color:var(--muted);font-size:12px">少
+<span style="width:14px;height:14px;border-radius:4px;background:var(--track)"></span>
+<span style="width:14px;height:14px;border-radius:4px;background:{{c.h1}}"></span>
+<span style="width:14px;height:14px;border-radius:4px;background:{{c.h2}}"></span>
+<span style="width:14px;height:14px;border-radius:4px;background:{{c.h3}}"></span>
+<span style="width:14px;height:14px;border-radius:4px;background:{{c.h4}}"></span>多</div>
+</section>
+
+<section class="card" style="flex:1 1 440px;min-width:0;padding:28px;display:flex;flex-direction:column;gap:18px">
+<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+<div>
+<h2 style="margin:0;font-size:21px;font-weight:600;letter-spacing:-0.02em">今日 vs 昨日</h2>
+<div style="color:var(--muted);font-size:13px;margin-top:4px">按小时累计 · 截至 12:04</div>
+</div>
+<span class="num" style="font-size:12.5px;font-weight:600;padding:5px 11px;border-radius:999px;background:var(--pillGreenBg);color:var(--pillGreenFg)">▲ 12% 同刻</span>
+</div>
+<svg viewBox="0 0 480 220" style="display:block;width:100%;height:auto" role="img" aria-label="今日与昨日按小时累计 token 对比，今日 12 点累计 38.6 M，昨日同刻 34.5 M">
+<defs><linearGradient id="tvyfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{{c.accent}}" stop-opacity="0.28"></stop><stop offset="1" stop-color="{{c.accent}}" stop-opacity="0"></stop></linearGradient></defs>
+<line x1="40" y1="188" x2="470" y2="188" stroke="{{c.grid}}" stroke-width="1"></line>
+<line x1="40" y1="130.7" x2="470" y2="130.7" stroke="{{c.grid}}" stroke-width="1" stroke-dasharray="3 5"></line>
+<line x1="40" y1="73.3" x2="470" y2="73.3" stroke="{{c.grid}}" stroke-width="1" stroke-dasharray="3 5"></line>
+<line x1="40" y1="16" x2="470" y2="16" stroke="{{c.grid}}" stroke-width="1" stroke-dasharray="3 5"></line>
+<text x="0" y="192" font-size="11.5" fill="{{c.muted}}">0</text>
+<text x="0" y="135" font-size="11.5" fill="{{c.muted}}">30 M</text>
+<text x="0" y="78" font-size="11.5" fill="{{c.muted}}">60 M</text>
+<text x="0" y="20" font-size="11.5" fill="{{c.muted}}">90 M</text>
+<text x="40" y="210" font-size="11.5" text-anchor="middle" fill="{{c.muted}}">00:00</text>
+<text x="147.5" y="210" font-size="11.5" text-anchor="middle" fill="{{c.muted}}">06:00</text>
+<text x="255" y="210" font-size="11.5" text-anchor="middle" fill="{{c.muted}}">12:00</text>
+<text x="362.5" y="210" font-size="11.5" text-anchor="middle" fill="{{c.muted}}">18:00</text>
+<text x="470" y="210" font-size="11.5" text-anchor="middle" fill="{{c.muted}}">24:00</text>
+<path d="{{tvy.yLine}}" fill="none" stroke="{{c.muted}}" stroke-width="2" stroke-dasharray="5 5" stroke-linecap="round"></path>
+<path d="{{tvy.tArea}}" fill="url(#tvyfill)"></path>
+<path d="{{tvy.tLine}}" fill="none" stroke="{{c.accent}}" stroke-width="2.4" stroke-linecap="round"></path>
+<circle cx="{{tvy.now.x}}" cy="{{tvy.now.ty}}" r="5" fill="{{c.accent}}"></circle>
+<circle cx="{{tvy.now.x}}" cy="{{tvy.now.yy}}" r="4" fill="{{c.card}}" stroke="{{c.muted}}" stroke-width="2"></circle>
+</svg>
+<div style="display:flex;flex-wrap:wrap;gap:20px;color:var(--muted);font-size:12.5px">
+<span style="display:flex;align-items:center;gap:8px"><span style="width:18px;height:3px;border-radius:2px;background:var(--accent)"></span>今日 38.6 M</span>
+<span style="display:flex;align-items:center;gap:8px"><span style="width:18px;border-top:2px dashed var(--muted)"></span>昨日全天 81.3 M · 同刻 34.5 M</span>
+</div>
+</section>
+
+</div>
+
+</main>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":2000}}'>
+class Component extends DCLogic {
+  rng(seed) {
+    let s = seed >>> 0;
+    return () => { s = (Math.imul(s, 1664525) + 1013904223) >>> 0; return s / 4294967296; };
+  }
+  smooth(pts, cont) {
+    if (pts.length < 2) return '';
+    const f = (n) => n.toFixed(1);
+    let d = (cont ? 'L' : 'M') + f(pts[0][0]) + ' ' + f(pts[0][1]);
+    for (let i = 0; i < pts.length - 1; i++) {
+      const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+      const t = 0.17;
+      d += ' C' + f(p1[0] + (p2[0] - p0[0]) * t) + ' ' + f(p1[1] + (p2[1] - p0[1]) * t) + ' ' + f(p2[0] - (p3[0] - p1[0]) * t) + ' ' + f(p2[1] - (p3[1] - p1[1]) * t) + ' ' + f(p2[0]) + ' ' + f(p2[1]);
+    }
+    return d;
+  }
+  spark(vals, w, h, pad) {
+    const mx = Math.max(...vals), mn = Math.min(...vals), rg = (mx - mn) || 1;
+    const pts = vals.map((v, i) => [i * (w / (vals.length - 1)), pad + (h - 2 * pad) * (1 - (v - mn) / rg)]);
+    const line = this.smooth(pts);
+    return { line: line, area: line + ' L' + w + ' ' + h + ' L0 ' + h + ' Z' };
+  }
+  series(n, base, amp, seed) {
+    const r = this.rng(seed);
+    return Array.from({ length: n }, (_, i) => Math.max(1, base + amp * (r() - 0.5) * 2 + amp * 0.35 * Math.sin(i / 1.1)));
+  }
+  renderVals() {
+    const THEMES = {
+      light: { bg: '#F6F6F3', card: '#FFFFFF', line: 'rgba(17,22,19,0.07)', text: '#111613', text2: '#555C56', muted: '#6B726C', track: '#ECEEEA', seg: '#EDEEEA', segOn: '#FFFFFF', accent: '#10B981', accentText: '#047857', blue: '#3B82F6', amber: '#F59E0B', pink: '#EC4899', violet: '#8B5CF6', grid: 'rgba(17,22,19,0.09)', shadow: '0 1px 2px rgba(17,22,19,0.04), 0 14px 36px rgba(17,22,19,0.05)', pillIdleBg: '#ECEEEA', pillIdleFg: '#555C56', pillBlueBg: '#E3EEFF', pillBlueFg: '#1D4ED8', pillGreenBg: '#D9F5E6', pillGreenFg: '#047857', pillAmberBg: '#FEF0CF', pillAmberFg: '#92580A', pillPinkBg: '#FDE3EE', pillPinkFg: '#BE185D', h1: 'rgba(16,185,129,0.24)', h2: 'rgba(16,185,129,0.45)', h3: 'rgba(16,185,129,0.72)', h4: 'rgba(16,185,129,1)' },
+      dark: { bg: '#0E1210', card: '#171C19', line: 'rgba(255,255,255,0.08)', text: '#ECF1ED', text2: '#B2BAB4', muted: '#9AA39C', track: '#252C28', seg: '#1F2522', segOn: '#2C3430', accent: '#34D399', accentText: '#6EE7B7', blue: '#60A5FA', amber: '#FBBF24', pink: '#F472B6', violet: '#A78BFA', grid: 'rgba(255,255,255,0.09)', shadow: '0 1px 2px rgba(0,0,0,0.3), 0 14px 36px rgba(0,0,0,0.28)', pillIdleBg: '#252C28', pillIdleFg: '#B2BAB4', pillBlueBg: 'rgba(96,165,250,0.16)', pillBlueFg: '#93C5FD', pillGreenBg: 'rgba(52,211,153,0.16)', pillGreenFg: '#6EE7B7', pillAmberBg: 'rgba(251,191,36,0.16)', pillAmberFg: '#FCD34D', pillPinkBg: 'rgba(244,114,182,0.16)', pillPinkFg: '#F9A8D4', h1: 'rgba(52,211,153,0.25)', h2: 'rgba(52,211,153,0.45)', h3: 'rgba(52,211,153,0.72)', h4: 'rgba(52,211,153,1)' }
+    };
+    const C = THEMES[this.props.theme === 'dark' ? 'dark' : 'light'];
+    const themeVars = Object.keys(C).map((k) => '--' + k + ':' + C[k]).join(';');
+
+    // 30 天每日数据（M tokens），2026-10-12 .. 2026-11-10
+    const data = this.series(30, 45, 20, 7);
+    data[21] = 88.4; data[24] = 69.5; data[28] = 81.3; data[29] = 38.6;
+    const cum = []; let acc = 0; data.forEach((v) => { acc += v; cum.push(acc); });
+
+    // 主曲线
+    const X0 = 48, X1 = 944, Y0 = 16, Y1 = 268;
+    const xs = (i) => X0 + i * (X1 - X0) / 29;
+    const ys = (v) => Y1 - (v / 100) * (Y1 - Y0);
+    const line = this.smooth(data.map((v, i) => [xs(i), ys(v)]));
+    const labelIdx = [[0, '10/12'], [5, '10/17'], [10, '10/22'], [15, '10/27'], [20, '11/01'], [25, '11/06'], [29, '11/10']];
+    const chart = {
+      line: line,
+      area: line + ' L' + X1 + ' ' + Y1 + ' L' + X0 + ' ' + Y1 + ' Z',
+      xTicks: labelIdx.map((p) => ({ x: xs(p[0]).toFixed(1), label: p[1] })),
+      tip: { x: xs(24).toFixed(1), y: ys(69.5).toFixed(1) },
+      peak: { x: xs(21).toFixed(1), y: ys(88.4).toFixed(1), ty: (ys(88.4) - 14).toFixed(1) },
+      end: { x: xs(29).toFixed(1), y: ys(38.6).toFixed(1) }
+    };
+
+    // 侧栏项目
+    const defs = [
+      ['Token visualizer', 'D:\\Projects\\token-visualizer', '386 M', '刚刚', true, 11, 14, 8],
+      ['paper-experiments', 'D:\\Projects\\paper-experiments', '342 M', '3 小时前', true, 23, 12, 9],
+      ['kicad-board', 'D:\\Projects\\kicad-board', '241 M', '昨天', false, 31, 8, 7],
+      ['course-notes', 'D:\\Projects\\course-notes', '187 M', '3 天前', false, 47, 6, 5],
+      ['blog-site', 'D:\\Projects\\blog-site', '98 M', '1 周前', false, 59, 3, 3],
+      ['dotfiles', 'D:\\Projects\\dotfiles', '41 M', '2 周前', false, 71, 1.5, 1.4]
+    ];
+    const projects = defs.map((d, i) => {
+      const sp = this.spark(this.series(30, d[6], d[7], d[5]), 84, 22, 2);
+      return { name: d[0], path: d[1], total: d[2], ago: d[3], active: d[4], gid: 'pg' + i, fill: 'url(#pg' + i + ')', line: sp.line, area: sp.area };
+    });
+    const as = this.spark(cum, 84, 22, 2);
+    const allSpark = { line: as.line, area: as.area, fill: 'url(#allg)' };
+
+    // 指标卡
+    const ICON = {
+      layers: 'M12 3 3 8l9 5 9-5-9-5zM3 12l9 5 9-5M3 16l9 5 9-5',
+      sun: 'M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z',
+      cal: 'M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zM3 10h18M8 3v4M16 3v4',
+      act: 'M3 12h4l3-8 4 16 3-8h4',
+      pct: 'M19 5 5 19M9.5 7a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM19.5 17a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z',
+      ratio: 'M7 17 17 7M9 7h8v8',
+      dollar: 'M12 3v18M16.5 7.5C16 6 14.5 5 12 5c-2.5 0-4 1.2-4 3 0 4.5 8.5 2 8.5 6.5 0 1.8-1.8 3-4.5 3-2.5 0-4.2-1-4.8-2.6',
+      bars: 'M4 20v-6M10 20V5M16 20v-9M21 20H3',
+      clock: 'M12 7v5l3 2M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z'
+    };
+    const todayH = [0.3, 0.1, 0, 0, 0, 0.2, 1.9, 4.4, 6.8, 8.6, 9.0, 7.3];
+    const specs = [
+      ['总 Token（累计）', 'layers', '1.42', 'B tokens', '含缓存读 · 活跃 41 天', '', cum, false],
+      ['今日 Token', 'sun', '38.6', 'M tokens', '较昨日同一时刻', '▲ 12%', todayH, false],
+      ['本周 Token', 'cal', '72.4', 'M tokens', '周一至今 · 较上周同期', '▲ 6%', data.slice(16), false],
+      ['本月 Token', 'cal', '412', 'M tokens', '11 月至今 · 较上月同期', '▼ 8%', data, false],
+      ['请求数', 'act', '14,208', '次', '112 个会话 · 平均每次 100.0 K tokens', '', this.series(30, 40, 22, 91), false],
+      ['缓存命中率', 'pct', '94.3', '%', '缓存读 ÷ (输入 + 缓存写 + 缓存读)', '', this.series(30, 94, 2.2, 53), false],
+      ['输出 ÷ 输入', 'ratio', '19.3', '×', '输出 token ÷ 新输入 token', '', this.series(30, 18, 5, 77), false],
+      ['等价 API 成本', 'dollar', '$912', '', '本月至今 · 估算 · 按官方 API 单价折算', '▲ 9%', this.series(30, 28, 12, 63), false],
+      ['AI 运行时长', 'clock', '187.2', '小时', '累计 · 活跃 41 天 · 并行会话取并集 · 估算', '', this.series(30, 4.6, 2.2, 29), false]
+    ];
+    const cards = specs.map((s, i) => {
+      const sp = this.spark(s[6], 300, 56, 6);
+      return { title: s[0], icon: ICON[s[1]], value: s[2], unit: s[3], note: s[4], delta: s[5], gid: 'cg' + i, fill: s[7] ? 'none' : 'url(#cg' + i + ')', line: sp.line, area: sp.area, dash: s[7] ? '4 6' : 'none' };
+    });
+
+    // 日历热力图：26 周 × 7 天（周一起始），最后 30 天取自 data
+    const rr = this.rng(1234);
+    const heat = [];
+    for (let k = 0; k < 26 * 7 - 5; k++) {
+      let lv;
+      if (k >= 147) {
+        const v = data[k - 147];
+        lv = v < 25 ? 1 : v < 40 ? 2 : v < 55 ? 3 : 4;
+      } else {
+        const r = rr();
+        lv = r > 0.93 ? 2 : r > 0.9 ? 1 : 0;
+      }
+      const bg = lv === 0 ? 'var(--track)' : C['h' + lv];
+      heat.push({ style: 'width:14px;height:14px;border-radius:4px;background:' + bg });
+    }
+
+    // 今日 vs 昨日（按小时累计）
+    const yH = [0.2, 0.1, 0, 0, 0, 0.4, 1.6, 3.8, 6.1, 7.9, 8.3, 6.1, 4.1, 5.0, 5.6, 6.2, 5.5, 3.6, 2.4, 4.0, 5.1, 3.8, 1.2, 0.3];
+    const yc = [0]; yH.forEach((v) => yc.push(yc[yc.length - 1] + v));
+    const tc = [0]; todayH.forEach((v) => tc.push(tc[tc.length - 1] + v));
+    const tx = (h) => 40 + h * 430 / 24;
+    const ty = (v) => 188 - (v / 90) * 172;
+    const yLine = this.smooth(yc.map((v, h) => [tx(h), ty(v)]));
+    const tLine = this.smooth(tc.map((v, h) => [tx(h), ty(v)]));
+    const tvy = {
+      yLine: yLine,
+      tLine: tLine,
+      tArea: tLine + ' L' + tx(12).toFixed(1) + ' 188 L40 188 Z',
+      now: { x: tx(12).toFixed(1), ty: ty(tc[12]).toFixed(1), yy: ty(yc[12]).toFixed(1) }
+    };
+
+    return { themeVars: themeVars, c: C, projects: projects, allSpark: allSpark, cards: cards, chart: chart, heat: heat, tvy: tvy };
+  }
+}
+</script>
+</body>
+</html>

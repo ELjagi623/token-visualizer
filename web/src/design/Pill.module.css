@@ -1,0 +1,36 @@
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+
+.sm {
+  height: 26px;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+
+.dim {
+  opacity: 0.5;
+}
+
+.idle { background: var(--pillIdleBg); color: var(--pillIdleFg); }
+.blue { background: var(--pillBlueBg); color: var(--pillBlueFg); }
+.green { background: var(--pillGreenBg); color: var(--pillGreenFg); }
+.amber { background: var(--pillAmberBg); color: var(--pillAmberFg); }
+.pink { background: var(--pillPinkBg); color: var(--pillPinkFg); }

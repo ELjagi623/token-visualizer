@@ -1,0 +1,297 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.tableCard {
+  padding: 22px 14px 8px;
+}
+
+.scroll {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 860px;
+}
+
+.table th {
+  padding: 0 14px 12px;
+  text-align: left;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text2);
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 14px;
+  font-size: 14px;
+  white-space: nowrap;
+  border-top: 1px solid var(--line);
+}
+
+.r {
+  text-align: right !important;
+}
+
+.sortBtn {
+  border: 0;
+  background: transparent;
+  padding: 4px 6px;
+  margin: -4px -6px;
+  border-radius: 8px;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sortBtn:hover {
+  color: var(--text);
+}
+
+.sortBtn[aria-pressed='true'] {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.row {
+  cursor: pointer;
+}
+
+.row:hover {
+  background: var(--seg);
+}
+
+.row[aria-selected='true'] {
+  background: var(--seg);
+}
+
+.titleLink {
+  display: block;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.titleLink:hover {
+  text-decoration: underline;
+}
+
+.dim {
+  color: var(--text2);
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.local {
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--pillBlueBg);
+  color: var(--pillBlueFg);
+  margin-left: 6px;
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 14px 10px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+.pager {
+  display: flex;
+  gap: 8px;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  min-width: 220px;
+  color: var(--muted);
+}
+
+.search:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.search input {
+  border: 0;
+  background: transparent;
+  font-size: 13.5px;
+  color: var(--text);
+  width: 100%;
+  min-width: 0;
+  outline: none;
+}
+
+.empty {
+  padding: 48px 16px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13.5px;
+}
+
+/* 详情 */
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.dHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.kicker {
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+.dTitle {
+  margin-top: 4px;
+  font-size: 23px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  word-break: break-word;
+}
+
+.dMeta {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+
+.statLabel {
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+.statVal {
+  margin-top: 4px;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.g2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 1100px) {
+  .g2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.colTitle {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.colSub {
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 12.5px;
+  margin-left: 8px;
+}
+
+.compBar {
+  display: flex;
+  height: 14px;
+  border-radius: 999px;
+  overflow: hidden;
+  gap: 2px;
+}
+
+.legendWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  color: var(--text2);
+  font-size: 13px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sw {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex: none;
+}
+
+.toolRow {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr) 48px;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.toolName {
+  color: var(--text2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.track8 {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--track);
+  overflow: hidden;
+}
+
+.tools {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

@@ -1,0 +1,19 @@
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radiusCard);
+  box-shadow: var(--shadow);
+  min-width: 0;
+}
+
+.lg {
+  padding: 28px;
+}
+
+.md {
+  padding: 22px 24px;
+}
+
+.flush {
+  padding: 0;
+}

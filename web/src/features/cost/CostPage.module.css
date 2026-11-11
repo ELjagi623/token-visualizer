@@ -1,0 +1,266 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.g2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .g2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.cal {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.calOn {
+  outline: 2px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  outline-offset: -2px;
+}
+
+.calHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.calTitle {
+  color: var(--text2);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.bigNum {
+  font-size: 44px;
+  line-height: 1;
+}
+
+.unit {
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 16px;
+  margin-left: 6px;
+}
+
+.calNote {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.calFoot {
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.types {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.typeRow {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) 96px;
+  align-items: center;
+  gap: 12px;
+  font-size: 13.5px;
+}
+
+.typeName {
+  color: var(--text2);
+}
+
+.typeTrack {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--track);
+  overflow: hidden;
+}
+
+.typeFill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+}
+
+.typeValue {
+  text-align: right;
+}
+
+.mini {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.miniBox {
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--seg);
+  min-width: 0;
+}
+
+.miniGood {
+  background: var(--pillGreenBg);
+  color: var(--pillGreenFg);
+}
+
+/* 浅色下 --muted 在 --seg 底上只有 4.24:1（< 4.5），这类面板里的弱文字用 --text2（5.90:1）；全局令牌不改 */
+.miniLabel {
+  color: var(--text2);
+  font-size: 12px;
+}
+
+.miniLabelOn {
+  font-size: 12px;
+}
+
+.miniVal {
+  margin-top: 4px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.miniUnit {
+  color: var(--text2);
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 4px;
+}
+
+.sec {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.secHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.h2 {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.h2sub {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 13.5px;
+}
+
+.banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.bannerText {
+  flex: 1 1 280px;
+  color: var(--text2);
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.tableCard {
+  padding: 22px 14px 8px;
+}
+
+.tableHead {
+  padding: 0 14px 16px;
+}
+
+.scroll {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+.table th {
+  padding: 0 14px 12px;
+  text-align: left;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 14px;
+  font-size: 14px;
+  white-space: nowrap;
+  border-top: 1px solid var(--line);
+}
+
+.r {
+  text-align: right !important;
+}
+
+.name {
+  font-weight: 500;
+}
+
+.emph {
+  font-weight: 700;
+}
+
+.dim {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.total td {
+  font-weight: 600;
+}
+
+.unpriced {
+  color: var(--pillAmberFg);
+  margin-left: 2px;
+  cursor: help;
+}
+
+.tableFoot {
+  padding: 12px 14px 10px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.6;
+}

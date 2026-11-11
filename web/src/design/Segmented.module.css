@@ -1,0 +1,51 @@
+.seg {
+  display: inline-flex;
+  gap: 2px;
+  padding: 4px;
+  background: var(--seg);
+  border-radius: 999px;
+  max-width: 100%;
+}
+
+.seg button,
+.seg a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text2);
+  font: inherit;
+  font-size: 14.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.seg button:hover,
+.seg a:hover {
+  color: var(--text);
+}
+
+.seg .on {
+  background: var(--segOn);
+  color: var(--text);
+  box-shadow: var(--segShadow);
+}
+
+.sm button {
+  min-height: 34px;
+  padding: 0 14px;
+  font-size: 13px;
+}
+
+@media (max-width: 1120px) {
+  .nav a {
+    padding: 0 14px;
+  }
+}

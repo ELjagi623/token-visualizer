@@ -1,0 +1,84 @@
+/* 设计令牌（来源：docs/design/DESIGN.md）。浅色为默认；深色由 <html data-theme="dark"> 切换同名变量。 */
+:root {
+  color-scheme: light;
+  --bg: #F6F6F3;
+  --card: #FFFFFF;
+  --line: rgba(17, 22, 19, 0.07);
+  --text: #111613;
+  --text2: #555C56;
+  --muted: #6B726C;
+  --track: #ECEEEA;
+  --seg: #EDEEEA;
+  --segOn: #FFFFFF;
+  --accent: #10B981;
+  --accentText: #047857;
+  --onAccent: #FFFFFF;
+  --blue: #3B82F6;
+  --amber: #F59E0B;
+  --pink: #EC4899;
+  --violet: #8B5CF6;
+  --cyan: #06B6D4;
+  --grid: rgba(17, 22, 19, 0.09);
+  --shadow: 0 1px 2px rgba(17, 22, 19, 0.04), 0 14px 36px rgba(17, 22, 19, 0.05);
+  --shadowPop: 0 8px 28px rgba(0, 0, 0, 0.14);
+  --segShadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.05);
+  --scrim: rgba(17, 22, 19, 0.38);
+  --pillIdleBg: #ECEEEA;
+  --pillIdleFg: #555C56;
+  --pillBlueBg: #E3EEFF;
+  --pillBlueFg: #1D4ED8;
+  --pillGreenBg: #D9F5E6;
+  --pillGreenFg: #047857;
+  --pillAmberBg: #FEF0CF;
+  --pillAmberFg: #92580A;
+  --pillPinkBg: #FDE3EE;
+  --pillPinkFg: #BE185D;
+  --h1: rgba(16, 185, 129, 0.24);
+  --h2: rgba(16, 185, 129, 0.45);
+  --h3: rgba(16, 185, 129, 0.72);
+  --h4: rgba(16, 185, 129, 1);
+
+  --font: 'Outfit', 'Noto Sans SC', 'HarmonyOS Sans SC', 'Microsoft YaHei', system-ui, sans-serif;
+  --radiusCard: 24px;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0E1210;
+  --card: #171C19;
+  --line: rgba(255, 255, 255, 0.08);
+  --text: #ECF1ED;
+  --text2: #B2BAB4;
+  --muted: #9AA39C;
+  --track: #252C28;
+  --seg: #1F2522;
+  --segOn: #2C3430;
+  --accent: #34D399;
+  --accentText: #6EE7B7;
+  --onAccent: #06251A;
+  --blue: #60A5FA;
+  --amber: #FBBF24;
+  --pink: #F472B6;
+  --violet: #A78BFA;
+  --cyan: #22D3EE;
+  --grid: rgba(255, 255, 255, 0.09);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 14px 36px rgba(0, 0, 0, 0.28);
+  --shadowPop: 0 8px 28px rgba(0, 0, 0, 0.5);
+  --segShadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2);
+  --scrim: rgba(0, 0, 0, 0.55);
+  --pillIdleBg: #252C28;
+  --pillIdleFg: #B2BAB4;
+  --pillBlueBg: rgba(96, 165, 250, 0.16);
+  --pillBlueFg: #93C5FD;
+  --pillGreenBg: rgba(52, 211, 153, 0.16);
+  --pillGreenFg: #6EE7B7;
+  --pillAmberBg: rgba(251, 191, 36, 0.16);
+  --pillAmberFg: #FCD34D;
+  --pillPinkBg: rgba(244, 114, 182, 0.16);
+  --pillPinkFg: #F9A8D4;
+  --h1: rgba(52, 211, 153, 0.25);
+  --h2: rgba(52, 211, 153, 0.45);
+  --h3: rgba(52, 211, 153, 0.72);
+  --h4: rgba(52, 211, 153, 1);
+}

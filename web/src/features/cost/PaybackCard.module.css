@@ -1,0 +1,170 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.title {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.sub {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.headActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.blocks {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 1180px) {
+  .blocks {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .blocks {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.block {
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: var(--seg);
+  min-width: 0;
+}
+
+.good {
+  background: var(--pillGreenBg);
+  color: var(--pillGreenFg);
+}
+
+.pending {
+  background: var(--pillAmberBg);
+  color: var(--pillAmberFg);
+}
+
+/* 浅色下 --muted 在 --seg 底上只有 4.24:1（< 4.5），这类面板里的弱文字用 --text2（5.90:1）；全局令牌不改 */
+.label {
+  color: var(--text2);
+  font-size: 12.5px;
+}
+
+.labelOn {
+  font-size: 12.5px;
+}
+
+.big {
+  margin-top: 6px;
+  font-size: 30px;
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.hint {
+  color: var(--text2);
+  font-size: 12.5px;
+  margin-top: 6px;
+}
+
+.hintOn {
+  font-size: 12.5px;
+  margin-top: 6px;
+}
+
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.barRow {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr) 72px;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.barLabel {
+  color: var(--text2);
+}
+
+.track {
+  height: 10px;
+  border-radius: 999px;
+  background: var(--track);
+  overflow: hidden;
+}
+
+.fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+  transition: width 0.4s var(--ease);
+}
+
+.fillProj {
+  opacity: 0.45;
+}
+
+.barValue {
+  text-align: right;
+}
+
+.foot {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.empty {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: var(--seg);
+}
+
+.emptyText {
+  color: var(--text2);
+  font-size: 14px;
+  line-height: 1.5;
+  flex: 1 1 280px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill {
+    transition: none;
+  }
+}

@@ -1,0 +1,12 @@
+.sk {
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--track) 0%, var(--seg) 50%, var(--track) 100%);
+  background-size: 200% 100%;
+  animation: tv-shimmer 1.6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sk {
+    animation: none;
+  }
+}

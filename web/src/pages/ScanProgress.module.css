@@ -1,0 +1,75 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.h2 {
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.label {
+  color: var(--text2);
+  font-size: 14.5px;
+}
+
+.big {
+  font-size: 42px;
+  line-height: 1;
+}
+
+.slash {
+  font-size: 22px;
+  margin: 0 4px;
+}
+
+.unitSm {
+  font-size: 16px;
+  margin-left: 4px;
+}
+
+.track {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--track);
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+  transition: width 0.4s var(--ease);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+.pct {
+  color: var(--accentText);
+}
+
+.note {
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--seg);
+  color: var(--text2);
+  font-size: 13px;
+}

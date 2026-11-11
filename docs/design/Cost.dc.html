@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>成本模块</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<style>
+body{margin:0}
+.dcroot,.dcroot *{box-sizing:border-box}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}
+.seg{display:inline-flex;gap:2px;padding:4px;background:var(--seg);border-radius:999px}
+.seg button,.seg a{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 18px;border:0;border-radius:999px;background:transparent;color:var(--text2);font:inherit;font-size:14.5px;font-weight:500;cursor:pointer;text-decoration:none}
+.seg button:hover,.seg a:hover{color:var(--text)}
+.seg .on{background:var(--segOn);color:var(--text);box-shadow:0 1px 2px rgba(0,0,0,.08),0 2px 8px rgba(0,0,0,.05)}
+.seg.sm button{min-height:34px;padding:0 14px;font-size:13px}
+.chip{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--text);font:inherit;font-size:13.5px;font-weight:500;cursor:pointer}
+.pill{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-radius:999px;font-size:13.5px;font-weight:500;white-space:nowrap}
+.dot{width:8px;height:8px;border-radius:50%;background:currentColor;flex:none}
+.pulse{animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+.num{font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
+.unit{color:var(--muted);font-weight:500}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media (max-width:1180px){.g3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){.g2{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:760px){.g3{grid-template-columns:minmax(0,1fr)}}
+table.t{width:100%;border-collapse:collapse;min-width:820px}
+table.t th{padding:0 14px 12px;text-align:left;font-size:12.5px;font-weight:500;color:var(--muted);white-space:nowrap}
+table.t td{padding:14px;font-size:14px;white-space:nowrap;border-top:1px solid var(--line)}
+table.t th.r,table.t td.r{text-align:right}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.pulse{animation:none}}
+</style>
+</helmet>
+<div style="{{themeVars}}">
+<div class="dcroot" style="min-height:100%;background:var(--bg);color:var(--text);font-family:'Outfit','Noto Sans SC','HarmonyOS Sans SC','Microsoft YaHei',system-ui,sans-serif;font-size:14px;padding:20px 32px 56px;display:flex;flex-direction:column;gap:24px">
+
+<header style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+<div style="display:flex;align-items:center;gap:12px">
+<div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(145deg,#34D399,#059669);display:flex;align-items:center;justify-content:center">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 8l9 5 9-5-9-5zM3 12l9 5 9-5M3 16l9 5 9-5"></path></svg>
+</div>
+<div style="font-size:23px;font-weight:700;letter-spacing:-0.03em">Token Visualizer</div>
+</div>
+<nav class="seg" aria-label="主导航">
+<a href="Main.dc.html" class="on" aria-current="page"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM15 3h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM15 12h4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2zM5 15h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2z"></path></svg>总览</a>
+<a href="Analysis.dc.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20v-6M10 20V5M16 20v-9M21 20H3"></path></svg>分析</a>
+<a href="Sessions.dc.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"></path></svg>会话</a>
+<a href="Settings.dc.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M16 4.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM8 14.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"></path></svg>设置</a>
+</nav>
+<div style="display:flex;align-items:center;gap:12px">
+<span class="pill" style="background:var(--pillGreenBg);color:var(--pillGreenFg)"><span class="dot pulse"></span>Live · 今日 <b class="num">38.6 M</b> tokens</span>
+<button type="button" aria-label="切换深色主题" style="width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4 6.5 6.5 0 0 0 20 14.5z"></path></svg></button>
+</div>
+</header>
+
+<main style="width:100%;max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:24px">
+
+<div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px">
+<div>
+<h1 style="margin:0;font-size:28px;font-weight:600;letter-spacing:-0.025em">成本模块</h1>
+<div style="color:var(--muted);font-size:13.5px;margin-top:4px">两种口径的成本估算 · 示例：近 30 天，订阅方案 Max 20x（$200 / 月），价格表已配置</div>
+</div>
+<div class="seg sm" role="group" aria-label="成本口径"><button type="button" class="on" aria-pressed="true">等价 API</button><button type="button" aria-pressed="false">订阅摊销</button></div>
+</div>
+
+<div class="g2">
+<article class="card" style="padding:28px;display:flex;flex-direction:column;gap:18px">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+<span style="color:var(--text2);font-size:15px;font-weight:500">口径 ①　等价 API 成本</span>
+<span class="num" style="font-size:12.5px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--seg)">▲ 9%</span>
+</div>
+<div><span class="num" style="font-size:44px;line-height:1">{{t.api}}</span><span class="unit" style="font-size:16px;margin-left:6px">USD</span></div>
+<div style="color:var(--muted);font-size:13px">近 30 天 · 按各模型官方 API 单价折算 · 估算 · 一定可算</div>
+<ul style="margin:0;padding:0;display:flex;flex-direction:column;gap:12px">
+<sc-for list="{{parts}}" as="p" hint-placeholder-count="4">
+<li style="list-style:none;display:grid;grid-template-columns:72px minmax(0,1fr) 84px;align-items:center;gap:12px;font-size:13.5px">
+<span style="color:var(--text2)">{{p.name}}</span>
+<span style="height:8px;border-radius:999px;background:var(--track);overflow:hidden"><span style="display:block;width:{{p.w}};height:100%;border-radius:999px;background:{{p.color}}"></span></span>
+<span class="num" style="text-align:right">{{p.value}}</span>
+</li>
+</sc-for>
+</ul>
+<div style="color:var(--muted);font-size:12.5px">未计价 token：0 · 本地模型不计费 · 不含 fast 模式溢价（未配置）</div>
+</article>
+
+<article class="card" style="padding:28px;display:flex;flex-direction:column;gap:18px">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+<span style="color:var(--text2);font-size:15px;font-weight:500">口径 ②　订阅摊销成本</span>
+<span class="pill" style="height:26px;font-size:12px;background:var(--pillBlueBg);color:var(--pillBlueFg)">需设置订阅方案</span>
+</div>
+<div><span class="num" style="font-size:44px;line-height:1">{{t.sub}}</span><span class="unit" style="font-size:16px;margin-left:6px">USD</span></div>
+<div style="color:var(--muted);font-size:13px">近 30 天 · 每日订阅费 ÷ 当天各项目的等价 API 成本占比 · 估算 · 非额度消耗</div>
+<div class="g2" style="gap:12px">
+<div style="padding:14px 16px;border-radius:16px;background:var(--seg)"><div style="color:var(--muted);font-size:12px">订阅折算价</div><div style="margin-top:4px"><span class="num" style="font-size:20px">{{t.subPerM}}</span><span class="unit" style="font-size:12px;margin-left:4px">/ M tokens</span></div></div>
+<div style="padding:14px 16px;border-radius:16px;background:var(--seg)"><div style="color:var(--muted);font-size:12px">同量 API 价</div><div style="margin-top:4px"><span class="num" style="font-size:20px">{{t.apiPerM}}</span><span class="unit" style="font-size:12px;margin-left:4px">/ M tokens</span></div></div>
+<div style="padding:14px 16px;border-radius:16px;background:var(--pillGreenBg);color:var(--pillGreenFg)"><div style="font-size:12px">回本倍数</div><div style="margin-top:4px"><span class="num" style="font-size:20px">{{t.multiple}} ×</span></div></div>
+<div style="padding:14px 16px;border-radius:16px;background:var(--seg)"><div style="color:var(--muted);font-size:12px">闲置摊销（无用量的日子）</div><div style="margin-top:4px"><span class="num" style="font-size:20px">$0.00</span></div></div>
+</div>
+<div style="color:var(--muted);font-size:12.5px">订阅月费 $200.00 ÷ 30 天 = 每日 $6.67，按天摊销</div>
+</article>
+</div>
+
+<section class="card" style="padding:28px;display:flex;flex-direction:column;gap:18px">
+<div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px">
+<div>
+<h2 style="margin:0;font-size:21px;font-weight:600;letter-spacing:-0.02em">每日等价 API 成本 vs 每日订阅费</h2>
+<div style="color:var(--muted);font-size:13px;margin-top:4px">虚线 = 每日订阅费 $6.67 · 柱子高于虚线的日子就是“回本日”</div>
+</div>
+<div class="seg sm" role="group" aria-label="单位"><button type="button" aria-pressed="false">Token</button><button type="button" class="on" aria-pressed="true">成本</button></div>
+</div>
+<svg viewBox="0 0 960 270" style="display:block;width:100%;height:auto" role="img" aria-label="近 30 天每日等价 API 成本柱状图，所有日期都高于每日订阅费虚线">
+<line x1="56" y1="238" x2="944" y2="238" stroke="{{c.grid}}" stroke-width="1"></line>
+<line x1="56" y1="178" x2="944" y2="178" stroke="{{c.grid}}" stroke-width="1" stroke-dasharray="3 5"></line>
+<line x1="56" y1="118" x2="944" y2="118" stroke="{{c.grid}}" stroke-width="1" stroke-dasharray="3 5"></line>
+<line x1="56" y1="58" x2="944" y2="58" stroke="{{c.grid}}" stroke-width="1" stroke-dasharray="3 5"></line>
+<text x="0" y="242" font-size="12" fill="{{c.muted}}">$0</text>
+<text x="0" y="182" font-size="12" fill="{{c.muted}}">$50</text>
+<text x="0" y="122" font-size="12" fill="{{c.muted}}">$100</text>
+<text x="0" y="62" font-size="12" fill="{{c.muted}}">$150</text>
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="30">
+<rect x="{{b.x}}" y="{{b.y}}" width="20" height="{{b.h}}" rx="5" fill="{{c.accent}}"></rect>
+</sc-for>
+<line x1="56" y1="{{fee.y}}" x2="944" y2="{{fee.y}}" stroke="{{c.amber}}" stroke-width="2" stroke-dasharray="6 5"></line>
+<text x="944" y="{{fee.ty}}" font-size="12" font-weight="600" text-anchor="end" fill="{{c.text}}">每日订阅费 $6.67</text>
+<sc-for list="{{xt}}" as="t" hint-placeholder-count="6">
+<text x="{{t.x}}" y="260" font-size="12" text-anchor="middle" fill="{{c.muted}}">{{t.label}}</text>
+</sc-for>
+</svg>
+<div style="display:flex;flex-wrap:wrap;gap:20px;color:var(--muted);font-size:12.5px">
+<span style="display:flex;align-items:center;gap:8px"><span style="width:12px;height:12px;border-radius:4px;background:var(--accent)"></span>每日等价 API 成本</span>
+<span style="display:flex;align-items:center;gap:8px"><span style="width:18px;border-top:2px dashed var(--amber)"></span>每日订阅费（月费 ÷ 当月天数）</span>
+<span style="margin-left:auto">30 / 30 天高于订阅费</span>
+</div>
+</section>
+
+<section class="card" style="padding:22px 14px 8px">
+<div style="padding:0 14px 16px">
+<h2 style="margin:0;font-size:21px;font-weight:600;letter-spacing:-0.02em">按项目的两种成本</h2>
+<div style="color:var(--muted);font-size:13px;margin-top:4px">同一套数据换两个视角：该项目按 API 价值多少钱，以及它大约占了订阅费里的多少</div>
+</div>
+<div style="overflow-x:auto">
+<table class="t">
+<thead><tr><th scope="col">项目</th><th scope="col" class="r">Token</th><th scope="col" class="r">等价 API 成本</th><th scope="col" class="r">订阅摊销</th><th scope="col" class="r">占订阅费</th><th scope="col" class="r">折算价 / M tokens</th></tr></thead>
+<tbody>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="7">
+<tr>
+<td style="font-weight:500">{{r.name}}</td>
+<td class="num r" style="font-weight:500">{{r.tokens}}</td>
+<td class="num r">{{r.api}}</td>
+<td class="num r">{{r.sub}}</td>
+<td class="num r" style="color:var(--muted);font-weight:500">{{r.share}}</td>
+<td class="num r" style="color:var(--muted);font-weight:500">{{r.perM}}</td>
+</tr>
+</sc-for>
+<tr>
+<td style="font-weight:600">合计</td>
+<td class="num r">1.42 B</td>
+<td class="num r">{{t.api}}</td>
+<td class="num r">{{t.sub}}</td>
+<td class="num r" style="color:var(--muted);font-weight:500">100%</td>
+<td class="num r" style="color:var(--muted);font-weight:500">{{t.subPerM}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="padding:12px 14px 10px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px">所有金额均为估算，等价 API 成本以官方价格为准；订阅摊销是占比分摊，不是实际扣费。</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:16px">
+<h2 style="margin:0;font-size:21px;font-weight:600;letter-spacing:-0.02em">空状态与提示</h2>
+<div class="g3">
+<article class="card" style="padding:22px 24px;display:flex;flex-direction:column;gap:12px">
+<span class="pill" style="background:var(--pillAmberBg);color:var(--pillAmberFg);align-self:flex-start"><span class="dot"></span>价格未配置</span>
+<div><span class="num" style="font-size:36px;line-height:1">—</span></div>
+<div style="color:var(--text2);font-size:13.5px;line-height:1.5">价格表里还没有任何模型的单价。成本显示为“—”，不会按 0 计算。</div>
+<a href="Settings.dc.html" class="chip" style="text-decoration:none;align-self:flex-start">去设置价格表</a>
+</article>
+<article class="card" style="padding:22px 24px;display:flex;flex-direction:column;gap:12px">
+<span class="pill" style="background:var(--pillBlueBg);color:var(--pillBlueFg);align-self:flex-start"><span class="dot"></span>未设置订阅方案</span>
+<div><span class="num" style="font-size:36px;line-height:1">—</span></div>
+<div style="color:var(--text2);font-size:13.5px;line-height:1.5">选择订阅档位并填写月费后，才会显示“订阅摊销”和“订阅回本”。等价 API 成本不受影响。</div>
+<a href="Settings.dc.html" class="chip" style="text-decoration:none;align-self:flex-start">去设置订阅方案</a>
+</article>
+<article class="card" style="padding:22px 24px;display:flex;flex-direction:column;gap:12px">
+<span class="pill" style="background:var(--pillAmberBg);color:var(--pillAmberFg);align-self:flex-start"><span class="dot"></span>部分模型未计价</span>
+<div><span class="num" style="font-size:36px;line-height:1">$2,410</span><span class="unit" style="font-size:14px;margin-left:6px">已计价部分</span></div>
+<div style="color:var(--text2);font-size:13.5px;line-height:1.5">2 个模型未配置价格，其 112 M token 未计入成本：claude-opus-4-8、claude-haiku-*。</div>
+<a href="Settings.dc.html" class="chip" style="text-decoration:none;align-self:flex-start">补全价格</a>
+</article>
+</div>
+</section>
+
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":2000}}'>
+class Component extends DCLogic {
+  rng(seed) {
+    let s = seed >>> 0;
+    return () => { s = (Math.imul(s, 1664525) + 1013904223) >>> 0; return s / 4294967296; };
+  }
+  money(n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+  renderVals() {
+    const THEMES = {
+      light: { bg: '#F6F6F3', card: '#FFFFFF', line: 'rgba(17,22,19,0.07)', text: '#111613', text2: '#555C56', muted: '#6B726C', track: '#ECEEEA', seg: '#EDEEEA', segOn: '#FFFFFF', accent: '#10B981', accentText: '#047857', blue: '#3B82F6', amber: '#F59E0B', pink: '#EC4899', violet: '#8B5CF6', grid: 'rgba(17,22,19,0.09)', shadow: '0 1px 2px rgba(17,22,19,0.04), 0 14px 36px rgba(17,22,19,0.05)', pillIdleBg: '#ECEEEA', pillIdleFg: '#555C56', pillBlueBg: '#E3EEFF', pillBlueFg: '#1D4ED8', pillGreenBg: '#D9F5E6', pillGreenFg: '#047857', pillAmberBg: '#FEF0CF', pillAmberFg: '#92580A', pillPinkBg: '#FDE3EE', pillPinkFg: '#BE185D' },
+      dark: { bg: '#0E1210', card: '#171C19', line: 'rgba(255,255,255,0.08)', text: '#ECF1ED', text2: '#B2BAB4', muted: '#9AA39C', track: '#252C28', seg: '#1F2522', segOn: '#2C3430', accent: '#34D399', accentText: '#6EE7B7', blue: '#60A5FA', amber: '#FBBF24', pink: '#F472B6', violet: '#A78BFA', grid: 'rgba(255,255,255,0.09)', shadow: '0 1px 2px rgba(0,0,0,0.3), 0 14px 36px rgba(0,0,0,0.28)', pillIdleBg: '#252C28', pillIdleFg: '#B2BAB4', pillBlueBg: 'rgba(96,165,250,0.16)', pillBlueFg: '#93C5FD', pillGreenBg: 'rgba(52,211,153,0.16)', pillGreenFg: '#6EE7B7', pillAmberBg: 'rgba(251,191,36,0.16)', pillAmberFg: '#FCD34D', pillPinkBg: 'rgba(244,114,182,0.16)', pillPinkFg: '#F9A8D4' }
+    };
+    const C = THEMES[this.props.theme === 'dark' ? 'dark' : 'light'];
+    const themeVars = Object.keys(C).map((k) => '--' + k + ':' + C[k]).join(';');
+
+    // 示例数据：近 30 天，等价 API 成本合计 $2,640，订阅月费 $200（每日 $6.67）
+    const TOTAL = 2640, FEE = 200;
+    const r = this.rng(2026);
+    const raw = Array.from({ length: 30 }, (_, i) => 70 + 36 * (r() - 0.5) * 2 + 14 * Math.sin(i / 1.3));
+    const sum = raw.reduce((a, b) => a + b, 0);
+    const days = raw.map((v) => v / sum * TOTAL);
+    const bars = days.map((v, i) => {
+      const h = Math.max(2, v / 200 * 180);
+      return { x: (62 + i * 29.4).toFixed(1), y: (238 - h).toFixed(1), h: h.toFixed(1) };
+    });
+    const feeY = 238 - (FEE / 30) / 200 * 180;
+    const xt = [[0, '10/12'], [5, '10/17'], [10, '10/22'], [15, '10/27'], [20, '11/01'], [25, '11/06'], [29, '11/10']].map((p) => ({ x: (72 + p[0] * 29.4).toFixed(1), label: p[1] }));
+
+    const partsRaw = [['输出', 1380, C.violet], ['缓存读', 610, C.accent], ['缓存写', 520, C.amber], ['输入', 130, C.blue]];
+    const parts = partsRaw.map((p) => ({ name: p[0], value: this.money(p[1]), w: (p[1] / 1380 * 100).toFixed(1) + '%', color: p[2] }));
+
+    const tokensM = 1416;
+    const t = {
+      api: this.money(TOTAL),
+      sub: this.money(FEE),
+      subPerM: '$' + (FEE / tokensM).toFixed(2),
+      apiPerM: '$' + (TOTAL / tokensM).toFixed(2),
+      multiple: (TOTAL / FEE).toFixed(1)
+    };
+
+    const proj = [['Token visualizer', '386 M', 795], ['paper-experiments', '342 M', 748], ['kicad-board', '241 M', 452], ['course-notes', '187 M', 281], ['临时对话 Scratch', '125 M', 203], ['blog-site', '98 M', 118], ['dotfiles', '41 M', 43]];
+    const rows = proj.map((p) => {
+      const sub = FEE * p[2] / TOTAL;
+      const tk = parseFloat(p[1]);
+      return { name: p[0], tokens: p[1], api: this.money(p[2]), sub: this.money(sub), share: (p[2] / TOTAL * 100).toFixed(1) + '%', perM: '$' + (sub / tk).toFixed(2) };
+    });
+
+    return { themeVars: themeVars, c: C, t: t, parts: parts, bars: bars, fee: { y: feeY.toFixed(1), ty: (feeY - 8).toFixed(1) }, xt: xt, rows: rows };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,3053 @@
+{
+  "note": "由 scripts/make-fixture.ts 的声明式规格推出；不是被测代码的输出。请勿手改，重新运行 `npm run fixture`。",
+  "stats": {
+    "filesParsed": 14,
+    "linesRead": 112,
+    "assistantRows": 92,
+    "uniqueMessages": 59,
+    "duplicatesDropped": 31,
+    "crossFileDuplicates": 3,
+    "syntheticExcluded": 2,
+    "corruptLines": 2,
+    "emptyFiles": 2,
+    "missingId": 1,
+    "typeCounts": {
+      "assistant": 92,
+      "file-history-snapshot": 1,
+      "future-type-xyz": 1,
+      "mode": 3,
+      "queue-operation": 1,
+      "system": 1,
+      "user": 11
+    },
+    "missingTimestamp": 0,
+    "missingUsage": 1,
+    "missingCacheBreakdown": 4,
+    "missingThinking": 4
+  },
+  "totals": {
+    "input": 2309,
+    "cacheWrite": 108710,
+    "cacheWrite5m": 52660,
+    "cacheWrite1h": 55750,
+    "cacheRead": 764420,
+    "output": 5195,
+    "thinking": 915,
+    "webSearch": 3,
+    "webFetch": 1,
+    "total": 880634,
+    "fresh": 116214
+  },
+  "tools": {
+    "Bash": 7,
+    "Edit": 4,
+    "Grep": 1,
+    "Read": 6
+  },
+  "sidechain": {
+    "records": 2,
+    "input": 9,
+    "cacheWrite": 500,
+    "cacheWrite5m": 0,
+    "cacheWrite1h": 500,
+    "cacheRead": 23000,
+    "output": 140,
+    "thinking": 20,
+    "webSearch": 0,
+    "webFetch": 0,
+    "total": 23649,
+    "fresh": 649
+  },
+  "projects": [
+    {
+      "projectKey": "C--Users-----Work-demo",
+      "records": 14,
+      "total": 521022,
+      "cwds": [
+        "C:\\Users\\王测试\\Work\\demo"
+      ],
+      "displayName": "demo",
+      "path": "C:\\Users\\王测试\\Work\\demo",
+      "isScratch": false
+    },
+    {
+      "projectKey": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-11111111-aaaa-4aaa-8aaa-111111111111-22222222-bbbb-4bbb-8bbb-222222222222-scratch-2026-10-11-abc123",
+      "records": 2,
+      "total": 19726,
+      "cwds": [
+        "C:\\Users\\王测试\\AppData\\Roaming\\Claude\\scratch-workspaces\\11111111-aaaa-4aaa-8aaa-111111111111\\22222222-bbbb-4bbb-8bbb-222222222222\\scratch-2026-10-11-abc123"
+      ],
+      "displayName": "scratch-2026-10-11-abc123",
+      "path": "C:\\Users\\王测试\\AppData\\Roaming\\Claude\\scratch-workspaces\\11111111-aaaa-4aaa-8aaa-111111111111\\22222222-bbbb-4bbb-8bbb-222222222222\\scratch-2026-10-11-abc123",
+      "isScratch": true
+    },
+    {
+      "projectKey": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-33333333-aaaa-4aaa-8aaa-333333333333-44444444-bbbb-4bbb-8bbb-444444444444-scratch-2026-10-12-def456",
+      "records": 3,
+      "total": 30504,
+      "cwds": [
+        "C:\\Users\\王测试\\AppData\\Roaming\\Claude\\scratch-workspaces\\33333333-aaaa-4aaa-8aaa-333333333333\\44444444-bbbb-4bbb-8bbb-444444444444\\scratch-2026-10-12-def456"
+      ],
+      "displayName": "scratch-2026-10-12-def456",
+      "path": "C:\\Users\\王测试\\AppData\\Roaming\\Claude\\scratch-workspaces\\33333333-aaaa-4aaa-8aaa-333333333333\\44444444-bbbb-4bbb-8bbb-444444444444\\scratch-2026-10-12-def456",
+      "isScratch": true
+    },
+    {
+      "projectKey": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-55555555-aaaa-4aaa-8aaa-555555555555-66666666-bbbb-4bbb-8bbb-666666666666-scratch-2026-10-13-789abc",
+      "records": 4,
+      "total": 41892,
+      "cwds": [
+        "C:\\Users\\王测试\\AppData\\Roaming\\Claude\\scratch-workspaces\\55555555-aaaa-4aaa-8aaa-555555555555\\66666666-bbbb-4bbb-8bbb-666666666666\\scratch-2026-10-13-789abc"
+      ],
+      "displayName": "scratch-2026-10-13-789abc",
+      "path": "C:\\Users\\王测试\\AppData\\Roaming\\Claude\\scratch-workspaces\\55555555-aaaa-4aaa-8aaa-555555555555\\66666666-bbbb-4bbb-8bbb-666666666666\\scratch-2026-10-13-789abc",
+      "isScratch": true
+    },
+    {
+      "projectKey": "D--Work-alpha",
+      "records": 12,
+      "total": 209956,
+      "cwds": [
+        "D:\\Work\\alpha"
+      ],
+      "displayName": "alpha",
+      "path": "D:\\Work\\alpha",
+      "isScratch": false
+    },
+    {
+      "projectKey": "D--Work-beta",
+      "records": 6,
+      "total": 47868,
+      "cwds": [
+        "D:\\Work\\beta",
+        "D:\\Work\\beta\\sub"
+      ],
+      "displayName": "beta",
+      "path": "D:\\Work\\beta",
+      "isScratch": false
+    },
+    {
+      "projectKey": "D--Work-crlf",
+      "records": 2,
+      "total": 7330,
+      "cwds": [
+        "D:\\Work\\crlf"
+      ],
+      "displayName": "crlf",
+      "path": "D:\\Work\\crlf",
+      "isScratch": false
+    },
+    {
+      "projectKey": "D--Work-empty",
+      "records": 0,
+      "total": 0,
+      "cwds": [],
+      "displayName": "D--Work-empty",
+      "path": null,
+      "isScratch": false
+    },
+    {
+      "projectKey": "D--Work-timeprobe",
+      "records": 16,
+      "total": 2336,
+      "cwds": [
+        "D:\\Work\\timeprobe"
+      ],
+      "displayName": "timeprobe",
+      "path": "D:\\Work\\timeprobe",
+      "isScratch": false
+    }
+  ],
+  "projectFolderCount": 9,
+  "scratchFolderCount": 3,
+  "sessions": {
+    "a1a1a1a1-0000-4000-8000-000000000001": {
+      "records": 10,
+      "sidechainRecords": 2,
+      "input": 40,
+      "cacheWrite": 2900,
+      "cacheWrite5m": 1100,
+      "cacheWrite1h": 1500,
+      "cacheRead": 127000,
+      "output": 573,
+      "thinking": 175,
+      "webSearch": 1,
+      "webFetch": 0,
+      "total": 130513,
+      "fresh": 3513
+    },
+    "a1a1a1a1-0000-4000-8000-000000000002": {
+      "records": 2,
+      "sidechainRecords": 0,
+      "input": 8,
+      "cacheWrite": 17400,
+      "cacheWrite5m": 15000,
+      "cacheWrite1h": 2400,
+      "cacheRead": 61700,
+      "output": 335,
+      "thinking": 120,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 79443,
+      "fresh": 17743
+    },
+    "bbbbbbbb-0000-4000-8000-000000000000": {
+      "records": 2,
+      "sidechainRecords": 0,
+      "input": 6,
+      "cacheWrite": 0,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 0,
+      "cacheRead": 17000,
+      "output": 87,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 17093,
+      "fresh": 93
+    },
+    "bbbbbbbb-0000-4000-8000-000000000001": {
+      "records": 3,
+      "sidechainRecords": 0,
+      "input": 10,
+      "cacheWrite": 550,
+      "cacheWrite5m": 400,
+      "cacheWrite1h": 150,
+      "cacheRead": 23000,
+      "output": 171,
+      "thinking": 30,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 23731,
+      "fresh": 731
+    },
+    "bbbbbbbb-0000-4000-8000-000000000002": {
+      "records": 1,
+      "sidechainRecords": 0,
+      "input": 2,
+      "cacheWrite": 0,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 0,
+      "cacheRead": 7000,
+      "output": 42,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 7044,
+      "fresh": 44
+    },
+    "cccccccc-0000-4000-8000-000000000001": {
+      "records": 2,
+      "sidechainRecords": 0,
+      "input": 10,
+      "cacheWrite": 200,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 200,
+      "cacheRead": 7000,
+      "output": 120,
+      "thinking": 10,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 7330,
+      "fresh": 330
+    },
+    "cccccccc-1111-4111-8111-000000000001": {
+      "records": 2,
+      "sidechainRecords": 0,
+      "input": 6,
+      "cacheWrite": 1500,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 1500,
+      "cacheRead": 18100,
+      "output": 120,
+      "thinking": 10,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 19726,
+      "fresh": 1626
+    },
+    "cccccccc-2222-4222-8222-000000000002": {
+      "records": 3,
+      "sidechainRecords": 0,
+      "input": 9,
+      "cacheWrite": 3000,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 3000,
+      "cacheRead": 27300,
+      "output": 195,
+      "thinking": 30,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 30504,
+      "fresh": 3204
+    },
+    "cccccccc-3333-4333-8333-000000000003": {
+      "records": 4,
+      "sidechainRecords": 0,
+      "input": 12,
+      "cacheWrite": 5000,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 5000,
+      "cacheRead": 36600,
+      "output": 280,
+      "thinking": 60,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 41892,
+      "fresh": 5292
+    },
+    "dddddddd-0000-4000-8000-000000000001": {
+      "records": 14,
+      "sidechainRecords": 0,
+      "input": 2190,
+      "cacheWrite": 78000,
+      "cacheWrite5m": 36000,
+      "cacheWrite1h": 42000,
+      "cacheRead": 438000,
+      "output": 2832,
+      "thinking": 480,
+      "webSearch": 2,
+      "webFetch": 1,
+      "total": 521022,
+      "fresh": 83022
+    },
+    "tttttttt-0000-4000-8000-000000000001": {
+      "records": 16,
+      "sidechainRecords": 0,
+      "input": 16,
+      "cacheWrite": 160,
+      "cacheWrite5m": 160,
+      "cacheWrite1h": 0,
+      "cacheRead": 1720,
+      "output": 440,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 2336,
+      "fresh": 616
+    }
+  },
+  "models": {
+    "C:\\Users\\x\\Models\\Qwen3-35B-A3B-Q4_K_M.gguf": {
+      "records": 1,
+      "input": 1200,
+      "cacheWrite": 0,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 0,
+      "cacheRead": 0,
+      "output": 300,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 1500,
+      "fresh": 1500
+    },
+    "claude-haiku-4-5": {
+      "records": 7,
+      "input": 51,
+      "cacheWrite": 30100,
+      "cacheWrite5m": 12100,
+      "cacheWrite1h": 18000,
+      "cacheRead": 164000,
+      "output": 979,
+      "thinking": 325,
+      "webSearch": 0,
+      "webFetch": 1,
+      "total": 195130,
+      "fresh": 31130
+    },
+    "claude-opus-5": {
+      "records": 3,
+      "input": 10,
+      "cacheWrite": 550,
+      "cacheWrite5m": 400,
+      "cacheWrite1h": 150,
+      "cacheRead": 23000,
+      "output": 171,
+      "thinking": 30,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 23731,
+      "fresh": 731
+    },
+    "claude-opus-5-5": {
+      "records": 7,
+      "input": 46,
+      "cacheWrite": 29200,
+      "cacheWrite5m": 16800,
+      "cacheWrite1h": 12400,
+      "cacheRead": 263000,
+      "output": 1274,
+      "thinking": 340,
+      "webSearch": 3,
+      "webFetch": 0,
+      "total": 293520,
+      "fresh": 30520
+    },
+    "claude-sonnet-5": {
+      "records": 6,
+      "input": 21,
+      "cacheWrite": 300,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 0,
+      "cacheRead": 33000,
+      "output": 215,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 33536,
+      "fresh": 536
+    },
+    "claude-sonnet-5-5": {
+      "records": 34,
+      "input": 81,
+      "cacheWrite": 48560,
+      "cacheWrite5m": 23360,
+      "cacheWrite1h": 25200,
+      "cacheRead": 281420,
+      "output": 2046,
+      "thinking": 220,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 332107,
+      "fresh": 50687
+    },
+    "qwen/qwen3-coder-next": {
+      "records": 1,
+      "input": 900,
+      "cacheWrite": 0,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 0,
+      "cacheRead": 0,
+      "output": 210,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 1110,
+      "fresh": 1110
+    }
+  },
+  "files": [
+    {
+      "path": "C--Users-----Work-demo/dddddddd-0000-4000-8000-000000000001.jsonl",
+      "sizeBytes": 29181,
+      "firstTs": 1791428400000,
+      "pendingTailBytes": 0,
+      "isSubagent": false,
+      "lines": 28
+    },
+    {
+      "path": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-11111111-aaaa-4aaa-8aaa-111111111111-22222222-bbbb-4bbb-8bbb-222222222222-scratch-2026-10-11-abc123/cccccccc-1111-4111-8111-000000000001.jsonl",
+      "sizeBytes": 2679,
+      "firstTs": 1791705600000,
+      "pendingTailBytes": 0,
+      "isSubagent": false,
+      "lines": 3
+    },
+    {
+      "path": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-33333333-aaaa-4aaa-8aaa-333333333333-44444444-bbbb-4bbb-8bbb-444444444444-scratch-2026-10-12-def456/cccccccc-2222-4222-8222-000000000002.jsonl",
+      "sizeBytes": 3764,
+      "firstTs": 1791792000000,
+      "pendingTailBytes": 0,
+      "isSubagent": false,
+      "lines": 4
+    },
+    {
+      "path": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-55555555-aaaa-4aaa-8aaa-555555555555-66666666-bbbb-4bbb-8bbb-666666666666-scratch-2026-10-13-789abc/cccccccc-3333-4333-8333-000000000003.jsonl",
+      "sizeBytes": 4849,
+      "firstTs": 1791878400000,
+      "pendingTailBytes": 0,
+      "isSubagent": false,
+      "lines": 5
+    },
+    {
+      "path": "D--Work-alpha/a1a1a1a1-0000-4000-8000-000000000001.jsonl",
+      "sizeBytes": 15778,
+      "firstTs": 1791162000000,
+      "pendingTailBytes": 144,
+      "isSubagent": false,
+      "lines": 24
+    },
+    {
+      "path": "D--Work-alpha/a1a1a1a1-0000-4000-8000-000000000001/subagents/agent-a1b2c3d4.jsonl",
+      "sizeBytes": 4685,
+      "firstTs": 1791162125000,
+      "pendingTailBytes": 0,
+      "isSubagent": true,
+      "lines": 5
+    },
+    {
+      "path": "D--Work-alpha/a1a1a1a1-0000-4000-8000-000000000002.jsonl",
+      "sizeBytes": 10115,
+      "firstTs": 1791277200000,
+      "pendingTailBytes": 0,
+      "isSubagent": false,
+      "lines": 12
+    },
+    {
+      "path": "D--Work-beta/bbbbbbbb-0000-4000-8000-000000000000.jsonl",
+      "sizeBytes": 3061,
+      "firstTs": 1791601200000,
+      "pendingTailBytes": 0,
+      "isSubagent": false,
+      "lines": 4
+    },
+    {
+      "path": "D--Work-beta/bbbbbbbb-0000-4000-8000-000000000001.jsonl",
+      "sizeBytes": 3062,
+      "firstTs": 1791597600000,
+      "pendingTailBytes": 0,
+      "isSubagent": false,
+      "lines": 4
+    },
+    {
+      "path": "D--Work-beta/bbbbbbbb-0000-4000-8000-000000000002.jsonl",
+      "sizeBytes": 2169,
+      "firstTs": 1791597600000,
+      "pendingTailBytes": 0,
+      "isSubagent": false,
+      "lines": 3
+    },
+    {
+      "path": "D--Work-crlf/cccccccc-0000-4000-8000-000000000001.jsonl",
+      "sizeBytes": 2242,
+      "firstTs": 1792490400000,
+      "pendingTailBytes": 0,
+      "isSubagent": false,
+      "lines": 4
+    },
+    {
+      "path": "D--Work-empty/eeeeeeee-0000-4000-8000-000000000001.jsonl",
+      "sizeBytes": 0,
+      "firstTs": null,
+      "pendingTailBytes": 0,
+      "isSubagent": false,
+      "lines": 0
+    },
+    {
+      "path": "D--Work-empty/eeeeeeee-0000-4000-8000-000000000002.jsonl",
+      "sizeBytes": 0,
+      "firstTs": null,
+      "pendingTailBytes": 0,
+      "isSubagent": false,
+      "lines": 0
+    },
+    {
+      "path": "D--Work-timeprobe/tttttttt-0000-4000-8000-000000000001.jsonl",
+      "sizeBytes": 14694,
+      "firstTs": 1772953199000,
+      "pendingTailBytes": 0,
+      "isSubagent": false,
+      "lines": 16
+    }
+  ],
+  "timeProbes": [
+    {
+      "id": "msg_tp_ny_spring_a",
+      "iso": "2026-03-08T06:59:59.000Z",
+      "ts": 1772953199000,
+      "localDate": {
+        "UTC": "2026-03-08",
+        "Asia/Shanghai": "2026-03-08",
+        "America/New_York": "2026-03-08",
+        "Asia/Kolkata": "2026-03-08"
+      }
+    },
+    {
+      "id": "msg_tp_ny_spring_b",
+      "iso": "2026-03-08T07:00:00.000Z",
+      "ts": 1772953200000,
+      "localDate": {
+        "UTC": "2026-03-08",
+        "Asia/Shanghai": "2026-03-08",
+        "America/New_York": "2026-03-08",
+        "Asia/Kolkata": "2026-03-08"
+      }
+    },
+    {
+      "id": "msg_tp_month_a",
+      "iso": "2026-09-30T15:59:59.000Z",
+      "ts": 1790783999000,
+      "localDate": {
+        "UTC": "2026-09-30",
+        "Asia/Shanghai": "2026-09-30",
+        "America/New_York": "2026-09-30",
+        "Asia/Kolkata": "2026-09-30"
+      }
+    },
+    {
+      "id": "msg_tp_month_b",
+      "iso": "2026-09-30T16:00:00.000Z",
+      "ts": 1790784000000,
+      "localDate": {
+        "UTC": "2026-09-30",
+        "Asia/Shanghai": "2026-10-01",
+        "America/New_York": "2026-09-30",
+        "Asia/Kolkata": "2026-09-30"
+      }
+    },
+    {
+      "id": "msg_tp_sh_day_a",
+      "iso": "2026-10-10T15:59:59.000Z",
+      "ts": 1791647999000,
+      "localDate": {
+        "UTC": "2026-10-10",
+        "Asia/Shanghai": "2026-10-10",
+        "America/New_York": "2026-10-10",
+        "Asia/Kolkata": "2026-10-10"
+      }
+    },
+    {
+      "id": "msg_tp_sh_day_b",
+      "iso": "2026-10-10T16:00:00.000Z",
+      "ts": 1791648000000,
+      "localDate": {
+        "UTC": "2026-10-10",
+        "Asia/Shanghai": "2026-10-11",
+        "America/New_York": "2026-10-10",
+        "Asia/Kolkata": "2026-10-10"
+      }
+    },
+    {
+      "id": "msg_tp_ist_a",
+      "iso": "2026-10-10T18:29:59.000Z",
+      "ts": 1791656999000,
+      "localDate": {
+        "UTC": "2026-10-10",
+        "Asia/Shanghai": "2026-10-11",
+        "America/New_York": "2026-10-10",
+        "Asia/Kolkata": "2026-10-10"
+      }
+    },
+    {
+      "id": "msg_tp_ist_b",
+      "iso": "2026-10-10T18:30:00.000Z",
+      "ts": 1791657000000,
+      "localDate": {
+        "UTC": "2026-10-10",
+        "Asia/Shanghai": "2026-10-11",
+        "America/New_York": "2026-10-10",
+        "Asia/Kolkata": "2026-10-11"
+      }
+    },
+    {
+      "id": "msg_tp_week_a",
+      "iso": "2026-10-11T15:59:59.000Z",
+      "ts": 1791734399000,
+      "localDate": {
+        "UTC": "2026-10-11",
+        "Asia/Shanghai": "2026-10-11",
+        "America/New_York": "2026-10-11",
+        "Asia/Kolkata": "2026-10-11"
+      }
+    },
+    {
+      "id": "msg_tp_week_b",
+      "iso": "2026-10-11T16:00:00.000Z",
+      "ts": 1791734400000,
+      "localDate": {
+        "UTC": "2026-10-11",
+        "Asia/Shanghai": "2026-10-12",
+        "America/New_York": "2026-10-11",
+        "Asia/Kolkata": "2026-10-11"
+      }
+    },
+    {
+      "id": "msg_tp_utc_month_a",
+      "iso": "2026-10-31T23:59:59.000Z",
+      "ts": 1793491199000,
+      "localDate": {
+        "UTC": "2026-10-31",
+        "Asia/Shanghai": "2026-11-01",
+        "America/New_York": "2026-10-31",
+        "Asia/Kolkata": "2026-11-01"
+      }
+    },
+    {
+      "id": "msg_tp_utc_month_b",
+      "iso": "2026-11-01T00:00:00.000Z",
+      "ts": 1793491200000,
+      "localDate": {
+        "UTC": "2026-11-01",
+        "Asia/Shanghai": "2026-11-01",
+        "America/New_York": "2026-10-31",
+        "Asia/Kolkata": "2026-11-01"
+      }
+    },
+    {
+      "id": "msg_tp_ny_fall_a",
+      "iso": "2026-11-01T05:30:00.000Z",
+      "ts": 1793511000000,
+      "localDate": {
+        "UTC": "2026-11-01",
+        "Asia/Shanghai": "2026-11-01",
+        "America/New_York": "2026-11-01",
+        "Asia/Kolkata": "2026-11-01"
+      }
+    },
+    {
+      "id": "msg_tp_ny_fall_b",
+      "iso": "2026-11-01T06:30:00.000Z",
+      "ts": 1793514600000,
+      "localDate": {
+        "UTC": "2026-11-01",
+        "Asia/Shanghai": "2026-11-01",
+        "America/New_York": "2026-11-01",
+        "Asia/Kolkata": "2026-11-01"
+      }
+    },
+    {
+      "id": "msg_tp_ny_fall_c",
+      "iso": "2026-11-02T04:59:59.000Z",
+      "ts": 1793595599000,
+      "localDate": {
+        "UTC": "2026-11-02",
+        "Asia/Shanghai": "2026-11-02",
+        "America/New_York": "2026-11-01",
+        "Asia/Kolkata": "2026-11-02"
+      }
+    },
+    {
+      "id": "msg_tp_ny_fall_d",
+      "iso": "2026-11-02T05:00:00.000Z",
+      "ts": 1793595600000,
+      "localDate": {
+        "UTC": "2026-11-02",
+        "Asia/Shanghai": "2026-11-02",
+        "America/New_York": "2026-11-02",
+        "Asia/Kolkata": "2026-11-02"
+      }
+    }
+  ],
+  "phase2": {
+    "dailyTotals": {
+      "UTC": {
+        "2026-03-08": {
+          "requests": 2,
+          "total": 264,
+          "fresh": 63
+        },
+        "2026-09-30": {
+          "requests": 2,
+          "total": 272,
+          "fresh": 67
+        },
+        "2026-10-05": {
+          "requests": 10,
+          "total": 130513,
+          "fresh": 3513
+        },
+        "2026-10-06": {
+          "requests": 2,
+          "total": 79443,
+          "fresh": 17743
+        },
+        "2026-10-08": {
+          "requests": 2,
+          "total": 2610,
+          "fresh": 2610
+        },
+        "2026-10-09": {
+          "requests": 1,
+          "total": 21102,
+          "fresh": 1102
+        },
+        "2026-10-10": {
+          "requests": 10,
+          "total": 48436,
+          "fresh": 1014
+        },
+        "2026-10-11": {
+          "requests": 4,
+          "total": 20022,
+          "fresh": 1705
+        },
+        "2026-10-12": {
+          "requests": 4,
+          "total": 55624,
+          "fresh": 5324
+        },
+        "2026-10-13": {
+          "requests": 4,
+          "total": 41892,
+          "fresh": 5292
+        },
+        "2026-10-15": {
+          "requests": 1,
+          "total": 29138,
+          "fresh": 3138
+        },
+        "2026-10-18": {
+          "requests": 1,
+          "total": 33156,
+          "fresh": 4156
+        },
+        "2026-10-20": {
+          "requests": 2,
+          "total": 7330,
+          "fresh": 330
+        },
+        "2026-10-21": {
+          "requests": 1,
+          "total": 37174,
+          "fresh": 5174
+        },
+        "2026-10-24": {
+          "requests": 1,
+          "total": 41192,
+          "fresh": 6192
+        },
+        "2026-10-27": {
+          "requests": 1,
+          "total": 45210,
+          "fresh": 7210
+        },
+        "2026-10-30": {
+          "requests": 1,
+          "total": 49228,
+          "fresh": 8228
+        },
+        "2026-10-31": {
+          "requests": 1,
+          "total": 151,
+          "fresh": 41
+        },
+        "2026-11-01": {
+          "requests": 3,
+          "total": 465,
+          "fresh": 129
+        },
+        "2026-11-02": {
+          "requests": 3,
+          "total": 53566,
+          "fresh": 9337
+        },
+        "2026-11-05": {
+          "requests": 1,
+          "total": 57264,
+          "fresh": 10264
+        },
+        "2026-11-08": {
+          "requests": 1,
+          "total": 61282,
+          "fresh": 11282
+        },
+        "2026-11-11": {
+          "requests": 1,
+          "total": 65300,
+          "fresh": 12300
+        }
+      },
+      "Asia/Shanghai": {
+        "2026-03-08": {
+          "requests": 2,
+          "total": 264,
+          "fresh": 63
+        },
+        "2026-09-30": {
+          "requests": 1,
+          "total": 135,
+          "fresh": 33
+        },
+        "2026-10-01": {
+          "requests": 1,
+          "total": 137,
+          "fresh": 34
+        },
+        "2026-10-05": {
+          "requests": 10,
+          "total": 130513,
+          "fresh": 3513
+        },
+        "2026-10-06": {
+          "requests": 2,
+          "total": 79443,
+          "fresh": 17743
+        },
+        "2026-10-08": {
+          "requests": 2,
+          "total": 2610,
+          "fresh": 2610
+        },
+        "2026-10-09": {
+          "requests": 1,
+          "total": 21102,
+          "fresh": 1102
+        },
+        "2026-10-10": {
+          "requests": 7,
+          "total": 48007,
+          "fresh": 903
+        },
+        "2026-10-11": {
+          "requests": 6,
+          "total": 20302,
+          "fresh": 1776
+        },
+        "2026-10-12": {
+          "requests": 5,
+          "total": 55773,
+          "fresh": 5364
+        },
+        "2026-10-13": {
+          "requests": 4,
+          "total": 41892,
+          "fresh": 5292
+        },
+        "2026-10-15": {
+          "requests": 1,
+          "total": 29138,
+          "fresh": 3138
+        },
+        "2026-10-18": {
+          "requests": 1,
+          "total": 33156,
+          "fresh": 4156
+        },
+        "2026-10-20": {
+          "requests": 2,
+          "total": 7330,
+          "fresh": 330
+        },
+        "2026-10-21": {
+          "requests": 1,
+          "total": 37174,
+          "fresh": 5174
+        },
+        "2026-10-24": {
+          "requests": 1,
+          "total": 41192,
+          "fresh": 6192
+        },
+        "2026-10-27": {
+          "requests": 1,
+          "total": 45210,
+          "fresh": 7210
+        },
+        "2026-10-30": {
+          "requests": 1,
+          "total": 49228,
+          "fresh": 8228
+        },
+        "2026-11-01": {
+          "requests": 4,
+          "total": 616,
+          "fresh": 170
+        },
+        "2026-11-02": {
+          "requests": 3,
+          "total": 53566,
+          "fresh": 9337
+        },
+        "2026-11-05": {
+          "requests": 1,
+          "total": 57264,
+          "fresh": 10264
+        },
+        "2026-11-08": {
+          "requests": 1,
+          "total": 61282,
+          "fresh": 11282
+        },
+        "2026-11-11": {
+          "requests": 1,
+          "total": 65300,
+          "fresh": 12300
+        }
+      },
+      "America/New_York": {
+        "2026-03-08": {
+          "requests": 2,
+          "total": 264,
+          "fresh": 63
+        },
+        "2026-09-30": {
+          "requests": 2,
+          "total": 272,
+          "fresh": 67
+        },
+        "2026-10-04": {
+          "requests": 10,
+          "total": 130513,
+          "fresh": 3513
+        },
+        "2026-10-06": {
+          "requests": 2,
+          "total": 79443,
+          "fresh": 17743
+        },
+        "2026-10-07": {
+          "requests": 2,
+          "total": 2610,
+          "fresh": 2610
+        },
+        "2026-10-09": {
+          "requests": 7,
+          "total": 68970,
+          "fresh": 1970
+        },
+        "2026-10-10": {
+          "requests": 4,
+          "total": 568,
+          "fresh": 146
+        },
+        "2026-10-11": {
+          "requests": 4,
+          "total": 20022,
+          "fresh": 1705
+        },
+        "2026-10-12": {
+          "requests": 4,
+          "total": 55624,
+          "fresh": 5324
+        },
+        "2026-10-13": {
+          "requests": 4,
+          "total": 41892,
+          "fresh": 5292
+        },
+        "2026-10-15": {
+          "requests": 1,
+          "total": 29138,
+          "fresh": 3138
+        },
+        "2026-10-18": {
+          "requests": 1,
+          "total": 33156,
+          "fresh": 4156
+        },
+        "2026-10-20": {
+          "requests": 2,
+          "total": 7330,
+          "fresh": 330
+        },
+        "2026-10-21": {
+          "requests": 1,
+          "total": 37174,
+          "fresh": 5174
+        },
+        "2026-10-24": {
+          "requests": 1,
+          "total": 41192,
+          "fresh": 6192
+        },
+        "2026-10-27": {
+          "requests": 1,
+          "total": 45210,
+          "fresh": 7210
+        },
+        "2026-10-30": {
+          "requests": 1,
+          "total": 49228,
+          "fresh": 8228
+        },
+        "2026-10-31": {
+          "requests": 2,
+          "total": 304,
+          "fresh": 83
+        },
+        "2026-11-01": {
+          "requests": 3,
+          "total": 471,
+          "fresh": 132
+        },
+        "2026-11-02": {
+          "requests": 2,
+          "total": 53407,
+          "fresh": 9292
+        },
+        "2026-11-05": {
+          "requests": 1,
+          "total": 57264,
+          "fresh": 10264
+        },
+        "2026-11-08": {
+          "requests": 1,
+          "total": 61282,
+          "fresh": 11282
+        },
+        "2026-11-11": {
+          "requests": 1,
+          "total": 65300,
+          "fresh": 12300
+        }
+      },
+      "Asia/Kolkata": {
+        "2026-03-08": {
+          "requests": 2,
+          "total": 264,
+          "fresh": 63
+        },
+        "2026-09-30": {
+          "requests": 2,
+          "total": 272,
+          "fresh": 67
+        },
+        "2026-10-05": {
+          "requests": 10,
+          "total": 130513,
+          "fresh": 3513
+        },
+        "2026-10-06": {
+          "requests": 2,
+          "total": 79443,
+          "fresh": 17743
+        },
+        "2026-10-08": {
+          "requests": 2,
+          "total": 2610,
+          "fresh": 2610
+        },
+        "2026-10-09": {
+          "requests": 1,
+          "total": 21102,
+          "fresh": 1102
+        },
+        "2026-10-10": {
+          "requests": 9,
+          "total": 48291,
+          "fresh": 976
+        },
+        "2026-10-11": {
+          "requests": 5,
+          "total": 20167,
+          "fresh": 1743
+        },
+        "2026-10-12": {
+          "requests": 4,
+          "total": 55624,
+          "fresh": 5324
+        },
+        "2026-10-13": {
+          "requests": 4,
+          "total": 41892,
+          "fresh": 5292
+        },
+        "2026-10-15": {
+          "requests": 1,
+          "total": 29138,
+          "fresh": 3138
+        },
+        "2026-10-18": {
+          "requests": 1,
+          "total": 33156,
+          "fresh": 4156
+        },
+        "2026-10-20": {
+          "requests": 2,
+          "total": 7330,
+          "fresh": 330
+        },
+        "2026-10-21": {
+          "requests": 1,
+          "total": 37174,
+          "fresh": 5174
+        },
+        "2026-10-24": {
+          "requests": 1,
+          "total": 41192,
+          "fresh": 6192
+        },
+        "2026-10-27": {
+          "requests": 1,
+          "total": 45210,
+          "fresh": 7210
+        },
+        "2026-10-30": {
+          "requests": 1,
+          "total": 49228,
+          "fresh": 8228
+        },
+        "2026-11-01": {
+          "requests": 4,
+          "total": 616,
+          "fresh": 170
+        },
+        "2026-11-02": {
+          "requests": 3,
+          "total": 53566,
+          "fresh": 9337
+        },
+        "2026-11-05": {
+          "requests": 1,
+          "total": 57264,
+          "fresh": 10264
+        },
+        "2026-11-08": {
+          "requests": 1,
+          "total": 61282,
+          "fresh": 11282
+        },
+        "2026-11-11": {
+          "requests": 1,
+          "total": 65300,
+          "fresh": 12300
+        }
+      }
+    },
+    "nowCases": [
+      {
+        "name": "shanghai-tue-monday-start",
+        "nowIso": "2026-10-20T12:00:00.000Z",
+        "tz": "Asia/Shanghai",
+        "weekStart": "monday",
+        "localToday": "2026-10-20",
+        "today": {
+          "from": "2026-10-20",
+          "to": "2026-10-20",
+          "requests": 2,
+          "total": 7330,
+          "fresh": 330
+        },
+        "yesterday": {
+          "from": "2026-10-19",
+          "to": "2026-10-19",
+          "requests": 0,
+          "total": 0,
+          "fresh": 0
+        },
+        "thisWeek": {
+          "from": "2026-10-19",
+          "to": "2026-10-25",
+          "requests": 4,
+          "total": 85696,
+          "fresh": 11696
+        },
+        "prevWeek": {
+          "from": "2026-10-12",
+          "to": "2026-10-18",
+          "requests": 11,
+          "total": 159959,
+          "fresh": 17950
+        },
+        "thisMonth": {
+          "from": "2026-10-01",
+          "to": "2026-10-31",
+          "requests": 46,
+          "total": 642207,
+          "fresh": 72765
+        },
+        "prevMonth": {
+          "from": "2026-09-01",
+          "to": "2026-09-30",
+          "requests": 1,
+          "total": 135,
+          "fresh": 33
+        }
+      },
+      {
+        "name": "shanghai-tue-sunday-start",
+        "nowIso": "2026-10-20T12:00:00.000Z",
+        "tz": "Asia/Shanghai",
+        "weekStart": "sunday",
+        "localToday": "2026-10-20",
+        "today": {
+          "from": "2026-10-20",
+          "to": "2026-10-20",
+          "requests": 2,
+          "total": 7330,
+          "fresh": 330
+        },
+        "yesterday": {
+          "from": "2026-10-19",
+          "to": "2026-10-19",
+          "requests": 0,
+          "total": 0,
+          "fresh": 0
+        },
+        "thisWeek": {
+          "from": "2026-10-18",
+          "to": "2026-10-24",
+          "requests": 5,
+          "total": 118852,
+          "fresh": 15852
+        },
+        "prevWeek": {
+          "from": "2026-10-11",
+          "to": "2026-10-17",
+          "requests": 16,
+          "total": 147105,
+          "fresh": 15570
+        },
+        "thisMonth": {
+          "from": "2026-10-01",
+          "to": "2026-10-31",
+          "requests": 46,
+          "total": 642207,
+          "fresh": 72765
+        },
+        "prevMonth": {
+          "from": "2026-09-01",
+          "to": "2026-09-30",
+          "requests": 1,
+          "total": 135,
+          "fresh": 33
+        }
+      },
+      {
+        "name": "shanghai-just-after-midnight",
+        "nowIso": "2026-10-11T16:30:00.000Z",
+        "tz": "Asia/Shanghai",
+        "weekStart": "monday",
+        "localToday": "2026-10-12",
+        "today": {
+          "from": "2026-10-12",
+          "to": "2026-10-12",
+          "requests": 5,
+          "total": 55773,
+          "fresh": 5364
+        },
+        "yesterday": {
+          "from": "2026-10-11",
+          "to": "2026-10-11",
+          "requests": 6,
+          "total": 20302,
+          "fresh": 1776
+        },
+        "thisWeek": {
+          "from": "2026-10-12",
+          "to": "2026-10-18",
+          "requests": 11,
+          "total": 159959,
+          "fresh": 17950
+        },
+        "prevWeek": {
+          "from": "2026-10-05",
+          "to": "2026-10-11",
+          "requests": 28,
+          "total": 301977,
+          "fresh": 27647
+        },
+        "thisMonth": {
+          "from": "2026-10-01",
+          "to": "2026-10-31",
+          "requests": 46,
+          "total": 642207,
+          "fresh": 72765
+        },
+        "prevMonth": {
+          "from": "2026-09-01",
+          "to": "2026-09-30",
+          "requests": 1,
+          "total": 135,
+          "fresh": 33
+        }
+      },
+      {
+        "name": "newyork-dst-end-sunday-start",
+        "nowIso": "2026-11-01T12:00:00.000Z",
+        "tz": "America/New_York",
+        "weekStart": "sunday",
+        "localToday": "2026-11-01",
+        "today": {
+          "from": "2026-11-01",
+          "to": "2026-11-01",
+          "requests": 3,
+          "total": 471,
+          "fresh": 132
+        },
+        "yesterday": {
+          "from": "2026-10-31",
+          "to": "2026-10-31",
+          "requests": 2,
+          "total": 304,
+          "fresh": 83
+        },
+        "thisWeek": {
+          "from": "2026-11-01",
+          "to": "2026-11-07",
+          "requests": 6,
+          "total": 111142,
+          "fresh": 19688
+        },
+        "prevWeek": {
+          "from": "2026-10-25",
+          "to": "2026-10-31",
+          "requests": 4,
+          "total": 94742,
+          "fresh": 15521
+        },
+        "thisMonth": {
+          "from": "2026-11-01",
+          "to": "2026-11-30",
+          "requests": 8,
+          "total": 237724,
+          "fresh": 43270
+        },
+        "prevMonth": {
+          "from": "2026-10-01",
+          "to": "2026-10-31",
+          "requests": 47,
+          "total": 642374,
+          "fresh": 72814
+        }
+      },
+      {
+        "name": "newyork-dst-end-monday-start",
+        "nowIso": "2026-11-01T12:00:00.000Z",
+        "tz": "America/New_York",
+        "weekStart": "monday",
+        "localToday": "2026-11-01",
+        "today": {
+          "from": "2026-11-01",
+          "to": "2026-11-01",
+          "requests": 3,
+          "total": 471,
+          "fresh": 132
+        },
+        "yesterday": {
+          "from": "2026-10-31",
+          "to": "2026-10-31",
+          "requests": 2,
+          "total": 304,
+          "fresh": 83
+        },
+        "thisWeek": {
+          "from": "2026-10-26",
+          "to": "2026-11-01",
+          "requests": 7,
+          "total": 95213,
+          "fresh": 15653
+        },
+        "prevWeek": {
+          "from": "2026-10-19",
+          "to": "2026-10-25",
+          "requests": 4,
+          "total": 85696,
+          "fresh": 11696
+        },
+        "thisMonth": {
+          "from": "2026-11-01",
+          "to": "2026-11-30",
+          "requests": 8,
+          "total": 237724,
+          "fresh": 43270
+        },
+        "prevMonth": {
+          "from": "2026-10-01",
+          "to": "2026-10-31",
+          "requests": 47,
+          "total": 642374,
+          "fresh": 72814
+        }
+      },
+      {
+        "name": "utc-month-start",
+        "nowIso": "2026-11-01T00:00:00.000Z",
+        "tz": "UTC",
+        "weekStart": "monday",
+        "localToday": "2026-11-01",
+        "today": {
+          "from": "2026-11-01",
+          "to": "2026-11-01",
+          "requests": 3,
+          "total": 465,
+          "fresh": 129
+        },
+        "yesterday": {
+          "from": "2026-10-31",
+          "to": "2026-10-31",
+          "requests": 1,
+          "total": 151,
+          "fresh": 41
+        },
+        "thisWeek": {
+          "from": "2026-10-26",
+          "to": "2026-11-01",
+          "requests": 6,
+          "total": 95054,
+          "fresh": 15608
+        },
+        "prevWeek": {
+          "from": "2026-10-19",
+          "to": "2026-10-25",
+          "requests": 4,
+          "total": 85696,
+          "fresh": 11696
+        },
+        "thisMonth": {
+          "from": "2026-11-01",
+          "to": "2026-11-30",
+          "requests": 9,
+          "total": 237877,
+          "fresh": 43312
+        },
+        "prevMonth": {
+          "from": "2026-10-01",
+          "to": "2026-10-31",
+          "requests": 46,
+          "total": 642221,
+          "fresh": 72772
+        }
+      }
+    ]
+  },
+  "messages": {
+    "msg_tp_ny_spring_a": {
+      "key": "msg_tp_ny_spring_a",
+      "ts": 1772953199000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "tttttttt-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-timeprobe",
+      "cwd": "D:\\Work\\timeprobe",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-timeprobe/tttttttt-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_tp_ny_spring_a",
+      "tools": {},
+      "input": 1,
+      "cacheWrite": 10,
+      "cacheWrite5m": 10,
+      "cacheWrite1h": 0,
+      "cacheRead": 100,
+      "output": 20,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 131,
+      "fresh": 31
+    },
+    "msg_tp_ny_spring_b": {
+      "key": "msg_tp_ny_spring_b",
+      "ts": 1772953200000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "tttttttt-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-timeprobe",
+      "cwd": "D:\\Work\\timeprobe",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-timeprobe/tttttttt-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_tp_ny_spring_b",
+      "tools": {},
+      "input": 1,
+      "cacheWrite": 10,
+      "cacheWrite5m": 10,
+      "cacheWrite1h": 0,
+      "cacheRead": 101,
+      "output": 21,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 133,
+      "fresh": 32
+    },
+    "msg_tp_month_a": {
+      "key": "msg_tp_month_a",
+      "ts": 1790783999000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "tttttttt-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-timeprobe",
+      "cwd": "D:\\Work\\timeprobe",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-timeprobe/tttttttt-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_tp_month_a",
+      "tools": {},
+      "input": 1,
+      "cacheWrite": 10,
+      "cacheWrite5m": 10,
+      "cacheWrite1h": 0,
+      "cacheRead": 102,
+      "output": 22,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 135,
+      "fresh": 33
+    },
+    "msg_tp_month_b": {
+      "key": "msg_tp_month_b",
+      "ts": 1790784000000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "tttttttt-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-timeprobe",
+      "cwd": "D:\\Work\\timeprobe",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-timeprobe/tttttttt-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_tp_month_b",
+      "tools": {},
+      "input": 1,
+      "cacheWrite": 10,
+      "cacheWrite5m": 10,
+      "cacheWrite1h": 0,
+      "cacheRead": 103,
+      "output": 23,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 137,
+      "fresh": 34
+    },
+    "msg_alpha_stream": {
+      "key": "msg_alpha_stream",
+      "ts": 1791162005000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "a1a1a1a1-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-alpha",
+      "cwd": "D:\\Work\\alpha",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-alpha/a1a1a1a1-0000-4000-8000-000000000001.jsonl",
+      "stopReason": "end_turn",
+      "effort": "high",
+      "requestId": "req_alpha_stream",
+      "tools": {},
+      "input": 3,
+      "cacheWrite": 1200,
+      "cacheWrite5m": 200,
+      "cacheWrite1h": 1000,
+      "cacheRead": 40000,
+      "output": 150,
+      "thinking": 90,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 41353,
+      "fresh": 1353
+    },
+    "msg_alpha_grow": {
+      "key": "msg_alpha_grow",
+      "ts": 1791162060000,
+      "model": "claude-opus-5-5",
+      "sessionId": "a1a1a1a1-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-alpha",
+      "cwd": "D:\\Work\\alpha",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-alpha/a1a1a1a1-0000-4000-8000-000000000001.jsonl",
+      "stopReason": "tool_use",
+      "effort": "xhigh",
+      "requestId": "req_alpha_grow",
+      "tools": {
+        "Bash": 1,
+        "Read": 1
+      },
+      "input": 5,
+      "cacheWrite": 800,
+      "cacheWrite5m": 800,
+      "cacheWrite1h": 0,
+      "cacheRead": 52000,
+      "output": 120,
+      "thinking": 60,
+      "webSearch": 1,
+      "webFetch": 0,
+      "total": 52925,
+      "fresh": 925
+    },
+    "msg_alpha_sub1": {
+      "key": "msg_alpha_sub1",
+      "ts": 1791162130000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "a1a1a1a1-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-alpha",
+      "cwd": "D:\\Work\\alpha",
+      "isSidechain": true,
+      "agentId": "a1b2c3d4",
+      "sourceFile": "D--Work-alpha/a1a1a1a1-0000-4000-8000-000000000001/subagents/agent-a1b2c3d4.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_alpha_sub1",
+      "tools": {
+        "Grep": 1
+      },
+      "input": 2,
+      "cacheWrite": 500,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 500,
+      "cacheRead": 20000,
+      "output": 80,
+      "thinking": 20,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 20582,
+      "fresh": 582
+    },
+    "msg_alpha_sub2": {
+      "key": "msg_alpha_sub2",
+      "ts": 1791162150000,
+      "model": "claude-haiku-4-5",
+      "sessionId": "a1a1a1a1-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-alpha",
+      "cwd": "D:\\Work\\alpha",
+      "isSidechain": true,
+      "agentId": "a1b2c3d4",
+      "sourceFile": "D--Work-alpha/a1a1a1a1-0000-4000-8000-000000000001/subagents/agent-a1b2c3d4.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_alpha_sub2",
+      "tools": {
+        "Read": 2
+      },
+      "input": 7,
+      "cacheWrite": 0,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 0,
+      "cacheRead": 3000,
+      "output": 60,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 3067,
+      "fresh": 67
+    },
+    "msg_alpha_nobreak": {
+      "key": "msg_alpha_nobreak",
+      "ts": 1791162180000,
+      "model": "claude-sonnet-5",
+      "sessionId": "a1a1a1a1-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-alpha",
+      "cwd": "D:\\Work\\alpha",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-alpha/a1a1a1a1-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_alpha_nobreak",
+      "tools": {},
+      "input": 10,
+      "cacheWrite": 300,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 0,
+      "cacheRead": 9000,
+      "output": 70,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 9380,
+      "fresh": 380
+    },
+    "msg_alpha_nousage": {
+      "key": "msg_alpha_nousage",
+      "ts": 1791162240000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "a1a1a1a1-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-alpha",
+      "cwd": "D:\\Work\\alpha",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-alpha/a1a1a1a1-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_alpha_nousage",
+      "tools": {},
+      "input": 0,
+      "cacheWrite": 0,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 0,
+      "cacheRead": 0,
+      "output": 0,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 0,
+      "fresh": 0
+    },
+    "req_alpha_only": {
+      "key": "req_alpha_only",
+      "ts": 1791162300000,
+      "model": "claude-sonnet-5",
+      "sessionId": "a1a1a1a1-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-alpha",
+      "cwd": "D:\\Work\\alpha",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-alpha/a1a1a1a1-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_alpha_only",
+      "tools": {},
+      "input": 2,
+      "cacheWrite": 0,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 0,
+      "cacheRead": 0,
+      "output": 11,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 13,
+      "fresh": 13
+    },
+    "msg_alpha_style1": {
+      "key": "msg_alpha_style1",
+      "ts": 1791162420000,
+      "model": "claude-haiku-4-5",
+      "sessionId": "a1a1a1a1-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-alpha",
+      "cwd": "D:\\Work\\alpha",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-alpha/a1a1a1a1-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_alpha_style1",
+      "tools": {},
+      "input": 4,
+      "cacheWrite": 100,
+      "cacheWrite5m": 100,
+      "cacheWrite1h": 0,
+      "cacheRead": 1000,
+      "output": 33,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 1137,
+      "fresh": 137
+    },
+    "msg_alpha_style2": {
+      "key": "msg_alpha_style2",
+      "ts": 1791162480000,
+      "model": "claude-haiku-4-5",
+      "sessionId": "a1a1a1a1-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-alpha",
+      "cwd": "D:\\Work\\alpha",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-alpha/a1a1a1a1-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_alpha_style2",
+      "tools": {},
+      "input": 6,
+      "cacheWrite": 0,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 0,
+      "cacheRead": 2000,
+      "output": 44,
+      "thinking": 5,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 2050,
+      "fresh": 50
+    },
+    "msg_alpha_a2own1": {
+      "key": "msg_alpha_a2own1",
+      "ts": 1791277230000,
+      "model": "claude-opus-5-5",
+      "sessionId": "a1a1a1a1-0000-4000-8000-000000000002",
+      "projectKey": "D--Work-alpha",
+      "cwd": "D:\\Work\\alpha",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-alpha/a1a1a1a1-0000-4000-8000-000000000002.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_alpha_a2own1",
+      "tools": {
+        "Edit": 1
+      },
+      "input": 6,
+      "cacheWrite": 2400,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 2400,
+      "cacheRead": 61000,
+      "output": 310,
+      "thinking": 120,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 63716,
+      "fresh": 2716
+    },
+    "msg_alpha_a2own2": {
+      "key": "msg_alpha_a2own2",
+      "ts": 1791277320000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "a1a1a1a1-0000-4000-8000-000000000002",
+      "projectKey": "D--Work-alpha",
+      "cwd": "D:\\Work\\alpha",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-alpha/a1a1a1a1-0000-4000-8000-000000000002.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_alpha_a2own2",
+      "tools": {},
+      "input": 2,
+      "cacheWrite": 15000,
+      "cacheWrite5m": 15000,
+      "cacheWrite1h": 0,
+      "cacheRead": 700,
+      "output": 25,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 15727,
+      "fresh": 15027
+    },
+    "msg_demo_gguf": {
+      "key": "msg_demo_gguf",
+      "ts": 1791428460000,
+      "model": "C:\\Users\\x\\Models\\Qwen3-35B-A3B-Q4_K_M.gguf",
+      "sessionId": "dddddddd-0000-4000-8000-000000000001",
+      "projectKey": "C--Users-----Work-demo",
+      "cwd": "C:\\Users\\王测试\\Work\\demo",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-----Work-demo/dddddddd-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_demo_gguf",
+      "tools": {},
+      "input": 1200,
+      "cacheWrite": 0,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 0,
+      "cacheRead": 0,
+      "output": 300,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 1500,
+      "fresh": 1500
+    },
+    "msg_demo_qwen": {
+      "key": "msg_demo_qwen",
+      "ts": 1791428520000,
+      "model": "qwen/qwen3-coder-next",
+      "sessionId": "dddddddd-0000-4000-8000-000000000001",
+      "projectKey": "C--Users-----Work-demo",
+      "cwd": "C:\\Users\\王测试\\Work\\demo",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-----Work-demo/dddddddd-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_demo_qwen",
+      "tools": {},
+      "input": 900,
+      "cacheWrite": 0,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 0,
+      "cacheRead": 0,
+      "output": 210,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 1110,
+      "fresh": 1110
+    },
+    "msg_demo_reg0": {
+      "key": "msg_demo_reg0",
+      "ts": 1791526200000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "dddddddd-0000-4000-8000-000000000001",
+      "projectKey": "C--Users-----Work-demo",
+      "cwd": "C:\\Users\\王测试\\Work\\demo",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-----Work-demo/dddddddd-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_demo_reg0",
+      "tools": {
+        "Bash": 1
+      },
+      "input": 2,
+      "cacheWrite": 1000,
+      "cacheWrite5m": 1000,
+      "cacheWrite1h": 0,
+      "cacheRead": 20000,
+      "output": 100,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 21102,
+      "fresh": 1102
+    },
+    "msg_beta_tie": {
+      "key": "msg_beta_tie",
+      "ts": 1791597610000,
+      "model": "claude-opus-5",
+      "sessionId": "bbbbbbbb-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-beta",
+      "cwd": "D:\\Work\\beta",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-beta/bbbbbbbb-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_beta_tie",
+      "tools": {},
+      "input": 8,
+      "cacheWrite": 400,
+      "cacheWrite5m": 400,
+      "cacheWrite1h": 0,
+      "cacheRead": 12000,
+      "output": 90,
+      "thinking": 30,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 12498,
+      "fresh": 498
+    },
+    "msg_beta_b1": {
+      "key": "msg_beta_b1",
+      "ts": 1791597660000,
+      "model": "claude-opus-5",
+      "sessionId": "bbbbbbbb-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-beta",
+      "cwd": "D:\\Work\\beta",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-beta/bbbbbbbb-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_beta_b1",
+      "tools": {},
+      "input": 1,
+      "cacheWrite": 100,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 100,
+      "cacheRead": 5000,
+      "output": 40,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 5141,
+      "fresh": 141
+    },
+    "msg_beta_b2": {
+      "key": "msg_beta_b2",
+      "ts": 1791597690000,
+      "model": "claude-sonnet-5",
+      "sessionId": "bbbbbbbb-0000-4000-8000-000000000002",
+      "projectKey": "D--Work-beta",
+      "cwd": "D:\\Work\\beta\\sub",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-beta/bbbbbbbb-0000-4000-8000-000000000002.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_beta_b2",
+      "tools": {},
+      "input": 2,
+      "cacheWrite": 0,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 0,
+      "cacheRead": 7000,
+      "output": 42,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 7044,
+      "fresh": 44
+    },
+    "msg_beta_b1b": {
+      "key": "msg_beta_b1b",
+      "ts": 1791597720000,
+      "model": "claude-opus-5",
+      "sessionId": "bbbbbbbb-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-beta",
+      "cwd": "D:\\Work\\beta",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-beta/bbbbbbbb-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_beta_b1b",
+      "tools": {},
+      "input": 1,
+      "cacheWrite": 50,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 50,
+      "cacheRead": 6000,
+      "output": 41,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 6092,
+      "fresh": 92
+    },
+    "msg_beta_b0": {
+      "key": "msg_beta_b0",
+      "ts": 1791601210000,
+      "model": "claude-sonnet-5",
+      "sessionId": "bbbbbbbb-0000-4000-8000-000000000000",
+      "projectKey": "D--Work-beta",
+      "cwd": "D:\\Work\\beta",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-beta/bbbbbbbb-0000-4000-8000-000000000000.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_beta_b0",
+      "tools": {},
+      "input": 3,
+      "cacheWrite": 0,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 0,
+      "cacheRead": 8000,
+      "output": 43,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 8046,
+      "fresh": 46
+    },
+    "msg_beta_b0b": {
+      "key": "msg_beta_b0b",
+      "ts": 1791601270000,
+      "model": "claude-sonnet-5",
+      "sessionId": "bbbbbbbb-0000-4000-8000-000000000000",
+      "projectKey": "D--Work-beta",
+      "cwd": "D:\\Work\\beta",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-beta/bbbbbbbb-0000-4000-8000-000000000000.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_beta_b0b",
+      "tools": {},
+      "input": 3,
+      "cacheWrite": 0,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 0,
+      "cacheRead": 9000,
+      "output": 44,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 9047,
+      "fresh": 47
+    },
+    "msg_tp_sh_day_a": {
+      "key": "msg_tp_sh_day_a",
+      "ts": 1791647999000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "tttttttt-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-timeprobe",
+      "cwd": "D:\\Work\\timeprobe",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-timeprobe/tttttttt-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_tp_sh_day_a",
+      "tools": {},
+      "input": 1,
+      "cacheWrite": 10,
+      "cacheWrite5m": 10,
+      "cacheWrite1h": 0,
+      "cacheRead": 104,
+      "output": 24,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 139,
+      "fresh": 35
+    },
+    "msg_tp_sh_day_b": {
+      "key": "msg_tp_sh_day_b",
+      "ts": 1791648000000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "tttttttt-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-timeprobe",
+      "cwd": "D:\\Work\\timeprobe",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-timeprobe/tttttttt-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_tp_sh_day_b",
+      "tools": {},
+      "input": 1,
+      "cacheWrite": 10,
+      "cacheWrite5m": 10,
+      "cacheWrite1h": 0,
+      "cacheRead": 105,
+      "output": 25,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 141,
+      "fresh": 36
+    },
+    "msg_tp_ist_a": {
+      "key": "msg_tp_ist_a",
+      "ts": 1791656999000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "tttttttt-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-timeprobe",
+      "cwd": "D:\\Work\\timeprobe",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-timeprobe/tttttttt-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_tp_ist_a",
+      "tools": {},
+      "input": 1,
+      "cacheWrite": 10,
+      "cacheWrite5m": 10,
+      "cacheWrite1h": 0,
+      "cacheRead": 106,
+      "output": 26,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 143,
+      "fresh": 37
+    },
+    "msg_tp_ist_b": {
+      "key": "msg_tp_ist_b",
+      "ts": 1791657000000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "tttttttt-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-timeprobe",
+      "cwd": "D:\\Work\\timeprobe",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-timeprobe/tttttttt-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_tp_ist_b",
+      "tools": {},
+      "input": 1,
+      "cacheWrite": 10,
+      "cacheWrite5m": 10,
+      "cacheWrite1h": 0,
+      "cacheRead": 107,
+      "output": 27,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 145,
+      "fresh": 38
+    },
+    "msg_scratch0_0": {
+      "key": "msg_scratch0_0",
+      "ts": 1791705660000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "cccccccc-1111-4111-8111-000000000001",
+      "projectKey": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-11111111-aaaa-4aaa-8aaa-111111111111-22222222-bbbb-4bbb-8bbb-222222222222-scratch-2026-10-11-abc123",
+      "cwd": "C:\\Users\\王测试\\AppData\\Roaming\\Claude\\scratch-workspaces\\11111111-aaaa-4aaa-8aaa-111111111111\\22222222-bbbb-4bbb-8bbb-222222222222\\scratch-2026-10-11-abc123",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-11111111-aaaa-4aaa-8aaa-111111111111-22222222-bbbb-4bbb-8bbb-222222222222-scratch-2026-10-11-abc123/cccccccc-1111-4111-8111-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_scratch0_0",
+      "tools": {},
+      "input": 3,
+      "cacheWrite": 500,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 500,
+      "cacheRead": 9000,
+      "output": 60,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 9563,
+      "fresh": 563
+    },
+    "msg_scratch0_1": {
+      "key": "msg_scratch0_1",
+      "ts": 1791705720000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "cccccccc-1111-4111-8111-000000000001",
+      "projectKey": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-11111111-aaaa-4aaa-8aaa-111111111111-22222222-bbbb-4bbb-8bbb-222222222222-scratch-2026-10-11-abc123",
+      "cwd": "C:\\Users\\王测试\\AppData\\Roaming\\Claude\\scratch-workspaces\\11111111-aaaa-4aaa-8aaa-111111111111\\22222222-bbbb-4bbb-8bbb-222222222222\\scratch-2026-10-11-abc123",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-11111111-aaaa-4aaa-8aaa-111111111111-22222222-bbbb-4bbb-8bbb-222222222222-scratch-2026-10-11-abc123/cccccccc-1111-4111-8111-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_scratch0_1",
+      "tools": {},
+      "input": 3,
+      "cacheWrite": 1000,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 1000,
+      "cacheRead": 9100,
+      "output": 60,
+      "thinking": 10,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 10163,
+      "fresh": 1063
+    },
+    "msg_tp_week_a": {
+      "key": "msg_tp_week_a",
+      "ts": 1791734399000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "tttttttt-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-timeprobe",
+      "cwd": "D:\\Work\\timeprobe",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-timeprobe/tttttttt-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_tp_week_a",
+      "tools": {},
+      "input": 1,
+      "cacheWrite": 10,
+      "cacheWrite5m": 10,
+      "cacheWrite1h": 0,
+      "cacheRead": 108,
+      "output": 28,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 147,
+      "fresh": 39
+    },
+    "msg_tp_week_b": {
+      "key": "msg_tp_week_b",
+      "ts": 1791734400000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "tttttttt-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-timeprobe",
+      "cwd": "D:\\Work\\timeprobe",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-timeprobe/tttttttt-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_tp_week_b",
+      "tools": {},
+      "input": 1,
+      "cacheWrite": 10,
+      "cacheWrite5m": 10,
+      "cacheWrite1h": 0,
+      "cacheRead": 109,
+      "output": 29,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 149,
+      "fresh": 40
+    },
+    "msg_demo_reg1": {
+      "key": "msg_demo_reg1",
+      "ts": 1791789000000,
+      "model": "claude-opus-5-5",
+      "sessionId": "dddddddd-0000-4000-8000-000000000001",
+      "projectKey": "C--Users-----Work-demo",
+      "cwd": "C:\\Users\\王测试\\Work\\demo",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-----Work-demo/dddddddd-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_demo_reg1",
+      "tools": {
+        "Read": 1,
+        "Edit": 1
+      },
+      "input": 3,
+      "cacheWrite": 2000,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 2000,
+      "cacheRead": 23000,
+      "output": 117,
+      "thinking": 40,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 25120,
+      "fresh": 2120
+    },
+    "msg_scratch1_0": {
+      "key": "msg_scratch1_0",
+      "ts": 1791792060000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "cccccccc-2222-4222-8222-000000000002",
+      "projectKey": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-33333333-aaaa-4aaa-8aaa-333333333333-44444444-bbbb-4bbb-8bbb-444444444444-scratch-2026-10-12-def456",
+      "cwd": "C:\\Users\\王测试\\AppData\\Roaming\\Claude\\scratch-workspaces\\33333333-aaaa-4aaa-8aaa-333333333333\\44444444-bbbb-4bbb-8bbb-444444444444\\scratch-2026-10-12-def456",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-33333333-aaaa-4aaa-8aaa-333333333333-44444444-bbbb-4bbb-8bbb-444444444444-scratch-2026-10-12-def456/cccccccc-2222-4222-8222-000000000002.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_scratch1_0",
+      "tools": {},
+      "input": 3,
+      "cacheWrite": 500,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 500,
+      "cacheRead": 9000,
+      "output": 65,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 9568,
+      "fresh": 568
+    },
+    "msg_scratch1_1": {
+      "key": "msg_scratch1_1",
+      "ts": 1791792120000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "cccccccc-2222-4222-8222-000000000002",
+      "projectKey": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-33333333-aaaa-4aaa-8aaa-333333333333-44444444-bbbb-4bbb-8bbb-444444444444-scratch-2026-10-12-def456",
+      "cwd": "C:\\Users\\王测试\\AppData\\Roaming\\Claude\\scratch-workspaces\\33333333-aaaa-4aaa-8aaa-333333333333\\44444444-bbbb-4bbb-8bbb-444444444444\\scratch-2026-10-12-def456",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-33333333-aaaa-4aaa-8aaa-333333333333-44444444-bbbb-4bbb-8bbb-444444444444-scratch-2026-10-12-def456/cccccccc-2222-4222-8222-000000000002.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_scratch1_1",
+      "tools": {},
+      "input": 3,
+      "cacheWrite": 1000,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 1000,
+      "cacheRead": 9100,
+      "output": 65,
+      "thinking": 10,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 10168,
+      "fresh": 1068
+    },
+    "msg_scratch1_2": {
+      "key": "msg_scratch1_2",
+      "ts": 1791792180000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "cccccccc-2222-4222-8222-000000000002",
+      "projectKey": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-33333333-aaaa-4aaa-8aaa-333333333333-44444444-bbbb-4bbb-8bbb-444444444444-scratch-2026-10-12-def456",
+      "cwd": "C:\\Users\\王测试\\AppData\\Roaming\\Claude\\scratch-workspaces\\33333333-aaaa-4aaa-8aaa-333333333333\\44444444-bbbb-4bbb-8bbb-444444444444\\scratch-2026-10-12-def456",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-33333333-aaaa-4aaa-8aaa-333333333333-44444444-bbbb-4bbb-8bbb-444444444444-scratch-2026-10-12-def456/cccccccc-2222-4222-8222-000000000002.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_scratch1_2",
+      "tools": {},
+      "input": 3,
+      "cacheWrite": 1500,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 1500,
+      "cacheRead": 9200,
+      "output": 65,
+      "thinking": 20,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 10768,
+      "fresh": 1568
+    },
+    "msg_scratch2_0": {
+      "key": "msg_scratch2_0",
+      "ts": 1791878460000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "cccccccc-3333-4333-8333-000000000003",
+      "projectKey": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-55555555-aaaa-4aaa-8aaa-555555555555-66666666-bbbb-4bbb-8bbb-666666666666-scratch-2026-10-13-789abc",
+      "cwd": "C:\\Users\\王测试\\AppData\\Roaming\\Claude\\scratch-workspaces\\55555555-aaaa-4aaa-8aaa-555555555555\\66666666-bbbb-4bbb-8bbb-666666666666\\scratch-2026-10-13-789abc",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-55555555-aaaa-4aaa-8aaa-555555555555-66666666-bbbb-4bbb-8bbb-666666666666-scratch-2026-10-13-789abc/cccccccc-3333-4333-8333-000000000003.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_scratch2_0",
+      "tools": {},
+      "input": 3,
+      "cacheWrite": 500,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 500,
+      "cacheRead": 9000,
+      "output": 70,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 9573,
+      "fresh": 573
+    },
+    "msg_scratch2_1": {
+      "key": "msg_scratch2_1",
+      "ts": 1791878520000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "cccccccc-3333-4333-8333-000000000003",
+      "projectKey": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-55555555-aaaa-4aaa-8aaa-555555555555-66666666-bbbb-4bbb-8bbb-666666666666-scratch-2026-10-13-789abc",
+      "cwd": "C:\\Users\\王测试\\AppData\\Roaming\\Claude\\scratch-workspaces\\55555555-aaaa-4aaa-8aaa-555555555555\\66666666-bbbb-4bbb-8bbb-666666666666\\scratch-2026-10-13-789abc",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-55555555-aaaa-4aaa-8aaa-555555555555-66666666-bbbb-4bbb-8bbb-666666666666-scratch-2026-10-13-789abc/cccccccc-3333-4333-8333-000000000003.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_scratch2_1",
+      "tools": {},
+      "input": 3,
+      "cacheWrite": 1000,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 1000,
+      "cacheRead": 9100,
+      "output": 70,
+      "thinking": 10,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 10173,
+      "fresh": 1073
+    },
+    "msg_scratch2_2": {
+      "key": "msg_scratch2_2",
+      "ts": 1791878580000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "cccccccc-3333-4333-8333-000000000003",
+      "projectKey": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-55555555-aaaa-4aaa-8aaa-555555555555-66666666-bbbb-4bbb-8bbb-666666666666-scratch-2026-10-13-789abc",
+      "cwd": "C:\\Users\\王测试\\AppData\\Roaming\\Claude\\scratch-workspaces\\55555555-aaaa-4aaa-8aaa-555555555555\\66666666-bbbb-4bbb-8bbb-666666666666\\scratch-2026-10-13-789abc",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-55555555-aaaa-4aaa-8aaa-555555555555-66666666-bbbb-4bbb-8bbb-666666666666-scratch-2026-10-13-789abc/cccccccc-3333-4333-8333-000000000003.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_scratch2_2",
+      "tools": {},
+      "input": 3,
+      "cacheWrite": 1500,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 1500,
+      "cacheRead": 9200,
+      "output": 70,
+      "thinking": 20,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 10773,
+      "fresh": 1573
+    },
+    "msg_scratch2_3": {
+      "key": "msg_scratch2_3",
+      "ts": 1791878640000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "cccccccc-3333-4333-8333-000000000003",
+      "projectKey": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-55555555-aaaa-4aaa-8aaa-555555555555-66666666-bbbb-4bbb-8bbb-666666666666-scratch-2026-10-13-789abc",
+      "cwd": "C:\\Users\\王测试\\AppData\\Roaming\\Claude\\scratch-workspaces\\55555555-aaaa-4aaa-8aaa-555555555555\\66666666-bbbb-4bbb-8bbb-666666666666\\scratch-2026-10-13-789abc",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-x-AppData-Roaming-Claude-scratch-workspaces-55555555-aaaa-4aaa-8aaa-555555555555-66666666-bbbb-4bbb-8bbb-666666666666-scratch-2026-10-13-789abc/cccccccc-3333-4333-8333-000000000003.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_scratch2_3",
+      "tools": {},
+      "input": 3,
+      "cacheWrite": 2000,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 2000,
+      "cacheRead": 9300,
+      "output": 70,
+      "thinking": 30,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 11373,
+      "fresh": 2073
+    },
+    "msg_demo_reg2": {
+      "key": "msg_demo_reg2",
+      "ts": 1792051800000,
+      "model": "claude-haiku-4-5",
+      "sessionId": "dddddddd-0000-4000-8000-000000000001",
+      "projectKey": "C--Users-----Work-demo",
+      "cwd": "C:\\Users\\王测试\\Work\\demo",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-----Work-demo/dddddddd-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_demo_reg2",
+      "tools": {
+        "Bash": 1
+      },
+      "input": 4,
+      "cacheWrite": 3000,
+      "cacheWrite5m": 3000,
+      "cacheWrite1h": 0,
+      "cacheRead": 26000,
+      "output": 134,
+      "thinking": 80,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 29138,
+      "fresh": 3138
+    },
+    "msg_demo_reg3": {
+      "key": "msg_demo_reg3",
+      "ts": 1792314600000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "dddddddd-0000-4000-8000-000000000001",
+      "projectKey": "C--Users-----Work-demo",
+      "cwd": "C:\\Users\\王测试\\Work\\demo",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-----Work-demo/dddddddd-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_demo_reg3",
+      "tools": {},
+      "input": 5,
+      "cacheWrite": 4000,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 4000,
+      "cacheRead": 29000,
+      "output": 151,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 33156,
+      "fresh": 4156
+    },
+    "msg_crlf_1": {
+      "key": "msg_crlf_1",
+      "ts": 1792490405000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "cccccccc-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-crlf",
+      "cwd": "D:\\Work\\crlf",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-crlf/cccccccc-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_crlf_1",
+      "tools": {},
+      "input": 5,
+      "cacheWrite": 200,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 200,
+      "cacheRead": 3000,
+      "output": 50,
+      "thinking": 10,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 3255,
+      "fresh": 255
+    },
+    "msg_crlf_2": {
+      "key": "msg_crlf_2",
+      "ts": 1792490465000,
+      "model": "claude-opus-5-5",
+      "sessionId": "cccccccc-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-crlf",
+      "cwd": "D:\\Work\\crlf",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-crlf/cccccccc-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_crlf_2",
+      "tools": {},
+      "input": 5,
+      "cacheWrite": 0,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 0,
+      "cacheRead": 4000,
+      "output": 70,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 4075,
+      "fresh": 75
+    },
+    "msg_demo_reg4": {
+      "key": "msg_demo_reg4",
+      "ts": 1792577400000,
+      "model": "claude-opus-5-5",
+      "sessionId": "dddddddd-0000-4000-8000-000000000001",
+      "projectKey": "C--Users-----Work-demo",
+      "cwd": "C:\\Users\\王测试\\Work\\demo",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-----Work-demo/dddddddd-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_demo_reg4",
+      "tools": {
+        "Bash": 1
+      },
+      "input": 6,
+      "cacheWrite": 5000,
+      "cacheWrite5m": 5000,
+      "cacheWrite1h": 0,
+      "cacheRead": 32000,
+      "output": 168,
+      "thinking": 40,
+      "webSearch": 2,
+      "webFetch": 0,
+      "total": 37174,
+      "fresh": 5174
+    },
+    "msg_demo_reg5": {
+      "key": "msg_demo_reg5",
+      "ts": 1792822200000,
+      "model": "claude-haiku-4-5",
+      "sessionId": "dddddddd-0000-4000-8000-000000000001",
+      "projectKey": "C--Users-----Work-demo",
+      "cwd": "C:\\Users\\王测试\\Work\\demo",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-----Work-demo/dddddddd-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_demo_reg5",
+      "tools": {
+        "Read": 1,
+        "Edit": 1
+      },
+      "input": 7,
+      "cacheWrite": 6000,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 6000,
+      "cacheRead": 35000,
+      "output": 185,
+      "thinking": 80,
+      "webSearch": 0,
+      "webFetch": 1,
+      "total": 41192,
+      "fresh": 6192
+    },
+    "msg_demo_reg6": {
+      "key": "msg_demo_reg6",
+      "ts": 1793085000000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "dddddddd-0000-4000-8000-000000000001",
+      "projectKey": "C--Users-----Work-demo",
+      "cwd": "C:\\Users\\王测试\\Work\\demo",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-----Work-demo/dddddddd-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_demo_reg6",
+      "tools": {
+        "Bash": 1
+      },
+      "input": 8,
+      "cacheWrite": 7000,
+      "cacheWrite5m": 7000,
+      "cacheWrite1h": 0,
+      "cacheRead": 38000,
+      "output": 202,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 45210,
+      "fresh": 7210
+    },
+    "msg_demo_reg7": {
+      "key": "msg_demo_reg7",
+      "ts": 1793347800000,
+      "model": "claude-opus-5-5",
+      "sessionId": "dddddddd-0000-4000-8000-000000000001",
+      "projectKey": "C--Users-----Work-demo",
+      "cwd": "C:\\Users\\王测试\\Work\\demo",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-----Work-demo/dddddddd-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_demo_reg7",
+      "tools": {},
+      "input": 9,
+      "cacheWrite": 8000,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 8000,
+      "cacheRead": 41000,
+      "output": 219,
+      "thinking": 40,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 49228,
+      "fresh": 8228
+    },
+    "msg_tp_utc_month_a": {
+      "key": "msg_tp_utc_month_a",
+      "ts": 1793491199000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "tttttttt-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-timeprobe",
+      "cwd": "D:\\Work\\timeprobe",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-timeprobe/tttttttt-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_tp_utc_month_a",
+      "tools": {},
+      "input": 1,
+      "cacheWrite": 10,
+      "cacheWrite5m": 10,
+      "cacheWrite1h": 0,
+      "cacheRead": 110,
+      "output": 30,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 151,
+      "fresh": 41
+    },
+    "msg_tp_utc_month_b": {
+      "key": "msg_tp_utc_month_b",
+      "ts": 1793491200000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "tttttttt-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-timeprobe",
+      "cwd": "D:\\Work\\timeprobe",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-timeprobe/tttttttt-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_tp_utc_month_b",
+      "tools": {},
+      "input": 1,
+      "cacheWrite": 10,
+      "cacheWrite5m": 10,
+      "cacheWrite1h": 0,
+      "cacheRead": 111,
+      "output": 31,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 153,
+      "fresh": 42
+    },
+    "msg_tp_ny_fall_a": {
+      "key": "msg_tp_ny_fall_a",
+      "ts": 1793511000000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "tttttttt-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-timeprobe",
+      "cwd": "D:\\Work\\timeprobe",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-timeprobe/tttttttt-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_tp_ny_fall_a",
+      "tools": {},
+      "input": 1,
+      "cacheWrite": 10,
+      "cacheWrite5m": 10,
+      "cacheWrite1h": 0,
+      "cacheRead": 112,
+      "output": 32,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 155,
+      "fresh": 43
+    },
+    "msg_tp_ny_fall_b": {
+      "key": "msg_tp_ny_fall_b",
+      "ts": 1793514600000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "tttttttt-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-timeprobe",
+      "cwd": "D:\\Work\\timeprobe",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-timeprobe/tttttttt-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_tp_ny_fall_b",
+      "tools": {},
+      "input": 1,
+      "cacheWrite": 10,
+      "cacheWrite5m": 10,
+      "cacheWrite1h": 0,
+      "cacheRead": 113,
+      "output": 33,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 157,
+      "fresh": 44
+    },
+    "msg_tp_ny_fall_c": {
+      "key": "msg_tp_ny_fall_c",
+      "ts": 1793595599000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "tttttttt-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-timeprobe",
+      "cwd": "D:\\Work\\timeprobe",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-timeprobe/tttttttt-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_tp_ny_fall_c",
+      "tools": {},
+      "input": 1,
+      "cacheWrite": 10,
+      "cacheWrite5m": 10,
+      "cacheWrite1h": 0,
+      "cacheRead": 114,
+      "output": 34,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 159,
+      "fresh": 45
+    },
+    "msg_tp_ny_fall_d": {
+      "key": "msg_tp_ny_fall_d",
+      "ts": 1793595600000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "tttttttt-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-timeprobe",
+      "cwd": "D:\\Work\\timeprobe",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-timeprobe/tttttttt-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_tp_ny_fall_d",
+      "tools": {},
+      "input": 1,
+      "cacheWrite": 10,
+      "cacheWrite5m": 10,
+      "cacheWrite1h": 0,
+      "cacheRead": 115,
+      "output": 35,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 161,
+      "fresh": 46
+    },
+    "msg_demo_reg8": {
+      "key": "msg_demo_reg8",
+      "ts": 1793610600000,
+      "model": "claude-haiku-4-5",
+      "sessionId": "dddddddd-0000-4000-8000-000000000001",
+      "projectKey": "C--Users-----Work-demo",
+      "cwd": "C:\\Users\\王测试\\Work\\demo",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-----Work-demo/dddddddd-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_demo_reg8",
+      "tools": {
+        "Bash": 1
+      },
+      "input": 10,
+      "cacheWrite": 9000,
+      "cacheWrite5m": 9000,
+      "cacheWrite1h": 0,
+      "cacheRead": 44000,
+      "output": 236,
+      "thinking": 80,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 53246,
+      "fresh": 9246
+    },
+    "msg_demo_reg9": {
+      "key": "msg_demo_reg9",
+      "ts": 1793873400000,
+      "model": "claude-sonnet-5-5",
+      "sessionId": "dddddddd-0000-4000-8000-000000000001",
+      "projectKey": "C--Users-----Work-demo",
+      "cwd": "C:\\Users\\王测试\\Work\\demo",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-----Work-demo/dddddddd-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_demo_reg9",
+      "tools": {
+        "Read": 1,
+        "Edit": 1
+      },
+      "input": 11,
+      "cacheWrite": 10000,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 10000,
+      "cacheRead": 47000,
+      "output": 253,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 57264,
+      "fresh": 10264
+    },
+    "msg_demo_reg10": {
+      "key": "msg_demo_reg10",
+      "ts": 1794118200000,
+      "model": "claude-opus-5-5",
+      "sessionId": "dddddddd-0000-4000-8000-000000000001",
+      "projectKey": "C--Users-----Work-demo",
+      "cwd": "C:\\Users\\王测试\\Work\\demo",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-----Work-demo/dddddddd-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_demo_reg10",
+      "tools": {
+        "Bash": 1
+      },
+      "input": 12,
+      "cacheWrite": 11000,
+      "cacheWrite5m": 11000,
+      "cacheWrite1h": 0,
+      "cacheRead": 50000,
+      "output": 270,
+      "thinking": 40,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 61282,
+      "fresh": 11282
+    },
+    "msg_demo_reg11": {
+      "key": "msg_demo_reg11",
+      "ts": 1794381000000,
+      "model": "claude-haiku-4-5",
+      "sessionId": "dddddddd-0000-4000-8000-000000000001",
+      "projectKey": "C--Users-----Work-demo",
+      "cwd": "C:\\Users\\王测试\\Work\\demo",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "C--Users-----Work-demo/dddddddd-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": "req_demo_reg11",
+      "tools": {},
+      "input": 13,
+      "cacheWrite": 12000,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 12000,
+      "cacheRead": 53000,
+      "output": 287,
+      "thinking": 80,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 65300,
+      "fresh": 12300
+    }
+  },
+  "noIdMessages": [
+    {
+      "key": "noid:1#0",
+      "ts": 1791162360000,
+      "model": "claude-sonnet-5",
+      "sessionId": "a1a1a1a1-0000-4000-8000-000000000001",
+      "projectKey": "D--Work-alpha",
+      "cwd": "D:\\Work\\alpha",
+      "isSidechain": false,
+      "agentId": null,
+      "sourceFile": "D--Work-alpha/a1a1a1a1-0000-4000-8000-000000000001.jsonl",
+      "stopReason": null,
+      "effort": null,
+      "requestId": null,
+      "tools": {},
+      "input": 1,
+      "cacheWrite": 0,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 0,
+      "cacheRead": 0,
+      "output": 5,
+      "thinking": 0,
+      "webSearch": 0,
+      "webFetch": 0,
+      "total": 6,
+      "fresh": 6
+    }
+  ]
+}

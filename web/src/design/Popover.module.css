@@ -1,0 +1,102 @@
+.wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 50;
+  min-width: 220px;
+  max-width: min(360px, 90vw);
+  padding: 6px;
+  border-radius: 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadowPop);
+  animation: tv-fade-in 0.15s var(--ease);
+}
+
+.left {
+  right: auto;
+  left: 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 38px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text);
+  font-size: 13.5px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+}
+
+.item:hover {
+  background: var(--seg);
+}
+
+.item[aria-selected='true'],
+.item[aria-checked='true'] {
+  color: var(--accentText);
+}
+
+.check {
+  width: 16px;
+  height: 16px;
+  border-radius: 5px;
+  border: 1.5px solid var(--muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  color: var(--onAccent);
+}
+
+.item[aria-checked='true'] .check {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.sep {
+  height: 1px;
+  background: var(--line);
+  margin: 6px 4px;
+}
+
+.scroll {
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.grow {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tag {
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--pillBlueBg);
+  color: var(--pillBlueFg);
+  flex: none;
+}
+
+.val {
+  color: var(--text2);
+  font-size: 12.5px;
+  flex: none;
+}

@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>会话</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<style>
+body{margin:0}
+.dcroot,.dcroot *{box-sizing:border-box}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}
+.seg{display:inline-flex;gap:2px;padding:4px;background:var(--seg);border-radius:999px}
+.seg button,.seg a{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 18px;border:0;border-radius:999px;background:transparent;color:var(--text2);font:inherit;font-size:14.5px;font-weight:500;cursor:pointer;text-decoration:none}
+.seg button:hover,.seg a:hover{color:var(--text)}
+.seg .on{background:var(--segOn);color:var(--text);box-shadow:0 1px 2px rgba(0,0,0,.08),0 2px 8px rgba(0,0,0,.05)}
+.seg.sm button{min-height:34px;padding:0 14px;font-size:13px}
+.chip{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--text);font:inherit;font-size:13.5px;font-weight:500;cursor:pointer}
+.pill{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-radius:999px;font-size:13.5px;font-weight:500;white-space:nowrap}
+.dot{width:8px;height:8px;border-radius:50%;background:currentColor;flex:none}
+.pulse{animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+.num{font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
+.unit{color:var(--muted);font-weight:500}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media (max-width:900px){.g2{grid-template-columns:minmax(0,1fr)}}
+table.t{width:100%;border-collapse:collapse;min-width:860px}
+table.t th{padding:0 14px 12px;text-align:left;font-size:12.5px;font-weight:500;color:var(--muted);white-space:nowrap}
+table.t td{padding:14px;font-size:14px;white-space:nowrap;border-top:1px solid var(--line)}
+table.t th.r,table.t td.r{text-align:right}
+input::placeholder{color:var(--muted)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.pulse{animation:none}}
+</style>
+</helmet>
+<div style="{{themeVars}}">
+<div class="dcroot" style="min-height:100%;background:var(--bg);color:var(--text);font-family:'Outfit','Noto Sans SC','HarmonyOS Sans SC','Microsoft YaHei',system-ui,sans-serif;font-size:14px;padding:20px 32px 48px;display:flex;flex-direction:column;gap:24px">
+
+<header style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+<div style="display:flex;align-items:center;gap:12px">
+<div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(145deg,#34D399,#059669);display:flex;align-items:center;justify-content:center">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 8l9 5 9-5-9-5zM3 12l9 5 9-5M3 16l9 5 9-5"></path></svg>
+</div>
+<div style="font-size:23px;font-weight:700;letter-spacing:-0.03em">Token Visualizer</div>
+</div>
+<nav class="seg" aria-label="主导航">
+<a href="Main.dc.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM15 3h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM15 12h4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2zM5 15h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2z"></path></svg>总览</a>
+<a href="Analysis.dc.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20v-6M10 20V5M16 20v-9M21 20H3"></path></svg>分析</a>
+<a href="Sessions.dc.html" class="on" aria-current="page"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"></path></svg>会话</a>
+<a href="Settings.dc.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M16 4.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM8 14.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"></path></svg>设置</a>
+</nav>
+<div style="display:flex;align-items:center;gap:12px">
+<span class="pill" style="background:var(--pillGreenBg);color:var(--pillGreenFg)"><span class="dot pulse"></span>Live · 今日 <b class="num">38.6 M</b> tokens</span>
+<button type="button" aria-label="切换深色主题" style="width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4 6.5 6.5 0 0 0 20 14.5z"></path></svg></button>
+</div>
+</header>
+
+<div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
+
+<aside style="flex:0 0 288px;display:flex;flex-direction:column;gap:12px">
+<label style="display:flex;align-items:center;gap:10px;height:46px;padding:0 14px;border-radius:14px;background:var(--card);border:1px solid var(--line)">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-3.5-3.5"></path></svg>
+<input type="search" placeholder="搜索项目或路径" aria-label="搜索项目" style="border:0;background:transparent;font:inherit;font-size:14px;color:var(--text);outline-offset:6px;width:100%;min-width:0">
+</label>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:0 4px;color:var(--muted);font-size:13px">
+<span>项目</span>
+<button type="button" class="chip" style="min-height:34px;padding:0 12px;font-size:12.5px">按总量排序<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+</div>
+<ul style="margin:0;padding:0;display:flex;flex-direction:column;gap:4px">
+<li style="list-style:none">
+<a href="Sessions.dc.html" aria-current="true" class="card" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:18px;text-decoration:none;color:inherit">
+<div style="min-width:0">
+<div style="font-weight:600;font-size:15px">全部项目</div>
+<div style="color:var(--muted);font-size:12px;margin-top:3px">21 个项目 · 112 个会话</div>
+</div>
+<div style="text-align:right;flex:0 0 84px">
+<div class="num" style="font-size:15px">1.42 B</div>
+<svg width="84" height="22" viewBox="0 0 84 22" aria-hidden="true"><defs><linearGradient id="allg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{{c.accent}}" stop-opacity="0.3"></stop><stop offset="1" stop-color="{{c.accent}}" stop-opacity="0"></stop></linearGradient></defs><path d="{{allSpark.area}}" fill="url(#allg)"></path><path d="{{allSpark.line}}" fill="none" stroke="{{c.accent}}" stroke-width="1.6" stroke-linecap="round"></path></svg>
+</div>
+</a>
+</li>
+<sc-for list="{{projects}}" as="p" hint-placeholder-count="6">
+<li style="list-style:none">
+<a href="Sessions.dc.html" title="{{p.path}}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 16px;border-radius:18px;text-decoration:none;color:inherit">
+<div style="min-width:0">
+<div style="font-weight:500;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{p.name}}</div>
+<div style="display:flex;align-items:center;gap:6px;color:var(--muted);font-size:12px;margin-top:3px"><sc-if value="{{p.active}}" hint-placeholder-val="{{true}}"><span class="dot" style="color:var(--accent);width:7px;height:7px"></span></sc-if>{{p.ago}}</div>
+</div>
+<div style="text-align:right;flex:0 0 84px">
+<div class="num" style="font-size:14px">{{p.total}}</div>
+<svg width="84" height="22" viewBox="0 0 84 22" aria-hidden="true"><defs><linearGradient id="{{p.gid}}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{{c.accent}}" stop-opacity="0.26"></stop><stop offset="1" stop-color="{{c.accent}}" stop-opacity="0"></stop></linearGradient></defs><path d="{{p.area}}" fill="{{p.fill}}"></path><path d="{{p.line}}" fill="none" stroke="{{c.accent}}" stroke-width="1.5" stroke-linecap="round"></path></svg>
+</div>
+</a>
+</li>
+</sc-for>
+<li style="list-style:none">
+<a href="Sessions.dc.html" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 16px;border-radius:18px;text-decoration:none;color:inherit">
+<div style="display:flex;align-items:center;gap:10px;min-width:0">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"></path></svg>
+<div>
+<div style="font-weight:500;font-size:14.5px">临时对话 Scratch</div>
+<div style="color:var(--muted);font-size:12px;margin-top:3px">14 个临时目录 · 已归并</div>
+</div>
+</div>
+<div style="display:flex;align-items:center;gap:6px"><span class="num" style="font-size:14px">125 M</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg></div>
+</a>
+</li>
+</ul>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 4px 0;color:var(--muted);font-size:12px">
+<span>21 个项目 · 更新于 12:04:31</span>
+<button type="button" aria-label="手动刷新" style="width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--text2);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.5-3.5M4 4v4h4M4 13a8 8 0 0 0 14.5 3.5M20 20v-4h-4"></path></svg></button>
+</div>
+</aside>
+
+<main style="flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:24px">
+
+<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+<div>
+<h1 style="margin:0;font-size:28px;font-weight:600;letter-spacing:-0.025em">会话</h1>
+<div style="color:var(--muted);font-size:13.5px;margin-top:4px">按总 token 降序 · 会话标题仅在本机显示，不会写入导出文件</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+<label style="display:flex;align-items:center;gap:8px;height:40px;padding:0 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);min-width:220px">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-3.5-3.5"></path></svg>
+<input type="search" placeholder="搜索会话标题" aria-label="搜索会话" style="border:0;background:transparent;font:inherit;font-size:13.5px;color:var(--text);width:100%;min-width:0">
+</label>
+<button type="button" class="chip">项目：全部<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+<button type="button" class="chip">模型：全部<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+<button type="button" class="chip">近 30 天<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+</div>
+</div>
+
+<section class="card" style="padding:22px 14px 8px">
+<div style="overflow-x:auto">
+<table class="t">
+<thead>
+<tr>
+<th scope="col">会话标题</th><th scope="col">项目</th><th scope="col">开始时间</th><th scope="col" class="r">时长</th><th scope="col" class="r">请求</th><th scope="col" class="r">总 Token ↓</th><th scope="col" class="r">估算成本</th><th scope="col">主要模型</th>
+</tr>
+</thead>
+<tbody>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="8">
+<tr style="{{r.rowStyle}}">
+<td style="font-weight:500;max-width:260px;overflow:hidden;text-overflow:ellipsis">{{r.title}}</td>
+<td style="color:var(--text2)">{{r.project}}</td>
+<td class="num" style="color:var(--text2);font-weight:500">{{r.start}}</td>
+<td class="num r" style="font-weight:500">{{r.dur}}</td>
+<td class="num r" style="font-weight:500">{{r.req}}</td>
+<td class="num r">{{r.tokens}}</td>
+<td class="r" style="color:var(--muted)">{{r.cost}}</td>
+<td style="color:var(--text2)">{{r.model}}</td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 14px 10px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px">
+<span>显示 8 / 112 个会话</span>
+<span style="display:flex;gap:8px"><button type="button" class="chip" style="min-height:34px;padding:0 14px;font-size:12.5px">上一页</button><button type="button" class="chip" style="min-height:34px;padding:0 14px;font-size:12.5px">下一页</button></span>
+</div>
+</section>
+
+<section class="card" style="padding:28px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:16px">
+<div>
+<div style="color:var(--muted);font-size:12.5px">会话详情</div>
+<h2 style="margin:4px 0 0;font-size:23px;font-weight:600;letter-spacing:-0.02em">重构数据解析与去重管线</h2>
+<div style="color:var(--muted);font-size:13px;margin-top:6px">Token visualizer · 11/08 21:14 – 11/09 00:56 · claude-sonnet-5-5</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:28px">
+<div><div style="color:var(--muted);font-size:12.5px">请求</div><div style="margin-top:4px"><span class="num" style="font-size:28px;line-height:1">1,284</span></div></div>
+<div><div style="color:var(--muted);font-size:12.5px">总 Token</div><div style="margin-top:4px"><span class="num" style="font-size:28px;line-height:1">218.6</span><span class="unit" style="font-size:14px;margin-left:4px">M</span></div></div>
+<div><div style="color:var(--muted);font-size:12.5px">持续</div><div style="margin-top:4px"><span class="num" style="font-size:28px;line-height:1">3</span><span class="unit" style="font-size:14px;margin:0 6px 0 3px">h</span><span class="num" style="font-size:28px;line-height:1">42</span><span class="unit" style="font-size:14px;margin-left:3px">m</span></div></div>
+</div>
+</div>
+
+<div class="g2">
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="font-size:15px;font-weight:500">逐次请求的 token 用量<span style="color:var(--muted);font-weight:400;font-size:12.5px;margin-left:8px">最近 60 次</span></div>
+<svg viewBox="0 0 480 200" style="display:block;width:100%;height:auto" role="img" aria-label="最近 60 次请求的 token 用量柱状图，部分请求明显更大">
+<line x1="40" y1="176" x2="476" y2="176" stroke="{{c.grid}}" stroke-width="1"></line>
+<line x1="40" y1="96" x2="476" y2="96" stroke="{{c.grid}}" stroke-width="1" stroke-dasharray="3 5"></line>
+<line x1="40" y1="16" x2="476" y2="16" stroke="{{c.grid}}" stroke-width="1" stroke-dasharray="3 5"></line>
+<text x="0" y="180" font-size="11.5" fill="{{c.muted}}">0</text>
+<text x="0" y="100" font-size="11.5" fill="{{c.muted}}">100 K</text>
+<text x="0" y="20" font-size="11.5" fill="{{c.muted}}">200 K</text>
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="60">
+<rect x="{{b.x}}" y="{{b.y}}" width="5.4" height="{{b.h}}" rx="2" fill="{{c.accent}}"></rect>
+</sc-for>
+</svg>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="font-size:15px;font-weight:500">上下文大小增长<span style="color:var(--muted);font-weight:400;font-size:12.5px;margin-left:8px">输入 + 缓存，随轮次</span></div>
+<svg viewBox="0 0 480 200" style="display:block;width:100%;height:auto" role="img" aria-label="上下文大小随轮次增长，在两处出现压缩后回落">
+<defs><linearGradient id="ctxfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{{c.blue}}" stop-opacity="0.24"></stop><stop offset="1" stop-color="{{c.blue}}" stop-opacity="0"></stop></linearGradient></defs>
+<line x1="40" y1="176" x2="476" y2="176" stroke="{{c.grid}}" stroke-width="1"></line>
+<line x1="40" y1="96" x2="476" y2="96" stroke="{{c.grid}}" stroke-width="1" stroke-dasharray="3 5"></line>
+<line x1="40" y1="16" x2="476" y2="16" stroke="{{c.grid}}" stroke-width="1" stroke-dasharray="3 5"></line>
+<text x="0" y="180" font-size="11.5" fill="{{c.muted}}">0</text>
+<text x="0" y="100" font-size="11.5" fill="{{c.muted}}">100 K</text>
+<text x="0" y="20" font-size="11.5" fill="{{c.muted}}">200 K</text>
+<path d="{{ctx.area}}" fill="url(#ctxfill)"></path>
+<path d="{{ctx.line}}" fill="none" stroke="{{c.blue}}" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"></path>
+<sc-for list="{{ctx.marks}}" as="m" hint-placeholder-count="2">
+<line x1="{{m.x}}" y1="16" x2="{{m.x}}" y2="176" stroke="{{c.muted}}" stroke-width="1" stroke-dasharray="3 4"></line>
+<text x="{{m.x}}" y="192" font-size="11.5" text-anchor="middle" fill="{{c.muted}}">压缩</text>
+</sc-for>
+</svg>
+</div>
+</div>
+
+<div class="g2">
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="font-size:15px;font-weight:500">类型构成</div>
+<div style="display:flex;height:14px;border-radius:999px;overflow:hidden;gap:2px" role="img" aria-label="缓存读 83%，输出 12%，缓存写 4%，输入 1%">
+<span style="width:83%;background:var(--accent)"></span><span style="width:12%;background:var(--violet)"></span><span style="width:4%;background:var(--amber)"></span><span style="width:1%;background:var(--blue)"></span>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 20px;color:var(--text2);font-size:13px">
+<span style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:3px;background:var(--accent)"></span>缓存读 181.4 M</span>
+<span style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:3px;background:var(--violet)"></span>输出 26.2 M</span>
+<span style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:3px;background:var(--amber)"></span>缓存写 9.4 M</span>
+<span style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:3px;background:var(--blue)"></span>输入 1.6 M</span>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="font-size:15px;font-weight:500">工具使用</div>
+<ul style="margin:0;padding:0;display:flex;flex-direction:column;gap:10px">
+<sc-for list="{{tools}}" as="t" hint-placeholder-count="4">
+<li style="list-style:none;display:grid;grid-template-columns:84px minmax(0,1fr) 48px;align-items:center;gap:12px;font-size:13px">
+<span style="color:var(--text2)">{{t.name}}</span>
+<span style="height:8px;border-radius:999px;background:var(--track);overflow:hidden"><span style="display:block;width:{{t.w}};height:100%;border-radius:999px;background:var(--accent)"></span></span>
+<span class="num" style="text-align:right">{{t.n}}</span>
+</li>
+</sc-for>
+</ul>
+</div>
+</div>
+</section>
+
+</main>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":1500}}'>
+class Component extends DCLogic {
+  rng(seed) {
+    let s = seed >>> 0;
+    return () => { s = (Math.imul(s, 1664525) + 1013904223) >>> 0; return s / 4294967296; };
+  }
+  smooth(pts) {
+    if (pts.length < 2) return '';
+    const f = (n) => n.toFixed(1);
+    let d = 'M' + f(pts[0][0]) + ' ' + f(pts[0][1]);
+    for (let i = 0; i < pts.length - 1; i++) {
+      const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+      const t = 0.17;
+      d += ' C' + f(p1[0] + (p2[0] - p0[0]) * t) + ' ' + f(p1[1] + (p2[1] - p0[1]) * t) + ' ' + f(p2[0] - (p3[0] - p1[0]) * t) + ' ' + f(p2[1] - (p3[1] - p1[1]) * t) + ' ' + f(p2[0]) + ' ' + f(p2[1]);
+    }
+    return d;
+  }
+  spark(vals, w, h, pad) {
+    const mx = Math.max(...vals), mn = Math.min(...vals), rg = (mx - mn) || 1;
+    const pts = vals.map((v, i) => [i * (w / (vals.length - 1)), pad + (h - 2 * pad) * (1 - (v - mn) / rg)]);
+    const line = this.smooth(pts);
+    return { line: line, area: line + ' L' + w + ' ' + h + ' L0 ' + h + ' Z' };
+  }
+  series(n, base, amp, seed) {
+    const r = this.rng(seed);
+    return Array.from({ length: n }, (_, i) => Math.max(1, base + amp * (r() - 0.5) * 2 + amp * 0.35 * Math.sin(i / 1.1)));
+  }
+  renderVals() {
+    const THEMES = {
+      light: { bg: '#F6F6F3', card: '#FFFFFF', line: 'rgba(17,22,19,0.07)', text: '#111613', text2: '#555C56', muted: '#6B726C', track: '#ECEEEA', seg: '#EDEEEA', segOn: '#FFFFFF', accent: '#10B981', accentText: '#047857', blue: '#3B82F6', amber: '#F59E0B', pink: '#EC4899', violet: '#8B5CF6', grid: 'rgba(17,22,19,0.09)', shadow: '0 1px 2px rgba(17,22,19,0.04), 0 14px 36px rgba(17,22,19,0.05)', pillIdleBg: '#ECEEEA', pillIdleFg: '#555C56', pillBlueBg: '#E3EEFF', pillBlueFg: '#1D4ED8', pillGreenBg: '#D9F5E6', pillGreenFg: '#047857', pillAmberBg: '#FEF0CF', pillAmberFg: '#92580A', pillPinkBg: '#FDE3EE', pillPinkFg: '#BE185D' },
+      dark: { bg: '#0E1210', card: '#171C19', line: 'rgba(255,255,255,0.08)', text: '#ECF1ED', text2: '#B2BAB4', muted: '#9AA39C', track: '#252C28', seg: '#1F2522', segOn: '#2C3430', accent: '#34D399', accentText: '#6EE7B7', blue: '#60A5FA', amber: '#FBBF24', pink: '#F472B6', violet: '#A78BFA', grid: 'rgba(255,255,255,0.09)', shadow: '0 1px 2px rgba(0,0,0,0.3), 0 14px 36px rgba(0,0,0,0.28)', pillIdleBg: '#252C28', pillIdleFg: '#B2BAB4', pillBlueBg: 'rgba(96,165,250,0.16)', pillBlueFg: '#93C5FD', pillGreenBg: 'rgba(52,211,153,0.16)', pillGreenFg: '#6EE7B7', pillAmberBg: 'rgba(251,191,36,0.16)', pillAmberFg: '#FCD34D', pillPinkBg: 'rgba(244,114,182,0.16)', pillPinkFg: '#F9A8D4' }
+    };
+    const C = THEMES[this.props.theme === 'dark' ? 'dark' : 'light'];
+    const themeVars = Object.keys(C).map((k) => '--' + k + ':' + C[k]).join(';');
+
+    const defs = [
+      ['Token visualizer', 'D:\\Projects\\token-visualizer', '386 M', '刚刚', true, 11, 14, 8],
+      ['paper-experiments', 'D:\\Projects\\paper-experiments', '342 M', '3 小时前', true, 23, 12, 9],
+      ['kicad-board', 'D:\\Projects\\kicad-board', '241 M', '昨天', false, 31, 8, 7],
+      ['course-notes', 'D:\\Projects\\course-notes', '187 M', '3 天前', false, 47, 6, 5],
+      ['blog-site', 'D:\\Projects\\blog-site', '98 M', '1 周前', false, 59, 3, 3],
+      ['dotfiles', 'D:\\Projects\\dotfiles', '41 M', '2 周前', false, 71, 1.5, 1.4]
+    ];
+    const projects = defs.map((d, i) => {
+      const sp = this.spark(this.series(30, d[6], d[7], d[5]), 84, 22, 2);
+      return { name: d[0], path: d[1], total: d[2], ago: d[3], active: d[4], gid: 'pg' + i, fill: 'url(#pg' + i + ')', line: sp.line, area: sp.area };
+    });
+    const dd = this.series(30, 45, 20, 7); let a = 0; const cum = dd.map((v) => (a += v));
+    const as = this.spark(cum, 84, 22, 2);
+    const allSpark = { line: as.line, area: as.area };
+
+    const raw = [
+      ['重构数据解析与去重管线', 'Token visualizer', '11/08 21:14', '3 h 42 m', '1,284', '218.6 M', '—', 'claude-sonnet-5-5'],
+      ['PCB 布线与 DRC 迭代', 'kicad-board', '11/03 09:30', '5 h 05 m', '1,102', '187.2 M', '—', 'claude-opus-5-5'],
+      ['实验结果表格与图表整理', 'paper-experiments', '11/05 14:02', '2 h 18 m', '861', '142.9 M', '—', 'claude-opus-5-5'],
+      ['课程笔记整理与复习计划', 'course-notes', '10/29 19:40', '1 h 51 m', '640', '96.4 M', '—', 'claude-sonnet-5'],
+      ['博客站点迁移', 'blog-site', '10/24 10:12', '1 h 20 m', '455', '71.8 M', '—', 'claude-sonnet-5-5'],
+      ['本地模型对比测试', '临时对话 Scratch', '11/09 22:30', '0 h 48 m', '538', '45.0 M', '本地', 'Qwen3.6-35B-A3B'],
+      ['Shell 配置排查', 'dotfiles', '10/20 16:05', '0 h 36 m', '210', '22.1 M', '—', 'claude-sonnet-5-5'],
+      ['论文图表样式微调', 'paper-experiments', '11/07 11:20', '0 h 29 m', '173', '17.6 M', '—', 'claude-opus-4-8']
+    ];
+    const rows = raw.map((r, i) => ({
+      title: r[0], project: r[1], start: r[2], dur: r[3], req: r[4], tokens: r[5], cost: r[6], model: r[7],
+      rowStyle: i === 0 ? 'background:' + C.seg : ''
+    }));
+
+    // 逐次请求柱状（最近 60 次）
+    const rg = this.rng(88);
+    const bars = Array.from({ length: 60 }, (_, i) => {
+      let v = 40 + 60 * rg();
+      if (i % 11 === 4) v = 130 + 55 * rg();
+      const h = v / 200 * 160;
+      return { x: (42 + i * 7.2).toFixed(1), y: (176 - h).toFixed(1), h: h.toFixed(1) };
+    });
+
+    // 上下文增长（锯齿：两次压缩）
+    const pts = [];
+    let v = 18;
+    for (let i = 0; i < 60; i++) {
+      if (i === 22 || i === 45) v = 38;
+      else v += 4 + 3.4 * rg();
+      pts.push([40 + i * 436 / 59, 176 - Math.min(v, 195) / 200 * 160]);
+    }
+    const line = 'M' + pts.map((p) => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' L');
+    const ctx = {
+      line: line,
+      area: line + ' L476 176 L40 176 Z',
+      marks: [22, 45].map((i) => ({ x: (40 + i * 436 / 59).toFixed(1) }))
+    };
+
+    const tools = [['Bash', 412, 412], ['Edit', 336, 412], ['Read', 301, 412], ['Write', 118, 412], ['Grep', 97, 412]].map((t) => ({ name: t[0], n: String(t[1]), w: (t[1] / t[2] * 100).toFixed(1) + '%' }));
+
+    return { themeVars: themeVars, c: C, projects: projects, allSpark: allSpark, rows: rows, bars: bars, ctx: ctx, tools: tools };
+  }
+}
+</script>
+</body>
+</html>

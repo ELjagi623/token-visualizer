@@ -1,0 +1,229 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.h2 {
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.sub {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+.legendBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  margin: -4px -8px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text2);
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.legendBtn:hover {
+  background: var(--seg);
+}
+
+.legendBtn[aria-pressed='false'] {
+  opacity: 0.45;
+  text-decoration: line-through;
+}
+
+.swatch {
+  width: 18px;
+  height: 3px;
+  border-radius: 2px;
+  flex: none;
+}
+
+.swatchBox {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex: none;
+}
+
+.hint {
+  margin-left: auto;
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: var(--muted);
+  font-size: 13.5px;
+  border-radius: 18px;
+  border: 1px dashed var(--grid);
+}
+
+.err {
+  color: var(--pillPinkFg);
+  background: var(--pillPinkBg);
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 13px;
+}
+
+.pair {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.half {
+  flex: 1 1 440px;
+  min-width: 0;
+}
+
+.badge {
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: var(--pillGreenBg);
+  color: var(--pillGreenFg);
+  white-space: nowrap;
+}
+
+.badgeDown {
+  background: var(--pillAmberBg);
+  color: var(--pillAmberFg);
+}
+
+/* 日历热力图 */
+.heatScroll {
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.heat {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, 14px);
+  gap: 4px;
+  width: max-content;
+}
+
+.cell {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  border: 0;
+  padding: 0;
+  background: var(--track);
+  cursor: pointer;
+}
+
+.cell:hover {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.cell[aria-pressed='true'] {
+  outline: 2px solid var(--text);
+  outline-offset: 1px;
+}
+
+.cellEmpty {
+  width: 14px;
+  height: 14px;
+}
+
+.l1 { background: var(--h1); }
+.l2 { background: var(--h2); }
+.l3 { background: var(--h3); }
+.l4 { background: var(--h4); }
+
+.heatLegend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.heatLegend span.cellSample {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: var(--track);
+}
+
+/* 当日明细 */
+.dayList {
+  display: flex;
+  flex-direction: column;
+}
+
+.dayRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 6px;
+  border-top: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+  border-radius: 12px;
+}
+
+.dayRow:first-child {
+  border-top: 0;
+}
+
+.dayRow:hover {
+  background: var(--seg);
+}
+
+.dayTitle {
+  font-weight: 500;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dayMeta {
+  color: var(--muted);
+  font-size: 12.5px;
+  margin-top: 2px;
+}
+
+.close {
+  align-self: flex-start;
+}

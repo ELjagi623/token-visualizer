@@ -1,0 +1,354 @@
+.page {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.h2 {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.desc {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+}
+
+.row:first-of-type {
+  border-top: 0;
+}
+
+.rowLabel {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.rowTitle {
+  font-weight: 500;
+}
+
+.rowHint {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+.rowControl {
+  flex: 2 1 380px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  min-width: 0;
+}
+
+.rowControlEnd {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.field {
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--seg);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  width: 100%;
+  min-width: 0;
+}
+
+.field::placeholder {
+  color: var(--muted);
+}
+
+.field:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.field[aria-invalid='true'] {
+  border-color: var(--pink);
+}
+
+.grow {
+  flex: 1 1 240px;
+  min-width: 0;
+}
+
+.fieldSm {
+  width: 92px;
+}
+
+.fieldMd {
+  width: 160px;
+}
+
+.unit {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.switch {
+  width: 52px;
+  height: 30px;
+  border-radius: 999px;
+  border: 0;
+  background: var(--track);
+  position: relative;
+  cursor: pointer;
+  flex: none;
+  transition: background-color 0.2s var(--ease);
+}
+
+.switch i {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  transition: left 0.2s var(--ease);
+}
+
+.switchOn {
+  background: var(--accent);
+}
+
+.switchOn i {
+  left: 25px;
+}
+
+.switch:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.warn {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--pillAmberBg);
+  color: var(--pillAmberFg);
+  font-size: 13.5px;
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+.warn svg {
+  flex: none;
+  margin-top: 2px;
+}
+
+.msg {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.msgOk {
+  color: var(--accentText);
+}
+
+.msgErr {
+  color: var(--pillPinkFg);
+}
+
+.scroll {
+  overflow-x: auto;
+  /* 表头里的 sr-only（absolute）以它为包含块，否则静态位置落在表格最右侧，撑出整页横向滚动 */
+  position: relative;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 860px;
+}
+
+.table th {
+  padding: 0 8px 12px;
+  text-align: left;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 10px 8px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.model {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.badge {
+  margin-left: 8px;
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--seg);
+  color: var(--text2);
+}
+
+.rowActions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.iconBtn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--text2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.iconBtn:hover {
+  background: var(--seg);
+  color: var(--text);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.sel {
+  appearance: none;
+  background-image: none;
+  padding-right: 14px;
+}
+
+.projRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+
+.projChild {
+  padding-left: 28px;
+}
+
+.projNames {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.projName {
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-wrap: anywhere;
+}
+
+.projPath {
+  color: var(--muted);
+  font-size: 12.5px;
+  margin-top: 3px;
+  overflow-wrap: anywhere;
+}
+
+.pinMark {
+  color: var(--accentText);
+  display: inline-flex;
+}
+
+.renameBox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  flex: 1 1 320px;
+}
+
+.foot {
+  color: var(--muted);
+  font-size: 12.5px;
+  padding-top: 6px;
+}
+
+.saveStatus {
+  font-size: 13px;
+  min-height: 20px;
+}
+
+.planNote {
+  color: var(--muted);
+  font-size: 12.5px;
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+.hiddenList {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .switch,
+  .switch i {
+    transition: none;
+  }
+}

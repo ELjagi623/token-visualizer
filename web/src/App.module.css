@@ -1,0 +1,44 @@
+.shell {
+  min-height: 100vh;
+  padding: 20px 32px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.body {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.main {
+  flex: 1 1 0;
+  min-width: 0;
+  outline: none;
+}
+
+.skip {
+  position: absolute;
+  left: 16px;
+  top: -64px;
+  z-index: 100;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadowPop);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.skip:focus-visible {
+  top: 12px;
+}
+
+@media (max-width: 899.98px) {
+  .shell {
+    padding: 16px 16px 40px;
+  }
+}

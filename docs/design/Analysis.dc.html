@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>分析</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<style>
+body{margin:0}
+.dcroot,.dcroot *{box-sizing:border-box}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}
+.seg{display:inline-flex;gap:2px;padding:4px;background:var(--seg);border-radius:999px}
+.seg button,.seg a{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 18px;border:0;border-radius:999px;background:transparent;color:var(--text2);font:inherit;font-size:14.5px;font-weight:500;cursor:pointer;text-decoration:none}
+.seg button:hover,.seg a:hover{color:var(--text)}
+.seg .on{background:var(--segOn);color:var(--text);box-shadow:0 1px 2px rgba(0,0,0,.08),0 2px 8px rgba(0,0,0,.05)}
+.seg.sm button{min-height:34px;padding:0 14px;font-size:13px}
+.chip{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--text);font:inherit;font-size:13.5px;font-weight:500;cursor:pointer}
+.pill{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-radius:999px;font-size:13.5px;font-weight:500;white-space:nowrap}
+.dot{width:8px;height:8px;border-radius:50%;background:currentColor;flex:none}
+.pulse{animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+.num{font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
+.unit{color:var(--muted);font-weight:500}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media (max-width:1180px){.g3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){.g2{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:760px){.g3{grid-template-columns:minmax(0,1fr)}}
+input::placeholder{color:var(--muted)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.pulse{animation:none}}
+</style>
+</helmet>
+<div style="{{themeVars}}">
+<div class="dcroot" style="min-height:100%;background:var(--bg);color:var(--text);font-family:'Outfit','Noto Sans SC','HarmonyOS Sans SC','Microsoft YaHei',system-ui,sans-serif;font-size:14px;padding:20px 32px 48px;display:flex;flex-direction:column;gap:24px">
+
+<header style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+<div style="display:flex;align-items:center;gap:12px">
+<div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(145deg,#34D399,#059669);display:flex;align-items:center;justify-content:center">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 8l9 5 9-5-9-5zM3 12l9 5 9-5M3 16l9 5 9-5"></path></svg>
+</div>
+<div style="font-size:23px;font-weight:700;letter-spacing:-0.03em">Token Visualizer</div>
+</div>
+<nav class="seg" aria-label="主导航">
+<a href="Main.dc.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM15 3h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM15 12h4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2zM5 15h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2z"></path></svg>总览</a>
+<a href="Analysis.dc.html" class="on" aria-current="page"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20v-6M10 20V5M16 20v-9M21 20H3"></path></svg>分析</a>
+<a href="Sessions.dc.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"></path></svg>会话</a>
+<a href="Settings.dc.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M16 4.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM8 14.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"></path></svg>设置</a>
+</nav>
+<div style="display:flex;align-items:center;gap:12px">
+<span class="pill" style="background:var(--pillGreenBg);color:var(--pillGreenFg)"><span class="dot pulse"></span>Live · 今日 <b class="num">38.6 M</b> tokens</span>
+<button type="button" aria-label="切换深色主题" style="width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4 6.5 6.5 0 0 0 20 14.5z"></path></svg></button>
+</div>
+</header>
+
+<div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
+
+<aside style="flex:0 0 288px;display:flex;flex-direction:column;gap:12px">
+<label style="display:flex;align-items:center;gap:10px;height:46px;padding:0 14px;border-radius:14px;background:var(--card);border:1px solid var(--line)">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-3.5-3.5"></path></svg>
+<input type="search" placeholder="搜索项目或路径" aria-label="搜索项目" style="border:0;background:transparent;font:inherit;font-size:14px;color:var(--text);outline-offset:6px;width:100%;min-width:0">
+</label>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:0 4px;color:var(--muted);font-size:13px">
+<span>项目</span>
+<button type="button" class="chip" style="min-height:34px;padding:0 12px;font-size:12.5px">按总量排序<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+</div>
+<ul style="margin:0;padding:0;display:flex;flex-direction:column;gap:4px">
+<li style="list-style:none">
+<a href="Analysis.dc.html" aria-current="true" class="card" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:18px;text-decoration:none;color:inherit">
+<div style="min-width:0">
+<div style="font-weight:600;font-size:15px">全部项目</div>
+<div style="color:var(--muted);font-size:12px;margin-top:3px">21 个项目 · 112 个会话</div>
+</div>
+<div style="text-align:right;flex:0 0 84px">
+<div class="num" style="font-size:15px">1.42 B</div>
+<svg width="84" height="22" viewBox="0 0 84 22" aria-hidden="true"><defs><linearGradient id="allg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{{c.accent}}" stop-opacity="0.3"></stop><stop offset="1" stop-color="{{c.accent}}" stop-opacity="0"></stop></linearGradient></defs><path d="{{allSpark.area}}" fill="url(#allg)"></path><path d="{{allSpark.line}}" fill="none" stroke="{{c.accent}}" stroke-width="1.6" stroke-linecap="round"></path></svg>
+</div>
+</a>
+</li>
+<sc-for list="{{projects}}" as="p" hint-placeholder-count="6">
+<li style="list-style:none">
+<a href="Analysis.dc.html" title="{{p.path}}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 16px;border-radius:18px;text-decoration:none;color:inherit">
+<div style="min-width:0">
+<div style="font-weight:500;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{p.name}}</div>
+<div style="display:flex;align-items:center;gap:6px;color:var(--muted);font-size:12px;margin-top:3px"><sc-if value="{{p.active}}" hint-placeholder-val="{{true}}"><span class="dot" style="color:var(--accent);width:7px;height:7px"></span></sc-if>{{p.ago}}</div>
+</div>
+<div style="text-align:right;flex:0 0 84px">
+<div class="num" style="font-size:14px">{{p.total}}</div>
+<svg width="84" height="22" viewBox="0 0 84 22" aria-hidden="true"><defs><linearGradient id="{{p.gid}}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{{c.accent}}" stop-opacity="0.26"></stop><stop offset="1" stop-color="{{c.accent}}" stop-opacity="0"></stop></linearGradient></defs><path d="{{p.area}}" fill="{{p.fill}}"></path><path d="{{p.line}}" fill="none" stroke="{{c.accent}}" stroke-width="1.5" stroke-linecap="round"></path></svg>
+</div>
+</a>
+</li>
+</sc-for>
+<li style="list-style:none">
+<a href="Analysis.dc.html" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 16px;border-radius:18px;text-decoration:none;color:inherit">
+<div style="display:flex;align-items:center;gap:10px;min-width:0">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"></path></svg>
+<div>
+<div style="font-weight:500;font-size:14.5px">临时对话 Scratch</div>
+<div style="color:var(--muted);font-size:12px;margin-top:3px">14 个临时目录 · 已归并</div>
+</div>
+</div>
+<div style="display:flex;align-items:center;gap:6px"><span class="num" style="font-size:14px">125 M</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg></div>
+</a>
+</li>
+</ul>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 4px 0;color:var(--muted);font-size:12px">
+<span>21 个项目 · 更新于 12:04:31</span>
+<button type="button" aria-label="手动刷新" style="width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--text2);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.5-3.5M4 4v4h4M4 13a8 8 0 0 0 14.5 3.5M20 20v-4h-4"></path></svg></button>
+</div>
+</aside>
+
+<main style="flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:24px">
+
+<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+<div>
+<h1 style="margin:0;font-size:28px;font-weight:600;letter-spacing:-0.025em">分析 · 全部项目</h1>
+<div style="color:var(--muted);font-size:13.5px;margin-top:4px">token 花在哪、哪个模型、什么时候、哪些工具</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+<button type="button" class="chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zM3 10h18M8 3v4M16 3v4"></path></svg>近 30 天<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+<button type="button" class="chip">模型：全部<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+<div class="seg sm" role="group" aria-label="统计口径"><button type="button" class="on" aria-pressed="true" title="含缓存读">Total</button><button type="button" aria-pressed="false" title="不含缓存读">Fresh</button></div>
+</div>
+</div>
+
+<div class="g2">
+
+<section class="card" style="padding:28px;display:flex;flex-direction:column;gap:20px">
+<div>
+<h2 style="margin:0;font-size:21px;font-weight:600;letter-spacing:-0.02em">Token 类型构成</h2>
+<div style="color:var(--muted);font-size:13px;margin-top:4px">输入 / 缓存写 / 缓存读 / 输出</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:24px">
+<svg width="196" height="196" viewBox="0 0 200 200" role="img" aria-label="类型构成环形图：缓存读占 82.7%，输出 12.3%，缓存写 4.4%，输入 0.6%" style="flex:none">
+<g transform="rotate(-90 100 100)">
+<circle cx="100" cy="100" r="70" fill="none" stroke="{{c.track}}" stroke-width="22"></circle>
+<sc-for list="{{typeDonut}}" as="s" hint-placeholder-count="4">
+<circle cx="100" cy="100" r="70" fill="none" stroke="{{s.color}}" stroke-width="22" stroke-dasharray="{{s.dash}}" stroke-dashoffset="{{s.off}}"></circle>
+</sc-for>
+</g>
+<text x="100" y="98" text-anchor="middle" font-size="26" font-weight="600" fill="{{c.text}}">1.42 B</text>
+<text x="100" y="118" text-anchor="middle" font-size="12" fill="{{c.muted}}">总 Token</text>
+</svg>
+<ul style="margin:0;padding:0;flex:1 1 220px;display:flex;flex-direction:column;gap:12px;min-width:0">
+<sc-for list="{{typeRows}}" as="r" hint-placeholder-count="4">
+<li style="list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px">
+<span style="display:flex;align-items:center;gap:10px;color:var(--text2);font-size:14px"><span style="width:10px;height:10px;border-radius:3px;background:{{r.color}};flex:none"></span>{{r.name}}</span>
+<span style="display:flex;align-items:baseline;gap:10px"><span class="num" style="font-size:14.5px">{{r.value}}</span><span class="num" style="font-size:12.5px;color:var(--muted);width:44px;text-align:right">{{r.pct}}</span></span>
+</li>
+</sc-for>
+</ul>
+</div>
+<div style="padding:14px 16px;border-radius:16px;background:var(--seg);display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13.5px">
+<span style="color:var(--text2)">思考（Thinking）占输出</span><span><span class="num" style="font-size:16px">55.2</span><span class="unit" style="margin-left:2px">%</span><span style="color:var(--muted);margin-left:10px">96 M / 174 M</span></span>
+</div>
+</section>
+
+<section class="card" style="padding:28px;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px">
+<div>
+<h2 style="margin:0;font-size:21px;font-weight:600;letter-spacing:-0.02em">模型使用排行</h2>
+<div style="color:var(--muted);font-size:13px;margin-top:4px">最常用：claude-sonnet-5-5 · 5 个模型</div>
+</div>
+<div class="seg sm" role="group" aria-label="模型分组"><button type="button" class="on" aria-pressed="true">原始名</button><button type="button" aria-pressed="false">按家族</button></div>
+</div>
+<ul style="margin:0;padding:0;display:flex;flex-direction:column;gap:16px">
+<sc-for list="{{models}}" as="m" hint-placeholder-count="5">
+<li style="list-style:none">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px">
+<span style="display:flex;align-items:center;gap:8px;min-width:0"><span style="font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{m.name}}</span><sc-if value="{{m.local}}" hint-placeholder-val="{{false}}"><span style="font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--pillBlueBg);color:var(--pillBlueFg);flex:none">本地</span></sc-if></span>
+<span style="display:flex;align-items:baseline;gap:10px;flex:none"><span class="num">{{m.tokens}}</span><span class="num" style="font-size:12.5px;color:var(--muted);width:44px;text-align:right">{{m.pct}}</span></span>
+</div>
+<div style="height:8px;border-radius:999px;background:var(--track);margin-top:8px;overflow:hidden"><div style="width:{{m.w}};height:100%;border-radius:999px;background:{{m.color}}"></div></div>
+<div style="color:var(--muted);font-size:12px;margin-top:5px">{{m.req}} 次请求</div>
+</li>
+</sc-for>
+</ul>
+</section>
+
+</div>
+
+<section class="card" style="padding:28px;display:flex;flex-direction:column;gap:22px">
+<div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:16px">
+<div>
+<h2 style="margin:0;font-size:21px;font-weight:600;letter-spacing:-0.02em">缓存效率</h2>
+<div style="color:var(--muted);font-size:13px;margin-top:4px">缓存命中率随时间变化 · 近 30 天</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:28px">
+<div><div style="color:var(--muted);font-size:12.5px">命中率</div><div style="margin-top:4px"><span class="num" style="font-size:30px;line-height:1">94.3</span><span class="unit" style="font-size:14px;margin-left:4px">%</span></div></div>
+<div><div style="color:var(--muted);font-size:12.5px">写 : 读</div><div style="margin-top:4px"><span class="num" style="font-size:30px;line-height:1">1 : 18.9</span></div></div>
+<div><div style="color:var(--muted);font-size:12.5px">估算节省</div><div style="margin-top:4px"><span class="num" style="font-size:30px;line-height:1">—</span><span style="color:var(--muted);font-size:12.5px;margin-left:8px">价格表待确认</span></div></div>
+</div>
+</div>
+<svg viewBox="0 0 960 220" style="display:block;width:100%;height:auto" role="img" aria-label="近 30 天缓存命中率折线，整体在 91% 到 97% 之间波动">
+<defs><linearGradient id="hitfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{{c.accent}}" stop-opacity="0.26"></stop><stop offset="1" stop-color="{{c.accent}}" stop-opacity="0"></stop></linearGradient></defs>
+<line x1="48" y1="188" x2="944" y2="188" stroke="{{c.grid}}" stroke-width="1"></line>
+<line x1="48" y1="138.9" x2="944" y2="138.9" stroke="{{c.grid}}" stroke-width="1" stroke-dasharray="3 5"></line>
+<line x1="48" y1="77.4" x2="944" y2="77.4" stroke="{{c.grid}}" stroke-width="1" stroke-dasharray="3 5"></line>
+<line x1="48" y1="16" x2="944" y2="16" stroke="{{c.grid}}" stroke-width="1" stroke-dasharray="3 5"></line>
+<text x="0" y="143" font-size="12" fill="{{c.muted}}">90%</text>
+<text x="0" y="81" font-size="12" fill="{{c.muted}}">95%</text>
+<text x="0" y="20" font-size="12" fill="{{c.muted}}">100%</text>
+<path d="{{hit.area}}" fill="url(#hitfill)"></path>
+<path d="{{hit.line}}" fill="none" stroke="{{c.accent}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
+<sc-for list="{{hit.xTicks}}" as="t" hint-placeholder-count="7">
+<text x="{{t.x}}" y="212" font-size="12" text-anchor="middle" fill="{{c.muted}}">{{t.label}}</text>
+</sc-for>
+</svg>
+</section>
+
+<div class="g2">
+
+<section class="card" style="padding:28px;display:flex;flex-direction:column;gap:18px">
+<div>
+<h2 style="margin:0;font-size:21px;font-weight:600;letter-spacing:-0.02em">活跃时段</h2>
+<div style="color:var(--muted);font-size:13px;margin-top:4px">星期 × 小时 · 颜色越深用量越高</div>
+</div>
+<div role="img" aria-label="一周七天 24 小时的使用强度热力图，工作日白天和晚间较深" style="display:flex;flex-direction:column;gap:4px">
+<div style="display:grid;grid-template-columns:28px repeat(24,minmax(0,1fr));gap:3px;color:var(--muted);font-size:11px">
+<span></span><span style="grid-column:span 6">00</span><span style="grid-column:span 6">06</span><span style="grid-column:span 6">12</span><span style="grid-column:span 6">18</span>
+</div>
+<sc-for list="{{week}}" as="d" hint-placeholder-count="7">
+<div style="display:grid;grid-template-columns:28px repeat(24,minmax(0,1fr));gap:3px;align-items:center">
+<span style="color:var(--muted);font-size:12px">{{d.label}}</span>
+<sc-for list="{{d.cells}}" as="cl" hint-placeholder-count="24">
+<div style="{{cl.style}}"></div>
+</sc-for>
+</div>
+</sc-for>
+</div>
+<div style="color:var(--text2);font-size:13.5px">最忙时段：周三至周四 14:00 – 17:00</div>
+</section>
+
+<section class="card" style="padding:28px;display:flex;flex-direction:column;gap:20px">
+<div>
+<h2 style="margin:0;font-size:21px;font-weight:600;letter-spacing:-0.02em">工具使用排行</h2>
+<div style="color:var(--muted);font-size:13px;margin-top:4px">仅统计工具名称与调用次数</div>
+</div>
+<ul style="margin:0;padding:0;display:flex;flex-direction:column;gap:14px">
+<sc-for list="{{tools}}" as="t" hint-placeholder-count="7">
+<li style="list-style:none;display:grid;grid-template-columns:96px minmax(0,1fr) 64px;align-items:center;gap:12px;font-size:13.5px">
+<span style="color:var(--text2);white-space:nowrap">{{t.name}}</span>
+<span style="height:10px;border-radius:999px;background:var(--track);overflow:hidden"><span style="display:block;width:{{t.w}};height:100%;border-radius:999px;background:var(--accent)"></span></span>
+<span class="num" style="text-align:right">{{t.n}}</span>
+</li>
+</sc-for>
+</ul>
+</section>
+
+</div>
+
+<div class="g3">
+
+<section class="card" style="padding:28px;display:flex;flex-direction:column;gap:18px">
+<div>
+<h2 style="margin:0;font-size:19px;font-weight:600;letter-spacing:-0.02em">项目对比</h2>
+<div style="color:var(--muted);font-size:13px;margin-top:4px">各项目总量占比</div>
+</div>
+<ul style="margin:0;padding:0;display:flex;flex-direction:column;gap:13px">
+<sc-for list="{{projBars}}" as="b" hint-placeholder-count="7">
+<li style="list-style:none">
+<div style="display:flex;justify-content:space-between;gap:8px;font-size:13.5px"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{b.name}}</span><span class="num">{{b.total}}</span></div>
+<div style="height:7px;border-radius:999px;background:var(--track);margin-top:6px;overflow:hidden"><div style="width:{{b.w}};height:100%;border-radius:999px;background:{{b.color}}"></div></div>
+</li>
+</sc-for>
+</ul>
+</section>
+
+<section class="card" style="padding:28px;display:flex;flex-direction:column;gap:18px">
+<div>
+<h2 style="margin:0;font-size:19px;font-weight:600;letter-spacing:-0.02em">主线 vs 子代理</h2>
+<div style="color:var(--muted);font-size:13px;margin-top:4px">子代理（sidechain）消耗占比</div>
+</div>
+<svg width="150" height="150" viewBox="0 0 200 200" style="align-self:center" role="img" aria-label="子代理占 12.6%，主线占 87.4%">
+<g transform="rotate(-90 100 100)">
+<circle cx="100" cy="100" r="70" fill="none" stroke="{{c.track}}" stroke-width="22"></circle>
+<sc-for list="{{subDonut}}" as="s" hint-placeholder-count="2">
+<circle cx="100" cy="100" r="70" fill="none" stroke="{{s.color}}" stroke-width="22" stroke-dasharray="{{s.dash}}" stroke-dashoffset="{{s.off}}"></circle>
+</sc-for>
+</g>
+<text x="100" y="108" text-anchor="middle" font-size="28" font-weight="600" fill="{{c.text}}">12.6%</text>
+</svg>
+<div style="display:flex;flex-direction:column;gap:8px;font-size:13.5px">
+<div style="display:flex;justify-content:space-between"><span style="display:flex;align-items:center;gap:8px;color:var(--text2)"><span style="width:10px;height:10px;border-radius:3px;background:var(--accent)"></span>主线</span><span class="num">1.24 B</span></div>
+<div style="display:flex;justify-content:space-between"><span style="display:flex;align-items:center;gap:8px;color:var(--text2)"><span style="width:10px;height:10px;border-radius:3px;background:var(--blue)"></span>子代理</span><span class="num">179 M</span></div>
+</div>
+</section>
+
+<section class="card" style="padding:28px;display:flex;flex-direction:column;gap:18px">
+<div>
+<h2 style="margin:0;font-size:19px;font-weight:600;letter-spacing:-0.02em">本地 vs 云端模型</h2>
+<div style="color:var(--muted);font-size:13px;margin-top:4px">gguf / LM Studio 等本地模型</div>
+</div>
+<svg width="150" height="150" viewBox="0 0 200 200" style="align-self:center" role="img" aria-label="本地模型占 3.2%，云端模型占 96.8%">
+<g transform="rotate(-90 100 100)">
+<circle cx="100" cy="100" r="70" fill="none" stroke="{{c.track}}" stroke-width="22"></circle>
+<sc-for list="{{localDonut}}" as="s" hint-placeholder-count="2">
+<circle cx="100" cy="100" r="70" fill="none" stroke="{{s.color}}" stroke-width="22" stroke-dasharray="{{s.dash}}" stroke-dashoffset="{{s.off}}"></circle>
+</sc-for>
+</g>
+<text x="100" y="108" text-anchor="middle" font-size="28" font-weight="600" fill="{{c.text}}">3.2%</text>
+</svg>
+<div style="display:flex;flex-direction:column;gap:8px;font-size:13.5px">
+<div style="display:flex;justify-content:space-between"><span style="display:flex;align-items:center;gap:8px;color:var(--text2)"><span style="width:10px;height:10px;border-radius:3px;background:var(--accent)"></span>云端</span><span class="num">1.375 B</span></div>
+<div style="display:flex;justify-content:space-between"><span style="display:flex;align-items:center;gap:8px;color:var(--text2)"><span style="width:10px;height:10px;border-radius:3px;background:var(--violet)"></span>本地（成本不适用）</span><span class="num">45 M</span></div>
+</div>
+</section>
+
+</div>
+
+<section class="card" style="padding:28px;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px">
+<div>
+<h2 style="margin:0;font-size:21px;font-weight:600;letter-spacing:-0.02em">数据质量</h2>
+<div style="color:var(--muted);font-size:13px;margin-top:4px">核对解析是否完整 · 去重前后记录数</div>
+</div>
+<span class="pill" style="background:var(--pillGreenBg);color:var(--pillGreenFg)"><span class="dot"></span>全部文件已解析</span>
+</div>
+<div class="g3">
+<sc-for list="{{quality}}" as="q" hint-placeholder-count="6">
+<div style="padding:18px 20px;border-radius:18px;background:var(--seg)">
+<div style="color:var(--muted);font-size:12.5px">{{q.label}}</div>
+<div style="margin-top:6px"><span class="num" style="font-size:26px;line-height:1.1">{{q.value}}</span><span class="unit" style="font-size:13px;margin-left:6px">{{q.unit}}</span></div>
+</div>
+</sc-for>
+</div>
+</section>
+
+</main>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":2300}}'>
+class Component extends DCLogic {
+  rng(seed) {
+    let s = seed >>> 0;
+    return () => { s = (Math.imul(s, 1664525) + 1013904223) >>> 0; return s / 4294967296; };
+  }
+  smooth(pts) {
+    if (pts.length < 2) return '';
+    const f = (n) => n.toFixed(1);
+    let d = 'M' + f(pts[0][0]) + ' ' + f(pts[0][1]);
+    for (let i = 0; i < pts.length - 1; i++) {
+      const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+      const t = 0.17;
+      d += ' C' + f(p1[0] + (p2[0] - p0[0]) * t) + ' ' + f(p1[1] + (p2[1] - p0[1]) * t) + ' ' + f(p2[0] - (p3[0] - p1[0]) * t) + ' ' + f(p2[1] - (p3[1] - p1[1]) * t) + ' ' + f(p2[0]) + ' ' + f(p2[1]);
+    }
+    return d;
+  }
+  spark(vals, w, h, pad) {
+    const mx = Math.max(...vals), mn = Math.min(...vals), rg = (mx - mn) || 1;
+    const pts = vals.map((v, i) => [i * (w / (vals.length - 1)), pad + (h - 2 * pad) * (1 - (v - mn) / rg)]);
+    const line = this.smooth(pts);
+    return { line: line, area: line + ' L' + w + ' ' + h + ' L0 ' + h + ' Z' };
+  }
+  series(n, base, amp, seed) {
+    const r = this.rng(seed);
+    return Array.from({ length: n }, (_, i) => Math.max(1, base + amp * (r() - 0.5) * 2 + amp * 0.35 * Math.sin(i / 1.1)));
+  }
+  donut(vals, colors) {
+    const CIRC = 2 * Math.PI * 70;
+    const total = vals.reduce((a, b) => a + b, 0);
+    let start = 0;
+    return vals.map((v, i) => {
+      const len = (v / total) * CIRC;
+      const vis = Math.max(2, len - 3);
+      const seg = { color: colors[i], dash: vis.toFixed(2) + ' ' + (CIRC - vis).toFixed(2), off: (-start).toFixed(2) };
+      start += len;
+      return seg;
+    });
+  }
+  renderVals() {
+    const THEMES = {
+      light: { bg: '#F6F6F3', card: '#FFFFFF', line: 'rgba(17,22,19,0.07)', text: '#111613', text2: '#555C56', muted: '#6B726C', track: '#ECEEEA', seg: '#EDEEEA', segOn: '#FFFFFF', accent: '#10B981', accentText: '#047857', blue: '#3B82F6', amber: '#F59E0B', pink: '#EC4899', violet: '#8B5CF6', grid: 'rgba(17,22,19,0.09)', shadow: '0 1px 2px rgba(17,22,19,0.04), 0 14px 36px rgba(17,22,19,0.05)', pillIdleBg: '#ECEEEA', pillIdleFg: '#555C56', pillBlueBg: '#E3EEFF', pillBlueFg: '#1D4ED8', pillGreenBg: '#D9F5E6', pillGreenFg: '#047857', pillAmberBg: '#FEF0CF', pillAmberFg: '#92580A', pillPinkBg: '#FDE3EE', pillPinkFg: '#BE185D', h1: 'rgba(16,185,129,0.24)', h2: 'rgba(16,185,129,0.45)', h3: 'rgba(16,185,129,0.72)', h4: 'rgba(16,185,129,1)' },
+      dark: { bg: '#0E1210', card: '#171C19', line: 'rgba(255,255,255,0.08)', text: '#ECF1ED', text2: '#B2BAB4', muted: '#9AA39C', track: '#252C28', seg: '#1F2522', segOn: '#2C3430', accent: '#34D399', accentText: '#6EE7B7', blue: '#60A5FA', amber: '#FBBF24', pink: '#F472B6', violet: '#A78BFA', grid: 'rgba(255,255,255,0.09)', shadow: '0 1px 2px rgba(0,0,0,0.3), 0 14px 36px rgba(0,0,0,0.28)', pillIdleBg: '#252C28', pillIdleFg: '#B2BAB4', pillBlueBg: 'rgba(96,165,250,0.16)', pillBlueFg: '#93C5FD', pillGreenBg: 'rgba(52,211,153,0.16)', pillGreenFg: '#6EE7B7', pillAmberBg: 'rgba(251,191,36,0.16)', pillAmberFg: '#FCD34D', pillPinkBg: 'rgba(244,114,182,0.16)', pillPinkFg: '#F9A8D4', h1: 'rgba(52,211,153,0.25)', h2: 'rgba(52,211,153,0.45)', h3: 'rgba(52,211,153,0.72)', h4: 'rgba(52,211,153,1)' }
+    };
+    const C = THEMES[this.props.theme === 'dark' ? 'dark' : 'light'];
+    const themeVars = Object.keys(C).map((k) => '--' + k + ':' + C[k]).join(';');
+
+    // 侧栏
+    const defs = [
+      ['Token visualizer', 'D:\\Projects\\token-visualizer', '386 M', '刚刚', true, 11, 14, 8],
+      ['paper-experiments', 'D:\\Projects\\paper-experiments', '342 M', '3 小时前', true, 23, 12, 9],
+      ['kicad-board', 'D:\\Projects\\kicad-board', '241 M', '昨天', false, 31, 8, 7],
+      ['course-notes', 'D:\\Projects\\course-notes', '187 M', '3 天前', false, 47, 6, 5],
+      ['blog-site', 'D:\\Projects\\blog-site', '98 M', '1 周前', false, 59, 3, 3],
+      ['dotfiles', 'D:\\Projects\\dotfiles', '41 M', '2 周前', false, 71, 1.5, 1.4]
+    ];
+    const projects = defs.map((d, i) => {
+      const sp = this.spark(this.series(30, d[6], d[7], d[5]), 84, 22, 2);
+      return { name: d[0], path: d[1], total: d[2], ago: d[3], active: d[4], gid: 'pg' + i, fill: 'url(#pg' + i + ')', line: sp.line, area: sp.area };
+    });
+    const dd = this.series(30, 45, 20, 7); let a = 0; const cum = dd.map((v) => (a += v));
+    const as = this.spark(cum, 84, 22, 2);
+    const allSpark = { line: as.line, area: as.area };
+
+    // 类型构成：输入 9.0 / 缓存写 62.0 / 缓存读 1175 / 输出 174 (M)
+    const typeVals = [9.0, 62.0, 1175, 174];
+    const typeCols = [C.blue, C.amber, C.accent, C.violet];
+    const typeDonut = this.donut(typeVals, typeCols);
+    const typeRows = [
+      { name: '输入', value: '9.0 M', pct: '0.6%', color: C.blue },
+      { name: '缓存写', value: '62.0 M', pct: '4.4%', color: C.amber },
+      { name: '缓存读', value: '1,175 M', pct: '82.7%', color: C.accent },
+      { name: '输出（含思考）', value: '174 M', pct: '12.3%', color: C.violet }
+    ];
+
+    // 模型
+    const models = [
+      { name: 'claude-sonnet-5-5', tokens: '640 M', pct: '45.1%', w: '100%', req: '6,812', color: C.accent, local: false },
+      { name: 'claude-opus-5-5', tokens: '468 M', pct: '33.0%', w: '73%', req: '3,640', color: C.blue, local: false },
+      { name: 'claude-sonnet-5', tokens: '196 M', pct: '13.8%', w: '31%', req: '2,205', color: C.amber, local: false },
+      { name: 'claude-opus-4-8', tokens: '71 M', pct: '5.0%', w: '11%', req: '1,013', color: C.pink, local: false },
+      { name: 'Qwen3.6-35B-A3B', tokens: '45 M', pct: '3.1%', w: '7%', req: '538', color: C.violet, local: true }
+    ];
+
+    // 缓存命中率
+    const hv = this.series(30, 94.3, 2.4, 53).map((v) => Math.min(99.2, Math.max(89, v)));
+    const hx = (i) => 48 + i * 896 / 29;
+    const hy = (v) => 188 - (v - 86) / 14 * 172;
+    const hl = this.smooth(hv.map((v, i) => [hx(i), hy(v)]));
+    const hit = {
+      line: hl,
+      area: hl + ' L944 188 L48 188 Z',
+      xTicks: [[0, '10/12'], [5, '10/17'], [10, '10/22'], [15, '10/27'], [20, '11/01'], [25, '11/06'], [29, '11/10']].map((p) => ({ x: hx(p[0]).toFixed(1), label: p[1] }))
+    };
+
+    // 星期 × 小时
+    const r = this.rng(4242);
+    const labels = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+    const week = labels.map((lab, d) => {
+      const cells = [];
+      for (let h = 0; h < 24; h++) {
+        let base = 0;
+        if (h >= 9 && h <= 12) base = 0.55;
+        if (h >= 13 && h <= 17) base = 0.8;
+        if (h >= 20 && h <= 23) base = 0.6;
+        if (h >= 6 && h <= 8) base = 0.2;
+        if (d >= 5) base *= 0.55;
+        if ((d === 2 || d === 3) && h >= 14 && h <= 17) base = 1;
+        const v = base * (0.6 + 0.5 * r());
+        const lv = v < 0.08 ? 0 : v < 0.3 ? 1 : v < 0.5 ? 2 : v < 0.75 ? 3 : 4;
+        cells.push({ style: 'height:20px;border-radius:5px;background:' + (lv === 0 ? 'var(--track)' : C['h' + lv]) });
+      }
+      return { label: lab, cells: cells };
+    });
+
+    // 工具
+    const toolData = [['Bash', 4120], ['Read', 3015], ['Edit', 2870], ['Write', 1160], ['Grep', 980], ['PowerShell', 940], ['MCP 工具', 610]];
+    const tools = toolData.map((t) => ({ name: t[0], n: t[1].toLocaleString('en-US'), w: (t[1] / 4120 * 100).toFixed(1) + '%' }));
+
+    // 项目对比
+    const pb = [['Token visualizer', 386], ['paper-experiments', 342], ['kicad-board', 241], ['course-notes', 187], ['临时对话 Scratch', 125], ['blog-site', 98], ['dotfiles', 41]];
+    const cols = [C.accent, C.blue, C.amber, C.pink, C.violet, '#14B8A6', C.muted];
+    const projBars = pb.map((p, i) => ({ name: p[0], total: p[1] + ' M', w: (p[1] / 386 * 100).toFixed(1) + '%', color: cols[i] }));
+
+    const subDonut = this.donut([1241, 179], [C.accent, C.blue]);
+    const localDonut = this.donut([1375, 45], [C.accent, C.violet]);
+
+    const quality = [
+      { label: '已解析文件', value: '112', unit: '个' },
+      { label: '助手记录（去重前）', value: '26,342', unit: '条' },
+      { label: '唯一消息（全局去重后）', value: '14,208', unit: '条' },
+      { label: '去重剔除的重复记录', value: '12,134', unit: '条' },
+      { label: '排除的 <synthetic> 占位', value: '87', unit: '条' },
+      { label: '损坏行 · 解析耗时', value: '3', unit: '行 · 38.4 s' }
+    ];
+
+    return { themeVars: themeVars, c: C, projects: projects, allSpark: allSpark, typeDonut: typeDonut, typeRows: typeRows, models: models, hit: hit, week: week, tools: tools, projBars: projBars, subDonut: subDonut, localDonut: localDonut, quality: quality };
+  }
+}
+</script>
+</body>
+</html>

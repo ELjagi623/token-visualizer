@@ -1,0 +1,100 @@
+.tile {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 204px;
+  padding: 22px 24px 0;
+  position: relative;
+}
+
+.head {
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text2);
+  font-size: 15px;
+  font-weight: 500;
+  min-width: 0;
+}
+
+.title span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+}
+
+.delta {
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--seg);
+  color: var(--text);
+}
+
+.value {
+  margin-top: 14px;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  min-height: 44px;
+}
+
+.numBtn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  color: var(--text);
+  font-size: 44px;
+  line-height: 1;
+  cursor: copy;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.unitText {
+  font-size: 16px;
+  margin-left: 6px;
+  line-height: 1;
+}
+
+.note {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.spacer {
+  flex: 1;
+  min-height: 14px;
+}
+
+.copied {
+  position: absolute;
+  right: 20px;
+  top: 64px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--pillGreenBg);
+  color: var(--pillGreenFg);
+  font-size: 12px;
+  font-weight: 600;
+  animation: tv-fade-in 0.2s var(--ease);
+}
