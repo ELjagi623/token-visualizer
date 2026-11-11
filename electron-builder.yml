@@ -1,4 +1,4 @@
-# Windows 安装包 / 免安装版（npm run dist）。产物在 release/ 下。
+# Windows 安装包 / 便携版（npm run dist）。产物在 release/ 下。
 appId: com.tokenvisualizer.app
 productName: Token Visualizer
 copyright: Copyright (c) 2026 ELjagi623 (MIT License)
@@ -24,10 +24,13 @@ extraResources:
 
 win:
   icon: desktop/icon.png
+  artifactName: Token-Visualizer-${version}-portable-win-x64.${ext}
   target:
     - target: nsis
       arch: [x64]
-    - target: portable
+    # 便携版 = 解压即用的 zip：解压一次后每次启动约 0.6 秒。
+    # 不用 electron-builder 的单文件 portable 目标：它每次启动都要先把整个应用（约 320 MB）解压到临时目录，要等约 7 秒。
+    - target: zip
       arch: [x64]
 
 nsis:
@@ -40,9 +43,6 @@ nsis:
   shortcutName: Token Visualizer
   # 卸载时不删除 %APPDATA%\TokenVisualizer（设置与缓存），重装后仍在
   deleteAppDataOnUninstall: false
-
-portable:
-  artifactName: Token-Visualizer-${version}-portable.${ext}
 
 # 只带最小语言包，减小体积（界面是应用自己的网页，Chromium 自带的菜单 / 对话框语言不重要）
 electronLanguages:

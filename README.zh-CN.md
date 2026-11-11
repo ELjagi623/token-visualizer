@@ -18,7 +18,7 @@
 不需要安装 Node.js，也不需要浏览器：到 [Releases](../../releases) 页面下载
 
 - `Token-Visualizer-Setup-<版本>.exe`：安装版（可选安装目录，创建桌面 / 开始菜单快捷方式）；
-- `Token-Visualizer-<版本>-portable.exe`：免安装版（双击即用）。
+- `Token-Visualizer-<版本>-portable-win-x64.zip`：便携版。解压一次（放哪都行），之后双击 `Token Visualizer.exe`，不到 1 秒就能打开，免安装。
 
 双击后会打开一个独立窗口（不是浏览器标签页），关闭窗口即退出。与命令行版共用同一份设置与缓存（`%APPDATA%\TokenVisualizer`），卸载不会删除它们。
 
@@ -30,7 +30,7 @@
 ```
 npm install
 npm run app            # 构建并以独立窗口运行（开发调试）
-npm run dist           # 打包 Windows 安装包与免安装版，产物在 release/
+npm run dist           # 打包 Windows 安装包与便携版（zip），产物在 release/
 npm run smoke:desktop  # 冒烟测试：启动真实窗口，检查渲染、沙箱、单实例、退出释放端口
 ```
 
@@ -69,7 +69,7 @@ npm start              # 启动并自动打开浏览器 http://127.0.0.1:47821/�
 | `npm start` | 启动本地服务（仅绑定 127.0.0.1）；`-- --no-open` 不开浏览器，`-- --port <n>` 指定起始端口 |
 | `npm run build` | 构建前端到 `web/dist`（服务端托管它；产物要保留在项目里） |
 | `npm run app` | 构建后以独立桌面窗口运行（Electron） |
-| `npm run dist` | 打包 Windows 安装包 + 免安装版到 `release/` |
+| `npm run dist` | 打包 Windows 安装包 + 便携版 zip 到 `release/` |
 | `npm run smoke:desktop` | 桌面 APP 冒烟测试（真实窗口：渲染 / 沙箱 / 单实例 / 退出释放端口） |
 | `npm run dev:web` | 前端开发服务器（Vite，<http://127.0.0.1:5173>，`/api` 代理到 `TV_PORT`（默认 47821）；需另开终端 `npm start -- --no-open`） |
 | `npm test` | Vitest 单测（约 30 秒） |

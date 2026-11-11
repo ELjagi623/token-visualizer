@@ -44,7 +44,7 @@ Token Visualizer reads the session logs Claude Code writes to `~/.claude/project
 No Node.js and no browser needed. Download from the [Releases](../../releases) page:
 
 - `Token-Visualizer-Setup-<version>.exe`: installer (choose the install folder; adds desktop and Start menu shortcuts).
-- `Token-Visualizer-<version>-portable.exe`: portable build, just double-click.
+- `Token-Visualizer-<version>-portable-win-x64.zip`: portable build. Unzip it once anywhere, then double-click `Token Visualizer.exe`; it opens in under a second and needs no installation.
 
 It opens in its own window and quits when you close it. The desktop app and the command-line version share the same settings and cache (`%APPDATA%\TokenVisualizer`), and uninstalling does not delete them.
 
@@ -102,7 +102,7 @@ Desktop app (Electron):
 
 ```bash
 npm run app            # build, then run in a standalone window
-npm run dist           # build the Windows installer and portable exe into release/
+npm run dist           # build the Windows installer and the portable zip into release/
 npm run smoke:desktop  # launch the real window and check rendering, sandbox, single instance, shutdown
 ```
 

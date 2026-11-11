@@ -1,6 +1,6 @@
 {
   "name": "token-visualizer",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "description": "本地 Claude Code Token 用量可视化（只读、纯本地）",
   "license": "MIT",
