@@ -20,7 +20,7 @@ interface ApiProject {
   activeToday?: boolean;
   children?: ApiProject[];
 }
-async function apiProjects(url: string, sort = 'total'): Promise<{ projects: ApiProject[]; projectCount: number; all: { value: number } }> {
+async function apiProjects(url: string, sort = 'smart'): Promise<{ projects: ApiProject[]; projectCount: number; all: { value: number } }> {
   return (await (await fetch(`${url}api/projects?sort=${sort}`)).json()) as never;
 }
 async function topNames(page: Page): Promise<string[]> {

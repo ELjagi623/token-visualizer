@@ -23,7 +23,7 @@ const KEY_SCRATCH = 'tv.scratchExpanded';
 const KEY_DISMISSED = 'tv.dismissedWarnings';
 const KEY_LANG = 'tv.lang';
 
-const SORTS: readonly ProjectSort[] = ['total', 'recent', 'name', 'today'];
+const SORTS: readonly ProjectSort[] = ['smart', 'total', 'recent', 'name', 'today'];
 
 function systemDark(): boolean {
   return typeof window !== 'undefined' && typeof window.matchMedia === 'function' && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -46,7 +46,7 @@ function readThemePref(): ThemePref {
 
 function readSort(): ProjectSort {
   const v = lsGet(KEY_SORT);
-  return SORTS.includes(v as ProjectSort) ? (v as ProjectSort) : 'total';
+  return SORTS.includes(v as ProjectSort) ? (v as ProjectSort) : 'smart';
 }
 
 function readDismissed(): string[] {

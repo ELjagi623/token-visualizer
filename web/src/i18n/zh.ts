@@ -58,6 +58,7 @@ export const zh = {
   'sidebar.searchAria': '搜索项目',
   'sidebar.projects': '项目',
   'sidebar.sortAria': '项目排序方式',
+  'sidebar.sort.smart': '近期优先 + 总量',
   'sidebar.sort.total': '按总量排序',
   'sidebar.sort.recent': '按最近活跃排序',
   'sidebar.sort.name': '按名称排序',

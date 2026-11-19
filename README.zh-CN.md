@@ -176,7 +176,7 @@ start.cmd · start.ps1          双击启动脚本（start.cmd 为纯 ASCII，�
 |---|---|
 | `GET /api/status` | 扫描进度、`dataVersion`、`usageState` / `activity`（generating ≤ 60 s / active ≤ 10 min / idle）、今日总量、`dataRoot`、`warnings` |
 | `GET /api/events` | SSE：`status` / `dataVersion` / `settings`；连接时先推快照；15 s 心跳 |
-| `GET /api/projects` | 项目列表（含 `scratch` 组及 `children`）、`all` 合计、30 天 `sparkline`、`cost`、`hidden` / `hiddenCount`；`sort=total\|recent\|name\|today`、`q=` |
+| `GET /api/projects` | 项目列表（含 `scratch` 组及 `children`）、`all` 合计、30 天 `sparkline`、`cost`、`hidden` / `hiddenCount`；`sort=smart\|total\|recent\|name\|today`（`smart`：12 小时内活跃的在前、越近越靠上，其余按总量降序；网页默认）、`q=` |
 | `GET /api/summary` | 汇总 + `periods`（今日 / 昨日 / 本周 / 上周 / 本月 / 上月及环比）+ `activeMs` / `activeMsSum` + `cost` |
 | `GET /api/timeseries` | 时间序列 `points`（空桶补零，每点含 `activeMs`、`cost`）+ `series`（按 split 拆分，含 `costValues`） |
 | `GET /api/heatmap` · `GET /api/day-detail?date=` | 日历热力图（近 `weeks` 周，默认 26）· 某本地日按小时序列 + 当天会话 |

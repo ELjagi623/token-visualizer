@@ -112,6 +112,19 @@ describe('API：只读查询（验收 1、2）', () => {
     const names = (await getJson(t.base, '/api/projects?sort=name')).body.projects.map((p: Expected) => p.displayName as string);
     expect(names).toEqual([...names].sort((a, b) => a.localeCompare(b, 'zh', { sensitivity: 'base' })));
     expect(byToday[0]).toBe('D--Work-crlf');
+    // smart：12 小时内活跃的在前（越近越靠上），其余按总量降序
+    const smart = (await getJson(t.base, '/api/projects?sort=smart')).body;
+    const nowMs = Date.parse('2026-10-20T12:00:00Z');
+    const sp = (smart.projects as Expected[]).filter((p) => !p.pinned);
+    const isRecent = (p: Expected): boolean => p.lastActiveTs !== null && nowMs - p.lastActiveTs <= 12 * 3600 * 1000;
+    const firstOld = sp.findIndex((p) => !isRecent(p));
+    const head = firstOld < 0 ? sp : sp.slice(0, firstOld);
+    const tail = firstOld < 0 ? [] : sp.slice(firstOld);
+    expect(head.every(isRecent)).toBe(true);
+    expect(tail.some(isRecent)).toBe(false);
+    for (let i = 1; i < head.length; i++) expect(head[i - 1].lastActiveTs).toBeGreaterThanOrEqual(head[i].lastActiveTs);
+    for (let i = 1; i < tail.length; i++) expect(tail[i - 1].value).toBeGreaterThanOrEqual(tail[i].value);
+    expect(head.map((p) => p.id)).toContain('D--Work-crlf');
     // 搜索：按名称 / 路径 / cwd；scratch 子项命中时只留匹配的子项
     expect(await ids('?q=demo')).toEqual(['C--Users-----Work-demo']);
     expect(await ids('?q=Work%5Cdemo')).toEqual(['C--Users-----Work-demo']); // 路径

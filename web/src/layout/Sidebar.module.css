@@ -103,6 +103,16 @@
   color: var(--accentText);
 }
 
+/* "全部项目"：不随项目列表滚动，始终固定在最上面 */
+.allList {
+  flex: 0 0 auto;
+  margin: -4px -8px 0;
+  padding: 4px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .listWrap {
   flex: 1 1 auto;
   min-height: 0;

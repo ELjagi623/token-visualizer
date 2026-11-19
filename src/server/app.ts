@@ -168,6 +168,8 @@ interface FolderAcc {
 }
 
 const SPARK_DAYS = 30;
+/** 智能排序里"最近活跃"的窗口：半天 */
+const HALF_DAY_MS = 12 * 3600 * 1000;
 
 function newAcc(): FolderAcc {
   return { requests: 0, total: 0, fresh: 0, spark: new Array<number>(SPARK_DAYS).fill(0), todayRequests: 0, todayTotal: 0, todayFresh: 0, firstTs: null, lastTs: null };
@@ -290,7 +292,7 @@ export async function createApp(opts: AppOptions): Promise<App> {
   function projectsPayload(sp: URLSearchParams): unknown {
     rejectUnknown(sp, ['sort', 'q', 'basis', 'tz']);
     const s = settings.get();
-    const sort = oneOfParam(singleParam(sp, 'sort'), 'sort', ['total', 'recent', 'name', 'today'] as const, 'total');
+    const sort = oneOfParam(singleParam(sp, 'sort'), 'sort', ['total', 'recent', 'name', 'today', 'smart'] as const, 'total');
     const basis: Basis = oneOfParam(singleParam(sp, 'basis'), 'basis', ['total', 'fresh'] as const, s.defaultBasis);
     const tzRaw = singleParam(sp, 'tz');
     const tz = tzRaw && tzRaw.length > 0 ? tzRaw : settings.effectiveTimezone();
@@ -382,6 +384,14 @@ export async function createApp(opts: AppOptions): Promise<App> {
     const cmp = (a: ProjectItem, b: ProjectItem): number => {
       if (a.pinned !== b.pinned) return a.pinned ? -1 : 1; // 置顶永远在前
       switch (sort) {
+        case 'smart': {
+          // 半天（12 小时）内有活动的项目排最前，越近越靠上；其余按总 token 消耗从高到低
+          const ar = a.lastActiveTs !== null && now - a.lastActiveTs <= HALF_DAY_MS;
+          const br = b.lastActiveTs !== null && now - b.lastActiveTs <= HALF_DAY_MS;
+          if (ar !== br) return ar ? -1 : 1;
+          if (ar) return (b.lastActiveTs ?? -1) - (a.lastActiveTs ?? -1) || a.id.localeCompare(b.id);
+          return b.value - a.value || a.displayName.localeCompare(b.displayName, 'zh') || a.id.localeCompare(b.id);
+        }
         case 'recent':
           return (b.lastActiveTs ?? -1) - (a.lastActiveTs ?? -1) || a.id.localeCompare(b.id);
         case 'name':

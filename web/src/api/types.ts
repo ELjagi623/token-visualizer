@@ -91,7 +91,7 @@ export interface ProjectsAll {
   lastActiveTs: number | null;
 }
 
-export type ProjectSort = 'total' | 'recent' | 'name' | 'today';
+export type ProjectSort = 'smart' | 'total' | 'recent' | 'name' | 'today';
 
 export interface ProjectsPayload {
   basis: Basis;

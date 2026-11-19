@@ -18,7 +18,8 @@ import s from './Sidebar.module.css';
 
 export const NARROW_QUERY = '(max-width: 899.98px)';
 
-const SORT_OPTIONS: ReadonlyArray<{ value: ProjectSort; label: 'sidebar.sort.total' | 'sidebar.sort.recent' | 'sidebar.sort.name' | 'sidebar.sort.today' }> = [
+const SORT_OPTIONS: ReadonlyArray<{ value: ProjectSort; label: 'sidebar.sort.smart' | 'sidebar.sort.total' | 'sidebar.sort.recent' | 'sidebar.sort.name' | 'sidebar.sort.today' }> = [
+  { value: 'smart', label: 'sidebar.sort.smart' },
   { value: 'total', label: 'sidebar.sort.total' },
   { value: 'recent', label: 'sidebar.sort.recent' },
   { value: 'name', label: 'sidebar.sort.name' },
@@ -204,7 +205,7 @@ export function Sidebar() {
           <span>{t('sidebar.projects')}</span>
           <div className={s.sortWrap} ref={sortRef}>
             <Chip small aria-haspopup="listbox" aria-expanded={sortOpen} aria-label={t('sidebar.sortAria')} data-testid="sort-button" data-sort={sort} onClick={() => setSortOpen((v) => !v)}>
-              {t(SORT_OPTIONS.find((o) => o.value === sort)?.label ?? 'sidebar.sort.total')}
+              {t(SORT_OPTIONS.find((o) => o.value === sort)?.label ?? 'sidebar.sort.smart')}
               <Icon name="chevronDown" size={14} strokeWidth={2} />
             </Chip>
             {sortOpen && (
@@ -230,24 +231,28 @@ export function Sidebar() {
           </div>
         </div>
 
+        {/* "全部项目"固定在滚动区之外，始终置顶 */}
+        <ul className={s.allList}>
+          <li>
+            <div className={cx(s.row, s.all)} data-selected={allSel ? 'true' : 'false'} data-testid="project-row-all" data-project-id="all">
+              <a className={s.link} href={linkFor('all')} aria-current={allSel ? 'true' : undefined} onClick={onPick('all')}>
+                <div className={s.names}>
+                  <div className={cx(s.name, s.allName)}>{t('sidebar.all')}</div>
+                  <div className={s.sub}>{data ? t('sidebar.allSub', { n: total }) : <Skeleton width={70} height={10} />}</div>
+                </div>
+                <div className={s.right}>
+                  <div className={cx(s.total, s.allTotal, 'num')} data-value={data?.all.value ?? ''} data-testid="project-total-all">
+                    {data ? formatTokens(data.all.value) : '—'}
+                  </div>
+                  {data && <Sparkline values={data.all.sparkline} width={84} height={22} pad={2} strokeWidth={1.6} fillOpacity={0.3} />}
+                </div>
+              </a>
+            </div>
+          </li>
+        </ul>
+
         <div className={s.listWrap}>
           <ul className={s.list} data-testid="project-list">
-            <li>
-              <div className={cx(s.row, s.all)} data-selected={allSel ? 'true' : 'false'} data-testid="project-row-all" data-project-id="all">
-                <a className={s.link} href={linkFor('all')} aria-current={allSel ? 'true' : undefined} onClick={onPick('all')}>
-                  <div className={s.names}>
-                    <div className={cx(s.name, s.allName)}>{t('sidebar.all')}</div>
-                    <div className={s.sub}>{data ? t('sidebar.allSub', { n: total }) : <Skeleton width={70} height={10} />}</div>
-                  </div>
-                  <div className={s.right}>
-                    <div className={cx(s.total, s.allTotal, 'num')} data-value={data?.all.value ?? ''} data-testid="project-total-all">
-                      {data ? formatTokens(data.all.value) : '—'}
-                    </div>
-                    {data && <Sparkline values={data.all.sparkline} width={84} height={22} pad={2} strokeWidth={1.6} fillOpacity={0.3} />}
-                  </div>
-                </a>
-              </div>
-            </li>
             {loadingFirst &&
               [62, 48, 70, 54].map((w, i) => (
                 <li key={`sk${i}`} className={s.skRow} aria-hidden="true">

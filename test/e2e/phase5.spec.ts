@@ -23,7 +23,7 @@ interface ApiProject {
   children?: ApiProject[];
 }
 
-async function apiProjects(url: string, sort = 'total'): Promise<{ projects: ApiProject[]; projectCount: number }> {
+async function apiProjects(url: string, sort = 'smart'): Promise<{ projects: ApiProject[]; projectCount: number }> {
   return (await (await fetch(`${url}api/projects?sort=${sort}`)).json()) as { projects: ApiProject[]; projectCount: number };
 }
 
@@ -196,7 +196,7 @@ test.describe('前端骨架（fixture）', () => {
 
   test('方向键 ↑/↓ 切换选中项；点击切换；URL 保留项目', async ({ page }) => {
     await open(page, srv.url);
-    const api = await apiProjects(srv.url, 'total'); // 默认排序
+    const api = await apiProjects(srv.url); // 默认排序（smart）
     const first = api.projects[0]!;
     const second = api.projects[1]!;
     await expect(page.locator('[data-testid="content"]')).toHaveAttribute('data-project', 'all');
